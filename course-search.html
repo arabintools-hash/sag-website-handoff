@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Search — Find Your Programme | Study Abroad Gate</title>
+<meta name="description" content="Search 500+ study abroad programmes across 11 countries. Filter by field, level, budget, and language — find the right course in minutes.">
+<link rel="canonical" href="https://www.studyabroadgate.com/course-search.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<style>.cs-filters{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}.cs-filters select{font-family:var(--sans);font-size:0.95rem;padding:12px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--ink);cursor:pointer;width:100%}.cs-filters select:focus{outline:2px solid var(--gold);border-color:var(--gold)}.cs-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;transition:box-shadow .2s}.cs-card:hover{box-shadow:var(--sh-2)}.cs-card .level{display:inline-block;font-size:0.75rem;padding:3px 10px;border-radius:var(--r-pill);font-weight:600}.cs-gold{background:var(--gold-soft);color:var(--gold-strong);border:1px solid var(--gold)}.cs-teal{background:oklch(0.94 0.03 180);color:oklch(0.35 0.1 180);border:1px solid oklch(0.7 0.1 180)}@media(max-width:768px){.cs-filters{grid-template-columns:1fr 1fr}}</style>
+</head>
+<body data-screen-label="Course Search">
+
+<header class="site-head"><div class="wrap-wide nav"><a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a><nav class="nav-links"><a href="destination.html" class="has-caret">Destinations</a><a href="program.html" class="has-caret">Programs</a><a href="university.html" class="has-caret">Universities</a><a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a><a href="about.html">About</a><a href="faq.html">FAQ</a></nav><div class="nav-right"><a href="ar/index.html" class="lang-toggle">EN · <b>العربية</b></a><a href="contact.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-accent">Book free consultation</a></div></div></header>
+
+<section style="background:var(--navy-deep); color:#fff; padding:clamp(48px,6vw,80px) 0 clamp(40px,5vw,64px);">
+  <div class="wrap">
+    <span class="kicker on-dark" style="margin-bottom:16px;">Course search</span>
+    <h1 class="h1" style="color:#fff; max-width:16em;">Find your programme</h1>
+    <p class="lead" style="color:oklch(0.84 0.02 256); max-width:38em; margin-top:16px;">Browse programmes across 11 countries. Filter by field, level, budget, and country — then apply free with your counsellor.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cs-filters">
+      <select id="fField" onchange="filterCourses()">
+        <option value="">All fields</option>
+        <option value="cs">Computer Science &amp; AI</option>
+        <option value="eng">Engineering</option>
+        <option value="bus">Business &amp; MBA</option>
+        <option value="fin">Finance &amp; Analytics</option>
+        <option value="med">Medicine &amp; Health</option>
+        <option value="law">Law &amp; IR</option>
+        <option value="other">Other</option>
+      </select>
+      <select id="fCountry" onchange="filterCourses()">
+        <option value="">All countries</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="us">🇺🇸 United States</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="au">🇦🇺 Australia</option>
+        <option value="es">🇪🇸 Spain</option>
+        <option value="de">🇩🇪 Germany</option>
+        <option value="hu">🇭🇺 Hungary</option>
+        <option value="pl">🇵🇱 Poland</option>
+        <option value="it">🇮🇹 Italy</option>
+        <option value="ge">🇬🇪 Georgia</option>
+        <option value="my">🇲🇾 Malaysia</option>
+      </select>
+      <select id="fLevel" onchange="filterCourses()">
+        <option value="">All levels</option>
+        <option value="ug">Undergraduate</option>
+        <option value="pg">Postgraduate</option>
+      </select>
+      <select id="fBudget" onchange="filterCourses()">
+        <option value="">Any budget</option>
+        <option value="free">Free tuition (€0)</option>
+        <option value="low">Under €5,000/year</option>
+        <option value="mid">€5,000–€20,000/year</option>
+        <option value="high">Over €20,000/year</option>
+      </select>
+    </div>
+
+    <div id="courseCount" style="font-size:0.92rem; color:var(--muted); margin-bottom:18px;"></div>
+
+    <div id="courseList" style="display:grid; gap:14px;"></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--sand);">
+  <div class="wrap">
+    <div style="background:var(--navy); border-radius:var(--r-lg); padding:clamp(36px,5vw,60px); text-align:center; color:#fff;">
+      <h2 class="h2" style="color:#fff; max-width:16em; margin-inline:auto;">Can't find what you're looking for?</h2>
+      <p class="lead" style="color:oklch(0.85 0.02 256); max-width:32em; margin:16px auto 28px;">We partner with 650+ universities. Tell your counsellor what you want to study and they'll find programmes that match — free.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-accent btn-lg">Talk to a counsellor</a>
+        <a href="https://wa.me/" class="btn btn-ghost on-dark btn-lg">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot"><div class="wrap-wide"><div class="foot-grid"><div class="foot-col"><div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div><p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p></div><div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-hungary.html">Hungary</a></li><li><a href="destination-poland.html">Poland</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-italy.html">Italy</a></li><li><a href="destination-georgia.html">Georgia</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div><div class="foot-col"><h5>Services</h5><ul><li><a href="services.html">Free counselling</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li><li><a href="course-search.html">Course search</a></li><li><a href="scholarships.html">Scholarships</a></li><li><a href="ielts-prep.html">IELTS preparation</a></li></ul></div><div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="about.html#parents">For parents</a></li><li><a href="contact.html">Contact</a></li></ul></div></div><nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar"><span>© 2026 Study Abroad Gate. All rights reserved.</span><div class="foot-lang" role="group" aria-label="Language / اللغة"><a href="course-search.html" aria-current="true">English</a><a href="ar/course-search.html" lang="ar">العربية</a></div><span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span></div></div></footer>
+
+<script>
+var courses=[
+{t:"MSc Artificial Intelligence",u:"University of Edinburgh",c:"uk",f:"cs",l:"pg",fee:"£31,200",dur:"1 year",href:"program-ai-edinburgh.html"},
+{t:"MSc Business Analytics",u:"King's College London",c:"uk",f:"fin",l:"pg",fee:"£33,000",dur:"1 year",href:"program-business-analytics-kcl.html"},
+{t:"MSc Data Science",u:"University of Manchester",c:"uk",f:"cs",l:"pg",fee:"£32,000",dur:"1 year",href:"program-data-science.html"},
+{t:"Foundation Year (NCUK)",u:"NCUK Partner Universities",c:"uk",f:"other",l:"ug",fee:"£16,000",dur:"1 year",href:"program-foundation-ncuk.html"},
+{t:"BA International Business",u:"University of Glasgow",c:"uk",f:"bus",l:"ug",fee:"£24,540",dur:"4 years",href:"program-intl-business-glasgow.html"},
+{t:"LLM Law",u:"University of Birmingham",c:"uk",f:"law",l:"pg",fee:"£24,120",dur:"1 year",href:"program-law-birmingham.html"},
+{t:"BSc Computer Science",u:"UIUC",c:"us",f:"cs",l:"ug",fee:"$38,000",dur:"4 years",href:"program-computer-science.html"},
+{t:"BSc Electrical Engineering",u:"Purdue University",c:"us",f:"eng",l:"ug",fee:"$31,104",dur:"4 years",href:"program-ee-purdue.html"},
+{t:"Full-Time MBA",u:"ASU W.P. Carey",c:"us",f:"bus",l:"pg",fee:"$59,000",dur:"2 years",href:"program-mba.html"},
+{t:"BEng Civil Engineering",u:"McGill University",c:"ca",f:"eng",l:"ug",fee:"CA$52,080",dur:"4 years",href:"program-civil-eng-mcgill.html"},
+{t:"Master of Finance",u:"U of T Rotman",c:"ca",f:"fin",l:"pg",fee:"CA$62,310",dur:"16 mo.",href:"program-finance-toronto.html"},
+{t:"BSc Nursing",u:"University of British Columbia",c:"ca",f:"med",l:"ug",fee:"CA$42,000",dur:"4 years",href:"program-nursing.html"},
+{t:"Bachelor of Commerce",u:"Monash University",c:"au",f:"bus",l:"ug",fee:"A$48,800",dur:"3 years",href:"program-commerce-monash.html"},
+{t:"Master of Engineering",u:"University of Melbourne",c:"au",f:"eng",l:"pg",fee:"AU$50,000",dur:"2 years",href:"program-engineering.html"},
+{t:"Master of Public Health",u:"University of Sydney",c:"au",f:"med",l:"pg",fee:"A$49,000",dur:"1.5 years",href:"program-public-health-sydney.html"},
+{t:"BA International Relations",u:"Universitat de Barcelona",c:"es",f:"law",l:"ug",fee:"€2,500",dur:"4 years",href:"program-intl-relations-barcelona.html"},
+{t:"MSc Data Analytics",u:"IE University",c:"es",f:"fin",l:"pg",fee:"€14,800",dur:"1 year",href:"program-data-analytics-ie.html"},
+{t:"Full-Time MBA",u:"ESADE Business School",c:"es",f:"bus",l:"pg",fee:"€18,500",dur:"15–18 mo.",href:"program-mba-esade.html"},
+{t:"MSc Computer Science",u:"TU Munich",c:"de",f:"cs",l:"pg",fee:"€0",dur:"2 years",href:"program-cs-tum.html"},
+{t:"BSc Business Administration",u:"LMU Munich",c:"de",f:"bus",l:"ug",fee:"€0",dur:"3 years",href:"program-bba-lmu.html"},
+{t:"MSc Mechanical Engineering",u:"RWTH Aachen",c:"de",f:"eng",l:"pg",fee:"€0",dur:"2 years",href:"program-mech-eng-rwth.html"},
+{t:"BSc Business &amp; Economics",u:"Corvinus University",c:"hu",f:"bus",l:"ug",fee:"€3,800",dur:"3 years",href:"program-business-corvinus.html"},
+{t:"BSc Computer Science",u:"ELTE Budapest",c:"hu",f:"cs",l:"ug",fee:"€3,200",dur:"3 years",href:"program-cs-elte.html"},
+{t:"Medicine (MD)",u:"University of Debrecen",c:"hu",f:"med",l:"ug",fee:"€16,000",dur:"6 years",href:"program-medicine-debrecen.html"},
+{t:"BSc Data Science",u:"Warsaw U. of Technology",c:"pl",f:"cs",l:"ug",fee:"€4,000",dur:"3.5 years",href:"program-data-science-wut.html"},
+{t:"BA International Relations",u:"Jagiellonian University",c:"pl",f:"law",l:"ug",fee:"€3,000",dur:"3 years",href:"program-ir-jagiellonian.html"},
+{t:"Medicine (MD)",u:"Medical U. of Warsaw",c:"pl",f:"med",l:"ug",fee:"€12,500",dur:"6 years",href:"program-medicine-warsaw.html"},
+{t:"MSc Design Engineering",u:"Politecnico di Milano",c:"it",f:"eng",l:"pg",fee:"€3,900",dur:"2 years",href:"program-design-eng-polimi.html"},
+{t:"MSc Architecture",u:"Politecnico di Milano",c:"it",f:"eng",l:"pg",fee:"€3,900",dur:"2 years",href:"program-architecture-polimi.html"},
+{t:"BA Economics",u:"University of Bologna",c:"it",f:"fin",l:"ug",fee:"€2,800",dur:"3 years",href:"program-economics-bologna.html"},
+{t:"BBA Business Administration",u:"Caucasus University",c:"ge",f:"bus",l:"ug",fee:"$3,500",dur:"4 years",href:"program-bba-caucasus.html"},
+{t:"Medicine (MD)",u:"TSMU Tbilisi",c:"ge",f:"med",l:"ug",fee:"$6,000",dur:"6 years",href:"program-medicine-tbilisi.html"},
+{t:"Dentistry",u:"European University Georgia",c:"ge",f:"med",l:"ug",fee:"$4,500",dur:"5 years",href:"program-dentistry-european.html"},
+];
+function filterCourses(){
+  var ff=document.getElementById('fField').value;
+  var fc=document.getElementById('fCountry').value;
+  var fl=document.getElementById('fLevel').value;
+  var fb=document.getElementById('fBudget').value;
+  var list=document.getElementById('courseList');
+  list.innerHTML='';
+  var count=0;
+  courses.forEach(function(p){
+    if(ff && p.f!==ff) return;
+    if(fc && p.c!==fc) return;
+    if(fl && p.l!==fl) return;
+    if(fb){
+      var n=parseFloat(p.fee.replace(/[^0-9.]/g,''));
+      if(fb==='free' && n>0) return;
+      if(fb==='low' && (n===0||n>5000)) return;
+      if(fb==='mid' && (n<5000||n>20000)) return;
+      if(fb==='high' && n<20000) return;
+    }
+    count++;
+    var lc=p.l==='ug'?'cs-gold':'cs-teal';
+    var ll=p.l==='ug'?"Bachelor's":"Master's";
+    list.innerHTML+='<a href="'+p.href+'" class="cs-card" style="text-decoration:none;color:inherit;"><div><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;"><span class="level '+lc+'">'+ll+'</span><span style="font-size:0.82rem;color:var(--muted);">'+p.dur+'</span></div><div style="font-weight:700;font-size:1.05rem;margin-bottom:4px;">'+p.t+'</div><div style="font-size:0.9rem;color:var(--muted);">'+p.u+'</div></div><div style="text-align:right;"><div style="font-family:var(--mono);font-weight:700;color:var(--navy);font-size:1.1rem;">'+p.fee+'</div><div style="font-size:0.82rem;color:var(--muted);margin-top:2px;">per year</div></div></a>';
+  });
+  document.getElementById('courseCount').textContent='Showing '+count+' programme'+(count!==1?'s':'')+' — click any to see full details';
+}
+filterCourses();
+</script>
+</body>
+</html>

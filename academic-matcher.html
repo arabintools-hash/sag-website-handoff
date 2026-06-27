@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Matcher — Find Your Perfect Program | Study Abroad Gate</title>
+<meta name="description" content="Answer 5 quick questions and get 3 personalised course & destination recommendations from Study Abroad Gate counsellors. Free, no signup required.">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<style>
+  /* ---- matcher shell ---- */
+  .cm-hero { background: var(--navy-deep); color: #fff; padding: clamp(48px,6vw,72px) 0 clamp(60px,7vw,90px); position: relative; overflow: hidden; }
+  .cm-hero::after { content:""; position:absolute; inset:auto -10% -40% auto; width:480px; height:480px; border-radius:50%; background: radial-gradient(circle, oklch(0.42 0.08 70 / 0.22), transparent 65%); pointer-events:none; }
+  .cm-hero .crumbs { font-family: var(--mono); font-size: 0.82rem; color: oklch(0.78 0.02 256); margin-bottom: 22px; display: flex; gap: 8px; }
+  .cm-hero .crumbs a { color: inherit; }
+  .cm-hero .crumbs .here { color: var(--gold); }
+  .cm-hero h1 { color: #fff; font-size: clamp(2rem, 3.6vw, 3rem); max-width: 16em; }
+  .cm-hero p.lead { color: oklch(0.86 0.02 256); max-width: 42em; margin-top: 16px; }
+
+  /* ---- progress ---- */
+  .cm-wrap { max-width: 880px; margin-inline: auto; margin-top: -52px; position: relative; z-index: 2; }
+  .cm-card { background: var(--card); border-radius: var(--r-lg); box-shadow: var(--sh-2); padding: clamp(28px,4vw,48px); border: 1px solid var(--line); }
+  .cm-prog { display: flex; gap: 8px; margin-bottom: 28px; }
+  .cm-prog i { flex: 1; height: 4px; border-radius: 2px; background: var(--line); transition: background .25s; }
+  .cm-prog i.done { background: var(--gold); }
+  .cm-prog i.now { background: var(--gold-strong); }
+  .cm-step-label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-strong); margin-bottom: 10px; }
+  .cm-q { font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 1.95rem); font-weight: 600; color: var(--ink); line-height: 1.2; margin-bottom: 28px; }
+
+  /* ---- options ---- */
+  .cm-opts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cm-opts.cols-1 { grid-template-columns: 1fr; }
+  .cm-opts.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cm-opt { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: var(--r); border: 2px solid var(--line); background: var(--card); cursor: pointer; transition: all .15s; text-align: left; font: inherit; color: var(--ink); }
+  .cm-opt:hover { border-color: var(--gold); background: oklch(0.97 0.018 86); transform: translateY(-1px); }
+  .cm-opt.sel { border-color: var(--gold); background: var(--gold-soft); }
+  .cm-opt .em { font-size: 1.5rem; flex: 0 0 auto; line-height: 1; }
+  .cm-opt .tx { flex: 1; }
+  .cm-opt .tx b { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+  .cm-opt .tx small { color: var(--muted); font-size: 0.84rem; }
+  .cm-opt .chk { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); flex: 0 0 auto; display:grid; place-items:center; transition: all .15s; }
+  .cm-opt.sel .chk { background: var(--gold); border-color: var(--gold); }
+  .cm-opt.sel .chk::after { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
+
+  /* ---- nav ---- */
+  .cm-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line-soft); }
+  .cm-nav .btn { min-width: 120px; }
+
+  /* ---- summary chips (results) ---- */
+  .cm-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .cm-summary .chip { background: var(--gold-soft); color: var(--gold-strong); font-weight: 600; }
+
+  /* ---- result cards ---- */
+  .cm-results { display: grid; gap: 16px; }
+  .cm-result { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding: 22px 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); transition: all .15s; }
+  .cm-result:hover { border-color: var(--gold); box-shadow: var(--sh-1); }
+  .cm-result .rank { font-family: var(--serif); font-size: 2.2rem; color: var(--gold); font-weight: 600; line-height: 1; }
+  .cm-result h3 { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .cm-result .uni { color: var(--muted); font-size: 0.92rem; margin-bottom: 8px; }
+  .cm-result .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cm-result .meta span { font-family: var(--mono); font-size: 0.72rem; padding: 4px 10px; border-radius: var(--r-pill); background: var(--sand); color: var(--muted); }
+  .cm-result .meta span.fee { background: var(--gold-soft); color: var(--gold-strong); }
+  .cm-result .go { font-family: var(--mono); font-size: 0.78rem; color: var(--gold-strong); display: inline-flex; align-items: center; gap: 6px; }
+  .cm-result .go svg { width: 14px; height: 14px; transition: transform .15s; }
+  .cm-result:hover .go svg { transform: translateX(3px); }
+
+  /* ---- result CTA band ---- */
+  .cm-cta { background: var(--navy-deep); color: #fff; border-radius: var(--r-lg); padding: clamp(28px,4vw,40px); margin-top: 24px; text-align: center; }
+  .cm-cta h3 { color: #fff; font-family: var(--serif); font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
+  .cm-cta p { color: oklch(0.85 0.02 256); margin-bottom: 22px; max-width: 36em; margin-inline: auto; font-size: 0.96rem; }
+  .cm-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cm-capture { display: grid; gap: 12px; max-width: 480px; margin: 0 auto; }
+  .cm-capture-row { display: grid; grid-template-columns: 110px 1fr; gap: 8px; }
+  .cm-capture-row select, .cm-capture-row input { padding: 14px 14px; font: inherit; font-family: var(--sans); border-radius: var(--r); border: 1.5px solid oklch(1 0 0 / 0.16); background: oklch(1 0 0 / 0.08); color: #fff; }
+  .cm-capture-row select { color: #fff; -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23C48E2E' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 10px center; background-size: 16px 16px; padding-right: 32px; }
+  .cm-capture-row select option { color: var(--ink); background: var(--card); }
+  .cm-capture-row input::placeholder { color: oklch(0.8 0.015 256); }
+  .cm-capture-row input:focus, .cm-capture-row select:focus { outline: none; border-color: var(--gold); background: oklch(1 0 0 / 0.12); }
+  .cm-fine { font-family: var(--mono); font-size: 0.74rem; color: oklch(0.78 0.02 256); margin-top: 4px; }
+  .cm-or { display: flex; align-items: center; gap: 14px; color: oklch(0.78 0.02 256); font-family: var(--mono); font-size: 0.78rem; margin: 18px 0 14px; }
+  .cm-or::before, .cm-or::after { content: ""; flex: 1; height: 1px; background: oklch(1 0 0 / 0.14); }
+  .btn-wa { background: #25D366; color: #fff; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 9px; width: 100%; }
+  .btn-wa:hover { background: #1ebe5a; border-color: #1ebe5a; transform: translateY(-1px); }
+  .btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ---- restart ---- */
+  .cm-restart { margin-top: 18px; text-align: center; }
+  .cm-restart a { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); text-decoration: underline; cursor: pointer; }
+
+  /* ---- empty state ---- */
+  .cm-empty { padding: 32px; text-align: center; color: var(--muted); font-family: var(--mono); font-size: 0.9rem; }
+
+  @media (max-width: 680px) {
+    .cm-opts, .cm-opts.cols-3 { grid-template-columns: 1fr; }
+    .cm-result { grid-template-columns: 1fr; text-align: left; }
+    .cm-result .rank { font-size: 1.5rem; }
+    .cm-result .go { justify-self: start; }
+    .cm-nav .btn { min-width: 0; flex: 1; }
+  }
+</style>
+</head>
+<body data-screen-label="Free tool · Academic matcher">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="index.html#destinations" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="ar/index.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="cm-hero">
+  <div class="wrap-wide">
+    <div class="crumbs">
+      <a href="index.html">Home</a> <span>/</span>
+      <a href="index.html#tools">Free tools</a> <span>/</span>
+      <span class="here">Academic matcher</span>
+    </div>
+    <span class="kicker on-dark" style="margin-bottom: 16px;">6 questions · 90 seconds</span>
+    <h1>Find your perfect course — in under two minutes</h1>
+    <p class="lead">Tell us a bit about you and we'll match you with 3 real programs that fit your goals, budget, and destination. No signup, no spam — just useful answers.</p>
+  </div>
+</section>
+
+<!-- ===== MATCHER ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap-wide">
+    <div class="cm-wrap">
+      <div class="cm-card" id="cmCard">
+
+        <!-- progress -->
+        <div class="cm-prog" id="cmProg">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+
+        <!-- step viewport -->
+        <div id="cmSteps">
+          <!-- steps injected by JS -->
+        </div>
+
+        <!-- nav -->
+        <div class="cm-nav" id="cmNav">
+          <button class="btn btn-ghost" id="cmBack" style="visibility:hidden;">← Back</button>
+          <button class="btn btn-accent" id="cmNext" disabled>Next →</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling — from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-germany.html">Germany</a></li></ul></div>
+      <div class="foot-col"><h5>Free tools</h5><ul><li><a href="academic-matcher.html">Academic matcher</a></li><li><a href="cost-calculator.html">Cost calculator</a></li><li><a href="https://wa.me/" target="_blank" rel="noopener">Ask a counsellor</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact</a></li><li><a href="services.html">Services</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <div class="foot-lang" role="group" aria-label="Language">
+        <a href="index.html" aria-current="true">English</a>
+        <a href="ar/index.html" lang="ar">العربية</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ------- Quiz data ------- */
+const STEPS = [
+  {
+    key: 'level',
+    label: 'Step 1 of 6',
+    q: 'What level of study are you looking for?',
+    cols: 2,
+    options: [
+      { v: 'foundation', em: '🎓', t: 'Foundation / Pathway', s: 'Bridge to undergraduate degrees' },
+      { v: 'bachelors', em: '📘', t: "Bachelor's degree", s: '3–4 year undergraduate' },
+      { v: 'masters', em: '📗', t: "Master's degree", s: '1–2 year postgraduate' },
+      { v: 'phd', em: '🔬', t: 'PhD / Doctorate', s: '3–5 year research degree' },
+    ],
+  },
+  {
+    key: 'field',
+    label: 'Step 2 of 6',
+    q: 'Which field interests you most?',
+    cols: 2,
+    options: [
+      { v: 'cs', em: '💻', t: 'Computer Science & AI', s: 'CS, data science, AI, software' },
+      { v: 'eng', em: '⚙️', t: 'Engineering', s: 'Mechanical, electrical, civil, design' },
+      { v: 'business', em: '💼', t: 'Business & Management', s: 'MBA, BBA, finance, marketing' },
+      { v: 'medicine', em: '🩺', t: 'Medicine & Health Sciences', s: 'MD, dentistry, nursing, public health' },
+      { v: 'law', em: '⚖️', t: 'Law & International Relations', s: 'LLM, IR, public policy' },
+      { v: 'arts', em: '🎨', t: 'Arts, Architecture & Design', s: 'Architecture, design, humanities' },
+    ],
+  },
+  {
+    key: 'destination',
+    label: 'Step 3 of 6',
+    q: 'Which destinations sound appealing?',
+    cols: 2,
+    options: [
+      { v: 'uk_ie', em: '🇬🇧', t: 'UK & Ireland', s: '1-yr master\'s · 2-yr PSW' },
+      { v: 'usa_ca', em: '🇺🇸', t: 'USA & Canada', s: 'World-class research · OPT/PGWP' },
+      { v: 'europe_west', em: '🇩🇪', t: 'Western Europe', s: 'Germany, Spain, Italy, Netherlands' },
+      { v: 'europe_east', em: '🇭🇺', t: 'Central & Eastern Europe', s: 'Hungary, Poland, Georgia' },
+      { v: 'asia_oceania', em: '🇦🇺', t: 'Australia & Asia', s: 'Australia, Malaysia' },
+      { v: 'any', em: '🌍', t: "I'm flexible", s: 'Show me the best options anywhere' },
+    ],
+  },
+  {
+    key: 'budget',
+    label: 'Step 4 of 6',
+    q: 'What is your annual tuition budget?',
+    cols: 2,
+    options: [
+      { v: 'low', em: '💰', t: 'Under $7,000', s: 'Public EU, Georgia, Malaysia' },
+      { v: 'mid', em: '💰💰', t: '$7,000 – $20,000', s: 'Most EU, Hungary, Poland, Italy' },
+      { v: 'high', em: '💰💰💰', t: '$20,000 – $40,000', s: 'UK, Canada, Australia' },
+      { v: 'premium', em: '💎', t: '$40,000+', s: 'Top US, premium UK MBA' },
+    ],
+  },
+  {
+    key: 'priority',
+    label: 'Step 5 of 6',
+    q: "What matters most to you?",
+    cols: 2,
+    options: [
+      { v: 'ranking', em: '🏆', t: 'World ranking', s: 'QS Top-100 universities' },
+      { v: 'work', em: '🤝', t: 'Post-study work visa', s: 'Stay & work after graduation' },
+      { v: 'value', em: '📊', t: 'Best value for money', s: 'Quality at a fair price' },
+      { v: 'culture', em: '🌟', t: 'Lifestyle & culture', s: 'Quality of life matters' },
+    ],
+  },
+  {
+    key: 'grades',
+    label: 'Step 6 of 6',
+    q: 'Your current grades',
+    cols: 2,
+    options: [
+      { v: 'excellent', em: '🌟', t: 'Excellent', s: 'A / 90%+ / GPA 3.7+' },
+      { v: 'verygood',  em: '✨', t: 'Very good',  s: 'B / 80–90% / GPA 3.0–3.7' },
+      { v: 'good',      em: '👌', t: 'Good',       s: 'C / 70–80% / GPA 2.5–3.0' },
+      { v: 'pass',      em: '📖', t: 'Pass',       s: 'Below 70% / not sure yet' },
+    ],
+  },
+];
+
+/* ------- Programs database (from project) ------- */
+const PROGRAMS = [
+  // CS / AI / Data
+  { href:'program-computer-science.html', title:'BSc Computer Science', uni:'UIUC (Illinois)', country:'USA', dest:'usa_ca', level:'bachelors', field:'cs', fee:43000, qs:64, work:36, rank:'QS Top-100', flag:'🇺🇸' },
+  { href:'program-cs-tum.html', title:"MSc Informatics", uni:'TU Munich', country:'Germany', dest:'europe_west', level:'masters', field:'cs', fee:0, qs:37, work:18, rank:'QS #37', flag:'🇩🇪' },
+  { href:'program-cs-elte.html', title:'BSc Computer Science', uni:'ELTE Budapest', country:'Hungary', dest:'europe_east', level:'bachelors', field:'cs', fee:5200, qs:580, work:9, rank:'Top Hungarian uni', flag:'🇭🇺' },
+  { href:'program-ai-edinburgh.html', title:'MSc Artificial Intelligence', uni:'University of Edinburgh', country:'UK', dest:'uk_ie', level:'masters', field:'cs', fee:39950, qs:27, work:24, rank:'QS #27', flag:'🇬🇧' },
+  { href:'program-data-science.html', title:'MSc Data Science', uni:'University of Manchester', country:'UK', dest:'uk_ie', level:'masters', field:'cs', fee:31000, qs:34, work:24, rank:'QS #34', flag:'🇬🇧' },
+  { href:'program-data-science-wut.html', title:'MSc Data Science', uni:'Warsaw Univ. of Tech.', country:'Poland', dest:'europe_east', level:'masters', field:'cs', fee:3500, qs:550, work:9, rank:'Top Polish uni', flag:'🇵🇱' },
+  { href:'program-business-analytics-kcl.html', title:'MSc Business Analytics', uni:"King's College London", country:'UK', dest:'uk_ie', level:'masters', field:'cs', fee:36300, qs:40, work:24, rank:'QS #40', flag:'🇬🇧' },
+  { href:'program-data-analytics-ie.html', title:'MSc Data Analytics', uni:'IE University, Madrid', country:'Spain', dest:'europe_west', level:'masters', field:'cs', fee:36800, qs:259, work:12, rank:'Top Spanish biz', flag:'🇪🇸' },
+
+  // Engineering
+  { href:'program-engineering.html', title:'BEng Engineering', uni:'University of Manchester', country:'UK', dest:'uk_ie', level:'bachelors', field:'eng', fee:31000, qs:34, work:24, rank:'QS #34', flag:'🇬🇧' },
+  { href:'program-ee-purdue.html', title:'BSc Electrical Engineering', uni:'Purdue University', country:'USA', dest:'usa_ca', level:'bachelors', field:'eng', fee:31104, qs:114, work:36, rank:'QS Top-150', flag:'🇺🇸' },
+  { href:'program-mech-eng-rwth.html', title:'BSc Mechanical Engineering', uni:'RWTH Aachen', country:'Germany', dest:'europe_west', level:'bachelors', field:'eng', fee:0, qs:106, work:18, rank:'Top German eng', flag:'🇩🇪' },
+  { href:'program-civil-eng-mcgill.html', title:'BEng Civil Engineering', uni:'McGill University', country:'Canada', dest:'usa_ca', level:'bachelors', field:'eng', fee:46000, qs:30, work:36, rank:'QS #30', flag:'🇨🇦' },
+  { href:'program-architecture-polimi.html', title:'BSc Architecture', uni:'Politecnico di Milano', country:'Italy', dest:'europe_west', level:'bachelors', field:'arts', fee:3900, qs:111, work:12, rank:'QS Top-150', flag:'🇮🇹' },
+  { href:'program-design-eng-polimi.html', title:'MSc Design Engineering', uni:'Politecnico di Milano', country:'Italy', dest:'europe_west', level:'masters', field:'eng', fee:3900, qs:111, work:12, rank:'QS Top-150', flag:'🇮🇹' },
+
+  // Business / MBA
+  { href:'program-mba.html', title:'Full-time MBA', uni:'ASU W.P. Carey', country:'USA', dest:'usa_ca', level:'masters', field:'business', fee:59000, qs:215, work:36, rank:'Top US MBA', flag:'🇺🇸' },
+  { href:'program-mba-esade.html', title:'Full-time MBA', uni:'ESADE Business School', country:'Spain', dest:'europe_west', level:'masters', field:'business', fee:78900, qs:159, work:12, rank:'FT Top-15 EU MBA', flag:'🇪🇸' },
+  { href:'program-intl-business-glasgow.html', title:'BA International Business', uni:'University of Glasgow', country:'UK', dest:'uk_ie', level:'bachelors', field:'business', fee:24420, qs:81, work:24, rank:'QS #81', flag:'🇬🇧' },
+  { href:'program-finance-toronto.html', title:'Master of Finance', uni:'Univ. of Toronto (Rotman)', country:'Canada', dest:'usa_ca', level:'masters', field:'business', fee:71500, qs:21, work:36, rank:'QS #21', flag:'🇨🇦' },
+  { href:'program-bba-lmu.html', title:'BBA in International Business', uni:'LMU Munich', country:'Germany', dest:'europe_west', level:'bachelors', field:'business', fee:0, qs:55, work:18, rank:'QS #55', flag:'🇩🇪' },
+  { href:'program-bba-caucasus.html', title:'BBA in Management', uni:'Caucasus University', country:'Georgia', dest:'europe_east', level:'bachelors', field:'business', fee:3200, qs:0, work:0, rank:'Top Georgian biz', flag:'🇬🇪' },
+  { href:'program-commerce-monash.html', title:'Bachelor of Commerce', uni:'Monash University', country:'Australia', dest:'asia_oceania', level:'bachelors', field:'business', fee:46900, qs:42, work:36, rank:'QS #42', flag:'🇦🇺' },
+  { href:'program-analytics-corvinus.html', title:'MSc Business Analytics', uni:'Corvinus University', country:'Hungary', dest:'europe_east', level:'masters', field:'business', fee:5800, qs:597, work:9, rank:'Top CEE biz', flag:'🇭🇺' },
+  { href:'program-economics-bologna.html', title:'BA Economics & Business', uni:'University of Bologna', country:'Italy', dest:'europe_west', level:'bachelors', field:'business', fee:3000, qs:130, work:12, rank:'QS #130', flag:'🇮🇹' },
+
+  // Medicine / Health
+  { href:'program-nursing.html', title:'BSc Nursing', uni:'University of British Columbia', country:'Canada', dest:'usa_ca', level:'bachelors', field:'medicine', fee:49000, qs:38, work:36, rank:'QS #38', flag:'🇨🇦' },
+  { href:'program-medicine-debrecen.html', title:'MD General Medicine', uni:'University of Debrecen', country:'Hungary', dest:'europe_east', level:'bachelors', field:'medicine', fee:16000, qs:563, work:9, rank:'WHO-listed', flag:'🇭🇺' },
+  { href:'program-medicine-warsaw.html', title:'MD in English', uni:'Medical Univ. of Warsaw', country:'Poland', dest:'europe_east', level:'bachelors', field:'medicine', fee:13500, qs:0, work:9, rank:'WHO-listed', flag:'🇵🇱' },
+  { href:'program-medicine-tbilisi.html', title:'MD General Medicine', uni:'Tbilisi State Medical', country:'Georgia', dest:'europe_east', level:'bachelors', field:'medicine', fee:8000, qs:0, work:0, rank:'WHO-listed', flag:'🇬🇪' },
+  { href:'program-dentistry-european.html', title:'DDS Dentistry', uni:'European University Georgia', country:'Georgia', dest:'europe_east', level:'bachelors', field:'medicine', fee:4500, qs:0, work:0, rank:'WHO-listed', flag:'🇬🇪' },
+  { href:'program-public-health-sydney.html', title:'MPH Public Health', uni:'University of Sydney', country:'Australia', dest:'asia_oceania', level:'masters', field:'medicine', fee:55500, qs:18, work:36, rank:'QS #18', flag:'🇦🇺' },
+
+  // Law / IR
+  { href:'program-law-birmingham.html', title:'LLM Master of Laws', uni:'University of Birmingham', country:'UK', dest:'uk_ie', level:'masters', field:'law', fee:24750, qs:80, work:24, rank:'QS #80', flag:'🇬🇧' },
+  { href:'program-ir-jagiellonian.html', title:'MA International Relations', uni:'Jagiellonian University', country:'Poland', dest:'europe_east', level:'masters', field:'law', fee:3600, qs:309, work:9, rank:'Top Polish uni', flag:'🇵🇱' },
+  { href:'program-intl-relations-barcelona.html', title:'BA International Relations', uni:'Univ. of Barcelona', country:'Spain', dest:'europe_west', level:'bachelors', field:'law', fee:5400, qs:166, work:12, rank:'QS #166', flag:'🇪🇸' },
+
+  // Foundation
+  { href:'program-foundation-ncuk.html', title:'Foundation Year', uni:'NCUK (UK pathway)', country:'UK', dest:'uk_ie', level:'foundation', field:'cs', fee:14500, qs:0, work:0, rank:'40+ UK partners', flag:'🇬🇧' },
+];
+
+const BUDGET_RANGE = {
+  low: [0, 7000],
+  mid: [7000, 20000],
+  high: [20000, 40000],
+  premium: [40000, 999999],
+};
+
+const FIELD_AFFINITY = {
+  cs: ['cs', 'eng'],
+  eng: ['eng', 'cs'],
+  business: ['business'],
+  medicine: ['medicine'],
+  law: ['law', 'business'],
+  arts: ['arts', 'eng'],
+};
+
+/* ------- State + UI ------- */
+const state = { i: 0, ans: {} };
+const cmSteps = document.getElementById('cmSteps');
+const cmProg = document.getElementById('cmProg');
+const cmBack = document.getElementById('cmBack');
+const cmNext = document.getElementById('cmNext');
+
+function renderStep() {
+  const step = STEPS[state.i];
+  const colsClass = step.cols === 3 ? 'cols-3' : step.cols === 1 ? 'cols-1' : '';
+  const html = `
+    <div class="cm-step-label">${step.label}</div>
+    <h2 class="cm-q">${step.q}</h2>
+    <div class="cm-opts ${colsClass}">
+      ${step.options.map(o => `
+        <button class="cm-opt ${state.ans[step.key] === o.v ? 'sel' : ''}" data-v="${o.v}" type="button">
+          <span class="em">${o.em}</span>
+          <span class="tx"><b>${o.t}</b><small>${o.s}</small></span>
+          <span class="chk"></span>
+        </button>
+      `).join('')}
+    </div>
+  `;
+  cmSteps.innerHTML = html;
+  [...cmProg.children].forEach((dot, idx) => {
+    dot.className = idx < state.i ? 'done' : idx === state.i ? 'now' : '';
+  });
+  cmBack.style.visibility = state.i === 0 ? 'hidden' : 'visible';
+  cmNext.disabled = !state.ans[step.key];
+  cmNext.textContent = state.i === STEPS.length - 1 ? 'See my matches →' : 'Next →';
+
+  cmSteps.querySelectorAll('.cm-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.ans[step.key] = btn.dataset.v;
+      cmSteps.querySelectorAll('.cm-opt').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      cmNext.disabled = false;
+    });
+  });
+}
+
+cmBack.addEventListener('click', () => {
+  if (state.i > 0) { state.i--; renderStep(); }
+});
+
+cmNext.addEventListener('click', () => {
+  if (state.i < STEPS.length - 1) {
+    state.i++;
+    renderStep();
+  } else {
+    renderResults();
+  }
+});
+
+/* ------- Scoring ------- */
+function scorePrograms(a) {
+  const budgetRange = BUDGET_RANGE[a.budget] || [0, 999999];
+  const affinity = FIELD_AFFINITY[a.field] || [a.field];
+
+  return PROGRAMS.map(p => {
+    let s = 0;
+    // Field affinity
+    if (affinity[0] === p.field) s += 40;
+    else if (affinity.includes(p.field)) s += 22;
+    else s -= 5;
+    // Level match
+    if (p.level === a.level) s += 30;
+    else if (a.level === 'masters' && p.level === 'bachelors') s -= 12;
+    else if (a.level === 'bachelors' && p.level === 'masters') s -= 18;
+    else if (a.level === 'phd' && p.level === 'masters') s += 8;
+    else if (a.level === 'phd' && p.level === 'bachelors') s -= 30;
+    else if (a.level === 'phd' && p.level === 'foundation') s -= 40;
+    else if (a.level === 'foundation' && p.level !== 'foundation') s -= 25;
+    // Destination
+    if (a.destination === 'any') s += 10;
+    else if (p.dest === a.destination) s += 25;
+    else s -= 8;
+    // Budget
+    if (p.fee >= budgetRange[0] && p.fee <= budgetRange[1]) s += 22;
+    else if (p.fee < budgetRange[0]) s += 8; // cheaper is fine
+    else s -= 18;
+    // Priority bonus
+    if (a.priority === 'ranking' && p.qs > 0 && p.qs <= 100) s += 15;
+    if (a.priority === 'work' && p.work >= 24) s += 15;
+    if (a.priority === 'value' && p.fee <= 8000) s += 15;
+    if (a.priority === 'culture' && ['Italy','Spain','Australia','UK'].includes(p.country)) s += 8;
+    // Grades bonus
+    if (a.grades === 'excellent' && p.qs > 0 && p.qs <= 80) s += 12;
+    if (a.grades === 'verygood' && p.qs > 0 && p.qs <= 200) s += 8;
+    if (a.grades === 'pass' && p.qs > 200) s += 6;
+    return { p, s };
+  }).sort((x, y) => y.s - x.s);
+}
+
+function fmtFee(fee) {
+  if (fee === 0) return 'Tuition-free*';
+  return '$' + fee.toLocaleString() + '/yr';
+}
+
+function summaryText(a) {
+  const labelOf = (stepKey, v) => {
+    const step = STEPS.find(s => s.key === stepKey);
+    const opt = step.options.find(o => o.v === v);
+    return opt ? opt.t : v;
+  };
+  return [
+    labelOf('level', a.level),
+    labelOf('field', a.field),
+    labelOf('destination', a.destination),
+    labelOf('budget', a.budget),
+    labelOf('priority', a.priority),
+    labelOf('grades', a.grades),
+  ];
+}
+
+function renderResults() {
+  const a = state.ans;
+  const scored = scorePrograms(a);
+  const top = scored.slice(0, 3).filter(x => x.s > 0);
+  const chips = summaryText(a).map(t => `<span class="chip">${t}</span>`).join('');
+
+  const waText = `Hi! I just used the Academic Matcher and these are my preferences:
+• Level: ${summaryText(a)[0]}
+• Field: ${summaryText(a)[1]}
+• Destination: ${summaryText(a)[2]}
+• Budget: ${summaryText(a)[3]}
+• Priority: ${summaryText(a)[4]}
+• Grades: ${summaryText(a)[5]}
+
+Can a counsellor help me narrow this down?`;
+  const waLink = 'https://wa.me/?text=' + encodeURIComponent(waText);
+
+  cmProg.style.display = 'none';
+  document.getElementById('cmNav').style.display = 'none';
+
+  const resultsHtml = top.length ? `
+    <div class="cm-results">
+      ${top.map((x, i) => `
+        <a class="cm-result" href="${x.p.href}">
+          <div class="rank">0${i + 1}</div>
+          <div>
+            <h3>${x.p.flag} ${x.p.title}</h3>
+            <div class="uni">${x.p.uni} · ${x.p.country}</div>
+            <div class="meta">
+              <span class="fee">${fmtFee(x.p.fee)}</span>
+              <span>${x.p.rank}</span>
+              ${x.p.work > 0 ? `<span>${x.p.work}-mo post-study work</span>` : ''}
+            </div>
+          </div>
+          <div class="go">View program <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </a>
+      `).join('')}
+    </div>
+  ` : `<div class="cm-empty">We didn't find a perfect match in our top picks — but our counsellors will. Tap WhatsApp below.</div>`;
+
+  cmSteps.innerHTML = `
+    <div class="cm-step-label">Your matches</div>
+    <h2 class="cm-q" style="margin-bottom:14px;">Here are your top ${top.length || 3} picks</h2>
+    <div class="cm-summary">${chips}</div>
+    ${resultsHtml}
+
+    <div class="cm-cta">
+      <h3>Get your full shortlist on WhatsApp</h3>
+      <p>A certified counsellor sends every match + your scholarship options — free.</p>
+      <form class="cm-capture" id="cmCapture" novalidate>
+        <div class="cm-capture-row">
+          <select id="cmCc" aria-label="Country code">
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+20">🇪🇬 +20</option>
+            <option value="+965">🇰🇼 +965</option>
+            <option value="+974">🇶🇦 +974</option>
+            <option value="+973">🇧🇭 +973</option>
+            <option value="+968">🇴🇲 +968</option>
+          </select>
+          <input type="tel" id="cmPhone" placeholder="WhatsApp number" required inputmode="tel" autocomplete="tel-national"/>
+        </div>
+        <button class="btn btn-lg btn-wa" type="submit">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          Get your full shortlist on WhatsApp
+        </button>
+        <small class="cm-fine">🔒 We only message you on WhatsApp. No spam, ever.</small>
+      </form>
+      <div class="cm-or"><span>or</span></div>
+      <a href="contact.html" class="btn btn-ghost on-dark btn-lg" style="width:100%;">Book free consultation</a>
+    </div>
+
+    <div class="cm-restart"><a id="cmRestart">↺ Start over with different answers</a></div>
+  `;
+
+  // capture form
+  const form = document.getElementById('cmCapture');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const cc = document.getElementById('cmCc').value;
+    const phone = document.getElementById('cmPhone').value.replace(/\D/g, '');
+    if (phone.length < 6) { document.getElementById('cmPhone').focus(); return; }
+    const fullNum = (cc + phone).replace('+', '');
+    window.location.href = `https://wa.me/${fullNum}?text=` + encodeURIComponent(waText);
+  });
+
+  document.getElementById('cmRestart').addEventListener('click', () => {
+    state.i = 0; state.ans = {};
+    cmProg.style.display = '';
+    document.getElementById('cmNav').style.display = '';
+    renderStep();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelector('.cm-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+renderStep();
+</script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSc Computer Science — Technical University of Munich | Study Abroad Gate</title>
+<meta name="description" content="MSc Computer Science at Technical University of Munich (QS #28): 2 years, tuition €0 (public). Entry requirements, modules, career outcomes — apply free with a certified counsellor.">
+<link rel="canonical" href="https://www.studyabroadgate.com/program-cs-tum.html">
+<link rel="alternate" hreflang="en" href="https://www.studyabroadgate.com/program-cs-tum.html">
+<link rel="alternate" hreflang="ar" href="https://www.studyabroadgate.com/ar/program-cs-tum.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<script src="image-slot.js" defer></script>
+<style>
+image-slot{display:block;width:100%;height:100%}
+.ph:has(> image-slot){background:none!important;background-image:none!important;border:0!important}
+.ph:has(> image-slot)::after{display:none}
+
+/* ---- degree-level hero theming ---- */
+.prog-hero-masters { background: linear-gradient(135deg, oklch(0.18 0.035 256) 0%, var(--navy-deep) 100%); color: #fff; padding: clamp(32px,5vw,56px) 0 clamp(36px,5vw,60px); border-bottom: 4px solid var(--navy-700); }
+.prog-hero-masters h1 { color: #fff; }
+.prog-hero-masters .lead { color: oklch(0.82 0.02 256); }
+.prog-hero-masters .fact { border-left-color: oklch(0.6 0.08 256); }
+.prog-hero-masters .fact .v { color: #fff; }
+.prog-hero-masters .fact .k { color: oklch(0.72 0.02 256); }
+.prog-hero-masters .chip-level { background: oklch(0.3 0.06 256); color: oklch(0.85 0.04 256); border-color: oklch(0.4 0.06 256); }
+.prog-hero-masters .chip-level svg { width:14px; height:14px; stroke: oklch(0.7 0.12 256); fill:none; }
+
+.prog-hero-bachelors { background: linear-gradient(135deg, oklch(0.28 0.06 70) 0%, oklch(0.22 0.04 60) 100%); color: #fff; padding: clamp(32px,5vw,56px) 0 clamp(36px,5vw,60px); border-bottom: 4px solid var(--gold); }
+.prog-hero-bachelors h1 { color: #fff; }
+.prog-hero-bachelors .lead { color: oklch(0.82 0.03 70); }
+.prog-hero-bachelors .fact { border-left-color: var(--gold); }
+.prog-hero-bachelors .fact .v { color: #fff; }
+.prog-hero-bachelors .fact .k { color: oklch(0.72 0.03 70); }
+.prog-hero-bachelors .chip-level { background: oklch(0.35 0.06 70); color: oklch(0.88 0.05 70); border-color: oklch(0.45 0.06 70); }
+.prog-hero-bachelors .chip-level svg { width:14px; height:14px; stroke: var(--gold); fill:none; }
+
+.prog-hero-phd { background: linear-gradient(135deg, oklch(0.20 0.06 310) 0%, oklch(0.15 0.04 290) 100%); color: #fff; padding: clamp(32px,5vw,56px) 0 clamp(36px,5vw,60px); border-bottom: 4px solid oklch(0.55 0.15 310); }
+.prog-hero-phd h1 { color: #fff; }
+.prog-hero-phd .lead { color: oklch(0.82 0.03 310); }
+.prog-hero-phd .fact { border-left-color: oklch(0.55 0.15 310); }
+.prog-hero-phd .fact .v { color: #fff; }
+.prog-hero-phd .fact .k { color: oklch(0.72 0.03 310); }
+.prog-hero-phd .chip-level { background: oklch(0.28 0.06 310); color: oklch(0.85 0.06 310); border-color: oklch(0.4 0.08 310); }
+.prog-hero-phd .chip-level svg { width:14px; height:14px; stroke: oklch(0.6 0.15 310); fill:none; }
+
+/* ---- timeline ---- */
+.timeline { position:relative; padding-left:32px; }
+.timeline::before { content:""; position:absolute; left:11px; top:8px; bottom:8px; width:2px; background:var(--line); }
+.tl-step { position:relative; padding-bottom:28px; }
+.tl-step:last-child { padding-bottom:0; }
+.tl-dot { position:absolute; left:-32px; top:2px; width:22px; height:22px; border-radius:50%; background:var(--gold-soft); border:2px solid var(--gold); display:grid; place-items:center; }
+.tl-dot.active { background:var(--gold); }
+.tl-dot svg { width:12px; height:12px; stroke:var(--gold-strong); fill:none; stroke-width:2.5; }
+.tl-month { font-family:var(--mono); font-size:0.78rem; font-weight:600; color:var(--gold-strong); letter-spacing:0.06em; text-transform:uppercase; }
+.tl-title { font-weight:700; font-size:1rem; margin:4px 0 3px; }
+.tl-desc { font-size:0.9rem; color:var(--muted); }
+
+/* ---- FAQ accordion ---- */
+.faq-item { border:1px solid var(--line); border-radius:var(--r); margin-bottom:10px; overflow:hidden; background:var(--card); }
+.faq-q { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 22px; cursor:pointer; font-weight:600; font-size:1rem; }
+.faq-q:hover { background:oklch(0.97 0.005 80); }
+.faq-q .faq-icon { width:20px; height:20px; flex:0 0 auto; transition:transform .2s; color:var(--muted); }
+.faq-item.open .faq-icon { transform:rotate(180deg); }
+.faq-a { display:none; padding:0 22px 18px; font-size:0.95rem; color:var(--muted); line-height:1.65; }
+.faq-item.open .faq-a { display:block; }
+
+/* ---- testimonial ---- */
+.testimonial { background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:26px 28px; display:flex; flex-direction:column; gap:14px; }
+.testimonial blockquote { margin:0; font-size:1rem; line-height:1.65; color:var(--ink); font-style:italic; }
+.testimonial .t-author { display:flex; align-items:center; gap:12px; }
+.testimonial .t-avatar { width:40px; height:40px; border-radius:50%; background:var(--sand); border:2px solid var(--line); flex:0 0 auto; display:grid; place-items:center; font-weight:700; font-size:0.85rem; color:var(--muted); }
+.testimonial .t-name { font-weight:700; font-size:0.92rem; }
+.testimonial .t-info { font-size:0.82rem; color:var(--muted); }
+
+/* ---- cost grid ---- */
+.cost-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.cost-item { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:var(--card); border:1px solid var(--line); border-radius:var(--r-sm); }
+.cost-item .ci-label { font-size:0.95rem; }
+.cost-item .ci-val { font-family:var(--mono); font-weight:600; color:var(--navy); font-size:0.95rem; }
+.cost-total { display:flex; justify-content:space-between; align-items:center; padding:16px 18px; background:var(--navy); color:#fff; border-radius:var(--r-sm); margin-top:12px; font-weight:700; }
+.cost-total .ci-val { font-family:var(--serif); font-size:1.2rem; color:var(--gold); }
+
+@media (max-width:768px) {
+  .cost-grid { grid-template-columns:1fr; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Course",
+      "name": "MSc Computer Science",
+      "description": "MSc Computer Science at Technical University of Munich (QS #28): 2 years, tuition €0 (public). Entry requirements, modules, career outcomes — apply free with a certified counsellor.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Technical University of Munich"
+      },
+      "inLanguage": "en",
+      "url": "https://www.studyabroadgate.com/program-cs-tum.html"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is TUM's MSc Computer Science taught in English?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the MSc Computer Science at TUM is fully taught in English. No German language skills are required for admission or coursework, though basic German can be helpful for daily life in Munich."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is tuition really free at TUM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. As a public university in Bavaria, TUM charges no tuition fees for most master's programmes — regardless of nationality. You only pay a small semester contribution of approximately €157 per semester, which covers the student union and a public transport discount."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a blocked account (Sperrkonto)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Sperrkonto is a special bank account required for the German student visa. You deposit €11,208 (for 2026), and each month €934 is released for your living expenses. Providers like Expatrio and Fintiba make opening one straightforward — your counsellor can help."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I work while studying in Germany?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. International students may work up to 120 full days or 240 half days per year without a special work permit. Many TUM students take on paid research assistant (HiWi) positions within the university, typically earning €12–15/hour."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are my options after graduation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After completing your degree, you can apply for an 18-month job-seeking residence permit (§ 20 AufenthG). Once you find a job matching your qualifications, you can switch to an EU Blue Card — which after 21–33 months can lead to permanent residence. Munich's tech sector has very strong demand for CS graduates."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.studyabroadgate.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Programs",
+      "item": "https://www.studyabroadgate.com/program.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "MSc Computer Science",
+      "item": "https://www.studyabroadgate.com/program-cs-tum.html"
+    }
+  ]
+}
+</script>
+</head>
+<body data-screen-label="Program · MSc Computer Science Germany">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="destination.html" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="ar/index.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PROGRAM HERO — MASTER'S THEME ===== -->
+<section class="prog-hero-masters">
+  <div class="wrap-wide">
+    <div style="font-family:var(--mono); font-size:0.82rem; color:oklch(0.65 0.02 256); margin-bottom:22px; display:flex; gap:8px; flex-wrap:wrap;">
+      <a href="index.html" style="color:inherit;">Home</a> <span>/</span> <a href="program.html" style="color:inherit;">Programs</a> <span>/</span> <a href="destination-germany.html" style="color:inherit;">Germany</a> <span>/</span> <span style="color:oklch(0.85 0.02 256);">MSc Computer Science</span>
+    </div>
+
+    <!-- degree level banner -->
+    <div style="display:inline-flex; align-items:center; gap:12px; background:oklch(0.22 0.05 256); border:1.5px solid oklch(0.35 0.07 256); border-radius:var(--r); padding:14px 22px; margin-bottom:24px;">
+      <div style="width:42px; height:42px; border-radius:10px; background:oklch(0.3 0.08 256); display:grid; place-items:center;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="oklch(0.7 0.15 256)" stroke-width="2"><path d="M22 10l-10-7L2 10l10 7z"/><path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5"/><path d="M22 10v6"/></svg>
+      </div>
+      <div>
+        <div style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.65 0.08 256); font-weight:600;">Postgraduate programme</div>
+        <div style="font-size:1.1rem; font-weight:700; color:#fff;">Master of Science (MSc)</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 360px; gap:clamp(28px,4vw,56px); align-items:start;">
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+          <span class="ph dark" style="width:56px;height:56px;border-radius:12px; flex:0 0 auto;"><image-slot id="program-cs-tum-logo" placeholder="TUM logo"></image-slot></span>
+          <div>
+            <div style="font-weight:700; font-size:1.02rem; color:#fff;">Technical University of Munich</div>
+            <div style="color:oklch(0.72 0.02 256); font-size:0.9rem;">🇩🇪 Munich, Germany · QS #28</div>
+          </div>
+        </div>
+        <h1 class="h1">MSc Computer Science</h1>
+        <p class="lead" style="margin-top:14px; max-width:36em;">Study computer science tuition-free at Germany's top technical university. TUM's CS department is ranked #1 in Germany and offers specialisations in AI, software engineering, data science, and robotics.</p>
+        <div class="facts" style="margin-top:30px;">
+          <div class="fact"><div class="v">2 years</div><div class="k">Full-time duration</div></div>
+          <div class="fact"><div class="v">€0 (public)</div><div class="k">Tuition (international)</div></div>
+          <div class="fact"><div class="v">October 2026</div><div class="k">Next intake</div></div>
+          <div class="fact"><div class="v">IELTS 6.5</div><div class="k">English requirement</div></div>
+        </div>
+      </div>
+
+      <!-- APPLY CARD (sticky) -->
+      <aside class="sticky-cta" id="apply">
+        <div class="lead-card">
+          <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:4px;">
+            <span style="font-family:var(--serif); font-size:1.7rem; font-weight:600; color:var(--navy);">€0 (public)</span>
+            <span style="color:var(--muted); font-size:0.85rem;">/ year</span>
+          </div>
+          <p style="color:var(--muted); font-size:0.9rem; margin-bottom:16px;">DAAD scholarship (€992/month) may apply.</p>
+          <a href="contact.html" class="btn btn-accent btn-block btn-lg" style="margin-bottom:10px;">Apply with a counsellor</a>
+          <a href="contact.html" class="btn btn-ghost btn-block" style="margin-bottom:10px;">Check my eligibility — free</a>
+          <div style="display:flex; gap:10px;">
+            <a href="contact.html" class="btn btn-ghost btn-block" style="font-size:0.86rem; padding:11px 12px;">⬇ Brochure</a>
+            <a href="contact.html" class="btn btn-ghost btn-block" style="font-size:0.86rem; padding:11px 12px;">🎥 Free webinar</a>
+          </div>
+          <ul style="list-style:none; padding:0; margin:18px 0 0; display:grid; gap:11px; font-size:0.9rem; color:var(--muted);">
+            <li style="display:flex; gap:9px;"><span style="color:var(--gold-strong);">✓</span> Fee waiver on this application</li>
+            <li style="display:flex; gap:9px;"><span style="color:var(--gold-strong);">✓</span> SOP &amp; document review included</li>
+            <li style="display:flex; gap:9px;"><span style="color:var(--gold-strong);">✓</span> Conditional offer often in days</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN BODY ===== -->
+<section class="section" style="padding-top:clamp(20px,3vw,40px);">
+  <div class="wrap-wide" style="display:grid; grid-template-columns:1fr 360px; gap:clamp(28px,4vw,56px); align-items:start;">
+    <div style="border-left:4px solid var(--navy); padding-left:clamp(20px,2.5vw,32px);">
+      <!-- campus photo -->
+      <div class="ph" style="aspect-ratio:16/7; margin-bottom:36px;"><image-slot id="program-cs-tum-hero" placeholder="Technical University of Munich campus / lifestyle photo"></image-slot></div>
+
+      <!-- OVERVIEW -->
+      <div class="sec-head" style="margin-bottom:16px;"><span class="kicker">Overview</span></div>
+      <p style="margin-bottom:16px;">Study computer science tuition-free at Germany's top technical university. TUM's CS department is ranked #1 in Germany and offers specialisations in AI, software engineering, data science, and robotics — with strong ties to BMW, Siemens, and Munich's tech scene.</p>
+
+      <!-- COMPARE AT OTHER UNIVERSITIES (early placement) -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">Compare options</span><h2 class="h2">Same field, different universities</h2></div>
+      <p style="margin-bottom:18px; color:var(--muted);">See how this programme compares with Computer Science at other universities we work with.</p>
+
+      <table class="cost-table" style="margin-bottom:8px;">
+        <thead>
+          <tr><th>University</th><th>Country</th><th>Level</th><th>Duration</th><th style="text-align:right">Tuition/year</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:oklch(0.945 0.016 256);">
+            <td><b>TUM</b> <span style="color:var(--gold-strong); font-size:0.8rem;">★ This programme</span></td>
+            <td>🇩🇪 Germany</td>
+            <td><span class="chip chip-teal" style="font-size:0.75rem; padding:3px 9px;">Master's</span></td>
+            <td>2 years</td>
+            <td style="font-family:var(--mono); font-weight:600; color:var(--navy);">€0</td>
+          </tr>
+          <tr>
+            <td><a href="program-ai-edinburgh.html" style="color:var(--navy); font-weight:600;">University of Edinburgh</a> <span style="font-size:0.78rem; color:var(--muted);">QS #27</span></td>
+            <td>🇬🇧 UK</td>
+            <td><span class="chip chip-teal" style="font-size:0.75rem; padding:3px 9px;">Master's</span></td>
+            <td>1 year</td>
+            <td style="font-family:var(--mono); font-weight:600; color:var(--navy);">£31,200</td>
+          </tr>
+          <tr>
+            <td><a href="program-data-science.html" style="color:var(--navy); font-weight:600;">University of Manchester</a> <span style="font-size:0.78rem; color:var(--muted);">QS #35</span></td>
+            <td>🇬🇧 UK</td>
+            <td><span class="chip chip-teal" style="font-size:0.75rem; padding:3px 9px;">Master's</span></td>
+            <td>1 year</td>
+            <td style="font-family:var(--mono); font-weight:600; color:var(--navy);">£29,500</td>
+          </tr>
+          <tr>
+            <td><a href="program-cs-elte.html" style="color:var(--navy); font-weight:600;">ELTE University</a> <span style="font-size:0.78rem; color:var(--muted);">QS ~584</span></td>
+            <td>🇭🇺 Hungary</td>
+            <td><span class="chip chip-gold" style="font-size:0.75rem; padding:3px 9px;">Bachelor's</span></td>
+            <td>3 years</td>
+            <td style="font-family:var(--mono); font-weight:600; color:var(--navy);">€3,200</td>
+          </tr>
+          <tr>
+            <td><a href="program-computer-science.html" style="color:var(--navy); font-weight:600;">UIUC</a> <span style="font-size:0.78rem; color:var(--muted);">US Top 5</span></td>
+            <td>🇺🇸 USA</td>
+            <td><span class="chip chip-gold" style="font-size:0.75rem; padding:3px 9px;">Bachelor's</span></td>
+            <td>4 years</td>
+            <td style="font-family:var(--mono); font-weight:600; color:var(--navy);">$36,068</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82rem; color:var(--muted-2);">Your counsellor helps you compare and apply to multiple programmes simultaneously — at no cost.</p>
+
+      <!-- ENTRY REQUIREMENTS -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">Entry requirements</span><h2 class="h2">What you'll need</h2></div>
+      <table class="cost-table">
+        <tbody>
+          <tr><td><b>Academic</b></td><td colspan="2">Bachelor's in CS with GPA 2.5+ (German scale)</td></tr>
+          <tr><td><b>English</b></td><td colspan="2">IELTS 6.5 or TOEFL 88</td></tr>
+          <tr><td><b>German</b></td><td colspan="2">Not required (programme taught in English)</td></tr>
+          <tr><td><b>Documents</b></td><td colspan="2">Transcripts, degree certificate, language cert, passport</td></tr>
+        </tbody>
+      </table>
+      <div class="card" style="padding:18px 20px; margin-top:16px; display:flex; gap:13px; align-items:center; background:var(--gold-soft); border-color:transparent;">
+        <span style="font-size:1.3rem;">💡</span>
+        <p style="font-size:0.93rem; color:oklch(0.42 0.08 70);">Not sure you meet these? We offer foundation and pre-master's pathways — your counsellor will find the right route.</p>
+      </div>
+
+      <!-- CORE MODULES -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">What you'll study</span><h2 class="h2">Core modules</h2></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">01</span> Advanced Algorithms</div>
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">02</span> Distributed Systems</div>
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">03</span> Artificial Intelligence</div>
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">04</span> Software Engineering</div>
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">05</span> Data Science &amp; Analytics</div>
+        <div class="card" style="padding:16px 18px; display:flex; gap:12px; align-items:center;"><span style="font-family:var(--mono); color:var(--gold-strong); font-size:0.85rem;">06</span> Master's Thesis</div>
+      </div>
+
+      <!-- CAREER OUTCOMES -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">After you graduate</span><h2 class="h2">Career outcomes</h2></div>
+      <div class="reasons" style="grid-template-columns:1fr 1fr;">
+        <div class="reason"><h4 style="margin-top:0;">€55,000</h4><p>Median starting salary for CS graduates in Germany</p></div>
+        <div class="reason"><h4 style="margin-top:0;">18-month visa</h4><p>Post-study job-seeking residence permit</p></div>
+        <div class="reason"><h4 style="margin-top:0;">96%</h4><p>Employed within 6 months of graduation</p></div>
+        <div class="reason"><h4 style="margin-top:0;">Top employers</h4><p>BMW, Siemens, SAP, Google Munich, Microsoft</p></div>
+      </div>
+
+      <!-- APPLICATION TIMELINE -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">How to apply</span><h2 class="h2">Application timeline</h2></div>
+      <div class="timeline">
+        <div class="tl-step">
+          <div class="tl-dot active"><svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-6"/></svg></div>
+          <div class="tl-month">January – March 2026</div>
+          <div class="tl-title">Prepare your application</div>
+          <div class="tl-desc">Gather transcripts, degree certificate, IELTS/TOEFL score, and personal statement. Your counsellor reviews everything free of charge.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"><svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-6"/></svg></div>
+          <div class="tl-month">March – May 2026</div>
+          <div class="tl-title">Submit via TUM application portal</div>
+          <div class="tl-desc">Apply through TUMonline. Application deadline is typically 31 May for winter semester (October intake).</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"><svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-6"/></svg></div>
+          <div class="tl-month">June – July 2026</div>
+          <div class="tl-title">Receive admission decision</div>
+          <div class="tl-desc">TUM reviews applications and issues conditional or unconditional offers. Your counsellor follows up on your behalf.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"><svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-6"/></svg></div>
+          <div class="tl-month">July – September 2026</div>
+          <div class="tl-title">Visa &amp; accommodation</div>
+          <div class="tl-desc">Open a blocked account (Sperrkonto), apply for your student visa at the German embassy, and arrange housing in Munich.</div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-dot"><svg viewBox="0 0 16 16"><path d="M4 8l3 3 5-6"/></svg></div>
+          <div class="tl-month">October 2026</div>
+          <div class="tl-title">Orientation &amp; semester start</div>
+          <div class="tl-desc">Arrive in Munich for orientation week, enrol in person, and begin your MSc Computer Science at TUM.</div>
+        </div>
+      </div>
+
+      <!-- FEES -->
+      <div class="sec-head" style="margin:44px 0 18px;"><span class="kicker">Fees &amp; funding</span><h2 class="h2">Tuition fees &amp; deposit</h2></div>
+      <table class="cost-table">
+        <tbody>
+          <tr><td><b>Tuition (international)</b></td><td>Per annum</td><td>€0 (public university)</td></tr>
+          <tr><td><b>Semester contribution</b></td><td>Per semester</td><td>~€157</td></tr>
+          <tr><td><b>Deposit</b></td><td>Before enrolment</td><td>€0</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem; color:var(--muted-2); margin-top:10px;">Indicative figures for October 2026 entry. Public universities in Germany charge no tuition for most programmes — only a small semester contribution covering the student union and public transport ticket.</p>
+
+      <!-- SCHOLARSHIPS & FUNDING -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">Scholarships</span><h2 class="h2">Funding you may be eligible for</h2></div>
+      <p style="margin-bottom:22px; color:var(--muted);">Germany offers some of the best scholarship programmes in Europe. Your counsellor will match you with every award you qualify for — here are the most relevant for this programme.</p>
+
+      <div style="display:grid; gap:16px;">
+        <!-- DAAD -->
+        <div class="card" style="padding:22px 24px; border-left:4px solid var(--gold);">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1.05rem; margin-bottom:4px;">DAAD Scholarship (EPOS)</div>
+              <div style="font-size:0.88rem; color:var(--muted);">German Academic Exchange Service · Fully funded</div>
+            </div>
+            <span style="font-family:var(--serif); font-weight:700; color:var(--navy); font-size:1.15rem; white-space:nowrap;">€992/month</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin-top:16px; font-size:0.9rem;">
+            <div><span style="color:var(--muted);">Coverage:</span> Monthly stipend + travel allowance + health insurance</div>
+            <div><span style="color:var(--muted);">Eligibility:</span> Master's students from developing countries, 2+ years work experience</div>
+            <div><span style="color:var(--muted);">Duration:</span> Full programme length (2 years)</div>
+            <div><span style="color:var(--muted);">Deadline:</span> Varies by programme — typically October–November</div>
+          </div>
+          <div style="font-size:0.78rem; color:var(--muted-2); margin-top:10px; font-family:var(--mono);">Source: DAAD official scholarship database, 2026</div>
+        </div>
+
+        <!-- Deutschlandstipendium -->
+        <div class="card" style="padding:22px 24px; border-left:4px solid var(--gold);">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1.05rem; margin-bottom:4px;">Deutschlandstipendium</div>
+              <div style="font-size:0.88rem; color:var(--muted);">Federal Government + private sponsors · Merit-based</div>
+            </div>
+            <span style="font-family:var(--serif); font-weight:700; color:var(--navy); font-size:1.15rem; white-space:nowrap;">€300/month</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin-top:16px; font-size:0.9rem;">
+            <div><span style="color:var(--muted);">Coverage:</span> €150 federal government + €150 private sponsors</div>
+            <div><span style="color:var(--muted);">Eligibility:</span> All nationalities, merit-based — 31,500 awarded in 2023</div>
+            <div><span style="color:var(--muted);">Duration:</span> Min. 2 semesters, renewable for standard study length</div>
+            <div><span style="color:var(--muted);">Deadline:</span> Via TUM portal — typically summer for winter semester</div>
+          </div>
+          <div style="font-size:0.78rem; color:var(--muted-2); margin-top:10px; font-family:var(--mono);">Source: deutschlandstipendium.de, 2026</div>
+        </div>
+
+        <!-- Helmut Schmidt / DAAD general -->
+        <div class="card" style="padding:22px 24px; border-left:4px solid var(--gold);">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1.05rem; margin-bottom:4px;">DAAD Study Scholarships (general)</div>
+              <div style="font-size:0.88rem; color:var(--muted);">For master's students of all nationalities</div>
+            </div>
+            <span style="font-family:var(--serif); font-weight:700; color:var(--navy); font-size:1.15rem; white-space:nowrap;">€934/month</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin-top:16px; font-size:0.9rem;">
+            <div><span style="color:var(--muted);">Coverage:</span> Monthly stipend + travel subsidy + language course</div>
+            <div><span style="color:var(--muted);">Eligibility:</span> Graduated no more than 6 years ago</div>
+            <div><span style="color:var(--muted);">Duration:</span> 10–24 months</div>
+            <div><span style="color:var(--muted);">Deadline:</span> Mid-October for following academic year</div>
+          </div>
+          <div style="font-size:0.78rem; color:var(--muted-2); margin-top:10px; font-family:var(--mono);">Source: DAAD scholarship database, 2026</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 20px; margin-top:16px; display:flex; gap:13px; align-items:center; background:var(--gold-soft); border-color:transparent;">
+        <span style="font-size:1.3rem;">🎓</span>
+        <p style="font-size:0.93rem; color:oklch(0.42 0.08 70);">Not sure which scholarships you qualify for? Your counsellor reviews every option and handles the applications — at no cost to you.</p>
+      </div>
+
+      <!-- LOANS & FINANCING -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">Loans &amp; financing</span><h2 class="h2">Alternative funding options</h2></div>
+      <p style="margin-bottom:22px; color:var(--muted);">If scholarships don't fully cover your costs, several loan and financing options are available for international students in Germany.</p>
+
+      <div style="display:grid; gap:16px;">
+        <div class="card" style="padding:20px 22px;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1rem; margin-bottom:3px;">KfW Student Loan</div>
+              <div style="font-size:0.86rem; color:var(--muted);">German state development bank · Low interest</div>
+            </div>
+            <span style="font-family:var(--mono); font-weight:600; color:var(--navy); font-size:0.95rem;">Up to €650/month</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--muted); margin-top:10px;">Available to students enrolled at German universities. EU citizens and some non-EU nationals with residence permits may apply. Repayment begins after graduation.</p>
+        </div>
+
+        <div class="card" style="padding:20px 22px;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1rem; margin-bottom:3px;">Prodigy Finance</div>
+              <div style="font-size:0.86rem; color:var(--muted);">International student loan provider</div>
+            </div>
+            <span style="font-family:var(--mono); font-weight:600; color:var(--navy); font-size:0.95rem;">Varies</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--muted); margin-top:10px;">No collateral or cosigner required. Covers tuition and living expenses for postgraduate students at top-ranked universities. Interest rates based on future earning potential.</p>
+        </div>
+
+        <div class="card" style="padding:20px 22px;">
+          <div style="display:flex; justify-content:space-between; align-items:start; gap:16px; flex-wrap:wrap;">
+            <div>
+              <div style="font-weight:700; font-size:1rem; margin-bottom:3px;">Part-time work</div>
+              <div style="font-size:0.86rem; color:var(--muted);">Earn while you study in Germany</div>
+            </div>
+            <span style="font-family:var(--mono); font-weight:600; color:var(--navy); font-size:0.95rem;">Up to 20 hrs/week</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--muted); margin-top:10px;">International students may work 120 full days or 240 half days per year without a work permit. Tech-sector student jobs (HiWi positions) at TUM typically pay €12–15/hour.</p>
+        </div>
+      </div>
+
+      <!-- COST OF LIVING IN MUNICH -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">Living costs</span><h2 class="h2">Monthly budget in Munich</h2></div>
+      <p style="margin-bottom:18px; color:var(--muted);">Munich is one of Germany's more expensive cities, but student housing and public transport discounts keep costs manageable.</p>
+
+      <div class="cost-grid">
+        <div class="cost-item"><span class="ci-label">Rent (student housing)</span><span class="ci-val">€400–€750</span></div>
+        <div class="cost-item"><span class="ci-label">Food &amp; groceries</span><span class="ci-val">€200–€300</span></div>
+        <div class="cost-item"><span class="ci-label">Health insurance</span><span class="ci-val">~€110</span></div>
+        <div class="cost-item"><span class="ci-label">Deutschlandticket (transport)</span><span class="ci-val">€49</span></div>
+        <div class="cost-item"><span class="ci-label">Books &amp; supplies</span><span class="ci-val">€30–€50</span></div>
+        <div class="cost-item"><span class="ci-label">Personal &amp; leisure</span><span class="ci-val">€100–€200</span></div>
+      </div>
+      <div class="cost-total">
+        <span>Estimated total</span>
+        <span class="ci-val">€890–€1,460/month</span>
+      </div>
+      <p style="font-size:0.82rem; color:var(--muted-2); margin-top:10px;">Blocked account (Sperrkonto) requirement: €11,208/year (€934/month) — this is the minimum you must prove for your visa application.</p>
+
+      <!-- VISA REQUIREMENTS -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">Student visa</span><h2 class="h2">Visa requirements for Germany</h2></div>
+      <table class="cost-table">
+        <tbody>
+          <tr><td><b>Visa type</b></td><td colspan="2">National Visa (Type D) for study purposes</td></tr>
+          <tr><td><b>Financial proof</b></td><td colspan="2">Blocked account (Sperrkonto) with €11,208/year</td></tr>
+          <tr><td><b>Health insurance</b></td><td colspan="2">German statutory or recognised private insurance required</td></tr>
+          <tr><td><b>Admission letter</b></td><td colspan="2">Official admission from TUM (or conditional offer)</td></tr>
+          <tr><td><b>Processing time</b></td><td colspan="2">6–12 weeks — apply early at your nearest German embassy</td></tr>
+          <tr><td><b>Post-graduation</b></td><td colspan="2">18-month job-seeking residence permit (§ 20 AufenthG)</td></tr>
+        </tbody>
+      </table>
+      <div class="card" style="padding:18px 20px; margin-top:16px; display:flex; gap:13px; align-items:center; background:var(--gold-soft); border-color:transparent;">
+        <span style="font-size:1.3rem;">📋</span>
+        <p style="font-size:0.93rem; color:oklch(0.42 0.08 70);">Your counsellor guides you through the full visa process — from blocked account setup to embassy appointment booking.</p>
+      </div>
+
+      <!-- STUDENT TESTIMONIALS -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">Student stories</span><h2 class="h2">Hear from our students</h2></div>
+      <div style="display:grid; gap:18px;">
+        <div class="testimonial">
+          <blockquote>"I was worried about applying to TUM on my own — the process seemed so different from what I was used to. My counsellor handled the SOP review, verified all my documents, and even helped me set up my blocked account. I received my offer within 3 weeks."</blockquote>
+          <div class="t-author">
+            <div class="t-avatar">AH</div>
+            <div><div class="t-name">Ahmed H.</div><div class="t-info">MSc Computer Science, TUM — Class of 2025 · 🇪🇬 Egypt</div></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <blockquote>"Studying CS at TUM tuition-free was life-changing. The DAAD scholarship covered my living expenses, and the career services connected me with BMW for my thesis project. I now work full-time in Munich."</blockquote>
+          <div class="t-author">
+            <div class="t-avatar">RS</div>
+            <div><div class="t-name">Rania S.</div><div class="t-info">MSc Computer Science, TUM — Class of 2024 · 🇯🇴 Jordan</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="sec-head" style="margin:52px 0 18px;"><span class="kicker">FAQ</span><h2 class="h2">Frequently asked questions</h2></div>
+      <div id="faqList">
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is TUM's MSc Computer Science taught in English?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></div>
+          <div class="faq-a">Yes, the MSc Computer Science at TUM is fully taught in English. No German language skills are required for admission or coursework, though basic German can be helpful for daily life in Munich.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is tuition really free at TUM?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></div>
+          <div class="faq-a">Yes. As a public university in Bavaria, TUM charges no tuition fees for most master's programmes — regardless of nationality. You only pay a small semester contribution of approximately €157 per semester, which covers the student union and a public transport discount.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is a blocked account (Sperrkonto)?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></div>
+          <div class="faq-a">A Sperrkonto is a special bank account required for the German student visa. You deposit €11,208 (for 2026), and each month €934 is released for your living expenses. Providers like Expatrio and Fintiba make opening one straightforward — your counsellor can help.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I work while studying in Germany?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></div>
+          <div class="faq-a">Yes. International students may work up to 120 full days or 240 half days per year without a special work permit. Many TUM students take on paid research assistant (HiWi) positions within the university, typically earning €12–15/hour.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What are my options after graduation?<svg class="faq-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></div>
+          <div class="faq-a">After completing your degree, you can apply for an 18-month job-seeking residence permit (§ 20 AufenthG). Once you find a job matching your qualifications, you can switch to an EU Blue Card — which after 21–33 months can lead to permanent residence. Munich's tech sector has very strong demand for CS graduates.</div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:22px;">
+        <a href="program.html" class="link-arrow" style="font-size:0.95rem;">Browse all programs <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+
+    <aside></aside>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="section">
+  <div class="wrap">
+    <div style="background:var(--navy); border-radius:var(--r-lg); padding:clamp(36px,5vw,60px); text-align:center; color:#fff;">
+      <h2 class="h2" style="color:#fff; max-width:16em; margin-inline:auto;">Ready to apply to TUM?</h2>
+      <p class="lead" style="color:oklch(0.85 0.02 256); max-width:32em; margin:16px auto 28px;">Start your free application with a counsellor who knows this programme inside out.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="#apply" class="btn btn-accent btn-lg">Apply with a counsellor</a>
+        <a href="https://wa.me/" class="btn btn-ghost on-dark btn-lg">Ask a question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-hungary.html">Hungary</a></li><li><a href="destination-poland.html">Poland</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-italy.html">Italy</a></li><li><a href="destination-georgia.html">Georgia</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div>
+      <div class="foot-col"><h5>Explore</h5><ul><li><a href="program.html">Programs</a></li><li><a href="university.html">Universities</a></li><li><a href="services.html">Free counselling</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="index.html#parents">For parents</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <div class="foot-lang" role="group" aria-label="Language / اللغة">
+        <a href="program-cs-tum.html" aria-current="true">English</a>
+        <a href="ar/program-cs-tum.html" lang="ar">العربية</a>
+      </div>
+      <span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

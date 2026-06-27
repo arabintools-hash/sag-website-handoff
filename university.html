@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universities — Browse 30+ Partner Universities | Study Abroad Gate</title>
+<meta name="description" content="Browse our partner universities across 11 countries. Click any university to see all available Bachelor's, Master's and PhD programmes.">
+<link rel="canonical" href="https://www.studyabroadgate.com/university.html">
+<link rel="alternate" hreflang="en" href="https://www.studyabroadgate.com/university.html">
+<link rel="alternate" hreflang="ar" href="https://www.studyabroadgate.com/ar/university.html">
+<link rel="alternate" hreflang="x-default" href="https://www.studyabroadgate.com/university.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<script src="image-slot.js" defer></script>
+<style>
+image-slot{display:block;width:100%;height:100%}
+.ph:has(> image-slot){background:none!important;background-image:none!important;border:0!important}
+.ph:has(> image-slot)::after{display:none}
+
+/* Card grid */
+.uni-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.uni-card{
+  position:relative; background:#fff; border:0; border-radius:16px; overflow:hidden; cursor:pointer;
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 1) inset,
+    0 2px 4px oklch(0.25 0.03 256 / 0.06),
+    0 8px 18px oklch(0.25 0.05 70 / 0.10),
+    0 22px 40px oklch(0.25 0.06 70 / 0.14);
+  transition: transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s ease, opacity 1.1s cubic-bezier(.2,.65,.3,1);
+  opacity: 0; transform: translateX(-40px);
+}
+.uni-card.in { opacity: 1; transform: none; transition: opacity 1.1s cubic-bezier(.2,.65,.3,1), transform 1.1s cubic-bezier(.2,.65,.3,1), box-shadow .28s ease; }
+.uni-card::before {
+  content:""; position:absolute; left:0; right:0; top:0; height:3px;
+  background: linear-gradient(90deg, var(--gold), oklch(0.78 0.13 78));
+  opacity:0.85; z-index:2;
+}
+.uni-card:hover{
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 0 oklch(1 0 0 / 1) inset,
+    0 4px 8px oklch(0.25 0.03 256 / 0.08),
+    0 14px 26px oklch(0.25 0.05 70 / 0.14),
+    0 32px 56px oklch(0.25 0.06 70 / 0.18);
+}
+@media (prefers-reduced-motion: reduce) { .uni-card { opacity:1 !important; transform:none !important; } }
+.uni-card-img{aspect-ratio:16/9;background:var(--sand);position:relative;overflow:hidden}
+.uni-card-img .ph{border-radius:0;border:0}
+.uni-card-flag{position:absolute;top:12px;left:12px;background:oklch(0.2 0.04 258 / 0.7);backdrop-filter:blur(6px);color:#fff;font-size:0.82rem;font-weight:600;padding:5px 12px;border-radius:var(--r-pill);display:flex;align-items:center;gap:6px}
+.uni-card-body{padding:18px 20px 20px}
+.uni-card-name{font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:4px}
+.uni-card-loc{font-size:0.88rem;color:var(--muted);margin-bottom:14px}
+.uni-card-stats{display:flex;gap:16px;flex-wrap:wrap}
+.uni-stat{display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--muted)}
+.uni-stat b{color:var(--navy);font-weight:700}
+.uni-chip{display:inline-block;font-size:0.7rem;padding:2px 8px;border-radius:var(--r-pill);font-weight:600;margin-right:4px}
+.uc-gold{background:var(--gold-soft);color:var(--gold-strong);border:1px solid var(--gold)}
+.uc-teal{background:oklch(0.94 0.03 180);color:oklch(0.35 0.1 180);border:1px solid oklch(0.7 0.1 180)}
+
+/* Detail overlay */
+.uni-detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:oklch(0 0 0 / 0.5);backdrop-filter:blur(4px);overflow-y:auto;padding:40px 20px}
+.uni-detail-overlay.open{display:flex;justify-content:center;align-items:flex-start}
+.uni-detail{background:var(--card);border-radius:var(--r-lg);max-width:800px;width:100%;box-shadow:var(--sh-3);position:relative;margin:auto}
+.uni-detail-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;display:grid;place-items:center;z-index:2;font-size:1.2rem;color:var(--muted);transition:background .15s}
+.uni-detail-close:hover{background:var(--sand)}
+.ud-header{padding:28px 32px 24px;border-bottom:1px solid var(--line)}
+.ud-header h2{font-size:1.4rem;margin:0 0 4px;color:var(--ink)}
+.ud-header .ud-loc{font-size:0.95rem;color:var(--muted)}
+.ud-body{padding:24px 32px 32px}
+.ud-level-title{font-family:var(--mono);font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.ud-level-title:first-child{margin-top:0}
+.ud-prog{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-radius:var(--r);transition:background .15s;text-decoration:none;color:inherit;border:1px solid transparent}
+.ud-prog:hover{background:var(--sand);border-color:var(--line)}
+.ud-prog-name{font-weight:600;font-size:1rem;color:var(--ink)}
+.ud-prog-meta{font-size:0.85rem;color:var(--muted);margin-top:3px}
+.ud-prog-fee{font-family:var(--mono);font-weight:700;color:var(--navy);font-size:1rem;white-space:nowrap;text-align:right}
+.ud-prog-dur{font-size:0.82rem;color:var(--muted);text-align:right;margin-top:2px}
+.ud-cta{margin-top:28px;padding:20px 24px;background:var(--gold-soft);border-radius:var(--r);display:flex;align-items:center;gap:14px}
+.ud-cta p{font-size:0.93rem;color:oklch(0.42 0.08 70);flex:1}
+
+/* Filter */
+.filter-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.filter-row select,.filter-row input{font-family:var(--sans);font-size:0.92rem;padding:10px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);color:var(--ink);cursor:pointer}
+.filter-row input{flex:1;min-width:200px;cursor:text}
+.filter-row select:focus,.filter-row input:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+
+@media(max-width:768px){.uni-cards{grid-template-columns:1fr}.uni-detail-overlay{padding:20px 12px}.ud-header,.ud-body{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body data-screen-label="Universities Listing">
+
+<header class="site-head"><div class="wrap-wide nav"><a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a><nav class="nav-links"><a href="destination.html" class="has-caret">Destinations</a><a href="program.html" class="has-caret">Programs</a><a href="university.html" class="has-caret">Universities</a><a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a><a href="about.html">About</a><a href="faq.html">FAQ</a></nav><div class="nav-right"><a href="ar/university.html" class="lang-toggle">EN · <b>العربية</b></a><a href="contact.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-accent">Book free consultation</a></div></div></header>
+
+<!-- HERO -->
+<section style="background:var(--navy-deep); color:#fff; padding:clamp(48px,6vw,80px) 0 clamp(40px,5vw,64px);">
+  <div class="wrap">
+    <span class="kicker on-dark" style="margin-bottom:16px;">Our partner universities</span>
+    <h1 class="h1" style="color:#fff; max-width:16em;">30+ universities across 11 countries</h1>
+    <p class="lead" style="color:oklch(0.84 0.02 256); max-width:38em; margin-top:16px;">Browse our partner universities and explore their programmes. Click any university card to see all available Bachelor's, Master's and PhD programmes.</p>
+  </div>
+</section>
+
+<!-- ===== COURSE MATCHER BANNER ===== -->
+<section class="section" style="padding-block: 28px; background: var(--gold-soft);">
+  <div class="wrap-wide" style="display:grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;">
+    <div style="width:54px; height:54px; border-radius:14px; background:var(--gold); display:grid; place-items:center;">
+      <svg viewBox="0 0 24 24" stroke="#1a1410" stroke-width="2" fill="none" style="width:26px; height:26px;"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </div>
+    <div>
+      <h3 style="font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--ink); margin-bottom:4px;">Not sure which university is right for you?</h3>
+      <p style="font-size:0.94rem; color:oklch(0.42 0.08 70); margin:0;">Answer 6 quick questions — we'll match you with 3 real programs at the right university for your goals, grades and budget.</p>
+    </div>
+    <a href="academic-matcher.html" class="btn btn-primary btn-lg" style="white-space:nowrap;">Try Academic Matcher →</a>
+  </div>
+</section>
+
+<!-- FILTERS + CARDS -->
+<section class="section">
+  <div class="wrap-wide">
+    <div class="filter-row">
+      <input type="text" id="uniSearch" placeholder="Search university name..." oninput="renderCards()">
+      <select id="uniCountry" onchange="renderCards()">
+        <option value="">All countries</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="usa">🇺🇸 United States</option>
+        <option value="canada">🇨🇦 Canada</option>
+        <option value="australia">🇦🇺 Australia</option>
+        <option value="spain">🇪🇸 Spain</option>
+        <option value="germany">🇩🇪 Germany</option>
+        <option value="hungary">🇭🇺 Hungary</option>
+        <option value="poland">🇵🇱 Poland</option>
+        <option value="italy">🇮🇹 Italy</option>
+        <option value="georgia">🇬🇪 Georgia</option>
+      </select>
+    </div>
+    <div id="uniCount" style="font-size:0.92rem; color:var(--muted); margin-bottom:18px;"></div>
+    <div class="uni-cards" id="uniGrid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--sand);">
+  <div class="wrap">
+    <div style="background:var(--navy); border-radius:var(--r-lg); padding:clamp(36px,5vw,60px); text-align:center; color:#fff;">
+      <h2 class="h2" style="color:#fff; max-width:16em; margin-inline:auto;">Don't see your university?</h2>
+      <p class="lead" style="color:oklch(0.85 0.02 256); max-width:32em; margin:16px auto 28px;">We partner with 650+ universities worldwide. Tell your counsellor what you want to study and they'll find the best fit — free.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-accent btn-lg">Talk to a counsellor</a>
+        <a href="https://wa.me/" class="btn btn-ghost on-dark btn-lg">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot"><div class="wrap-wide"><div class="foot-grid"><div class="foot-col"><div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div><p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p></div><div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-hungary.html">Hungary</a></li><li><a href="destination-poland.html">Poland</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-italy.html">Italy</a></li><li><a href="destination-georgia.html">Georgia</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div><div class="foot-col"><h5>Services</h5><ul><li><a href="services.html">Free counselling</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li><li><a href="course-search.html">Course search</a></li><li><a href="scholarships.html">Scholarships</a></li><li><a href="ielts-prep.html">IELTS preparation</a></li></ul></div><div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="about.html#parents">For parents</a></li><li><a href="contact.html">Contact</a></li></ul></div></div><nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar"><span>© 2026 Study Abroad Gate. All rights reserved.</span><div class="foot-lang" role="group" aria-label="Language / اللغة"><a href="university.html" aria-current="true">English</a><a href="ar/university.html" lang="ar">العربية</a></div><span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span></div></div></footer>
+
+<!-- DETAIL OVERLAY -->
+<div class="uni-detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+  <div class="uni-detail" id="detailPanel">
+    <button class="uni-detail-close" onclick="closeDetail()">✕</button>
+    <div class="ud-header" id="udHeader"></div>
+    <div class="ud-body" id="udBody"></div>
+  </div>
+</div>
+
+<script>
+var uniSlugs={"University of Edinburgh":"edinburgh","King's College London":"kcl","University of Manchester":"manchester","NCUK":"ncuk","University of Glasgow":"glasgow","University of Birmingham":"birmingham","University of Illinois Urbana-Champaign":"uiuc","Purdue University":"purdue","ASU W. P. Carey School of Business":"asu","McGill University":"mcgill","University of Toronto (Rotman)":"toronto","University of British Columbia":"ubc","Monash University":"monash","University of Melbourne":"melbourne","University of Sydney":"sydney","Universitat de Barcelona":"barcelona","IE University":"ie","ESADE Business School":"esade","Technical University of Munich":"tum","LMU Munich":"lmu","RWTH Aachen University":"rwth","Corvinus University":"corvinus","ELTE University":"elte","University of Debrecen":"debrecen","Warsaw University of Technology":"wut","Jagiellonian University":"jagiellonian","Medical University of Warsaw":"medwarsaw","Politecnico di Milano":"polimi","University of Bologna":"bologna","Caucasus University":"caucasus","Tbilisi State Medical University":"tsmu","European University Georgia":"european"};
+var universities=[{"name":"University of Edinburgh","loc":"Edinburgh, UK · QS #27","c":"uk","progs":[{"t":"MSc Artificial Intelligence","l":"pg","fee":"£31,200","dur":"1 year","href":"program-ai-edinburgh.html"},{"t":"MSc Data Science","l":"pg","fee":"£32,500","dur":"1 year","href":""},{"t":"MSc Computer Science","l":"pg","fee":"£31,200","dur":"1 year","href":""},{"t":"MSc Finance","l":"pg","fee":"£29,600","dur":"1 year","href":""},{"t":"LLM Law","l":"pg","fee":"£24,800","dur":"1 year","href":""},{"t":"MSc International Development","l":"pg","fee":"£24,600","dur":"1 year","href":""},{"t":"MA Architecture","l":"pg","fee":"£28,900","dur":"1 year","href":""},{"t":"BSc Computer Science","l":"ug","fee":"£32,100","dur":"4 years","href":""},{"t":"MA Business","l":"ug","fee":"£25,300","dur":"4 years","href":""},{"t":"BEng Engineering","l":"ug","fee":"£32,100","dur":"4 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"£24,600","dur":"3–4 years","href":""}]},{"name":"King's College London","loc":"London, UK · QS #31","c":"uk","progs":[{"t":"MSc Business Analytics","l":"pg","fee":"£33,000","dur":"1 year","href":"program-business-analytics-kcl.html"},{"t":"MSc Finance","l":"pg","fee":"£33,000","dur":"1 year","href":""},{"t":"MSc Artificial Intelligence","l":"pg","fee":"£31,200","dur":"1 year","href":""},{"t":"LLM International Law","l":"pg","fee":"£25,200","dur":"1 year","href":""},{"t":"MSc Nursing","l":"pg","fee":"£25,100","dur":"1 year","href":""},{"t":"MSc Psychology","l":"pg","fee":"£24,500","dur":"1 year","href":""},{"t":"BSc Business Management","l":"ug","fee":"£28,500","dur":"3 years","href":""},{"t":"LLB Law","l":"ug","fee":"£25,200","dur":"3 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"£30,300","dur":"3 years","href":""},{"t":"BDS Dentistry","l":"ug","fee":"£45,600","dur":"5 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"£22,500","dur":"3–4 years","href":""}]},{"name":"University of Manchester","loc":"Manchester, UK · QS #32","c":"uk","progs":[{"t":"MSc Data Science","l":"pg","fee":"£32,000","dur":"1 year","href":"program-data-science.html"},{"t":"MSc Accounting & Finance","l":"pg","fee":"£29,500","dur":"1 year","href":""},{"t":"MSc Computer Science","l":"pg","fee":"£30,500","dur":"1 year","href":""},{"t":"MBA","l":"pg","fee":"£46,000","dur":"1 year","href":""},{"t":"MSc Mechanical Engineering","l":"pg","fee":"£30,000","dur":"1 year","href":""},{"t":"BSc Computer Science","l":"ug","fee":"£29,000","dur":"3 years","href":""},{"t":"BEng Engineering","l":"ug","fee":"£29,000","dur":"3 years","href":""},{"t":"BSc Business Studies","l":"ug","fee":"£25,500","dur":"3 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"£24,500","dur":"3–4 years","href":""}]},{"name":"NCUK","loc":"Multiple UK cities · Pathway","c":"uk","progs":[{"t":"International Foundation Year","l":"foundation","fee":"£16,000","dur":"1 year","href":"program-foundation-ncuk.html"},{"t":"International Year One (Business)","l":"foundation","fee":"£15,500","dur":"1 year","href":""},{"t":"International Year One (Engineering)","l":"foundation","fee":"£16,500","dur":"1 year","href":""},{"t":"Pre-Masters Programme","l":"foundation","fee":"£14,000","dur":"1 year","href":""}]},{"name":"University of Glasgow","loc":"Glasgow, UK · QS #78","c":"uk","progs":[{"t":"BA International Business","l":"ug","fee":"£24,540","dur":"4 years","href":"program-intl-business-glasgow.html"},{"t":"BSc Computing Science","l":"ug","fee":"£25,750","dur":"4 years","href":""},{"t":"MA Accountancy & Finance","l":"ug","fee":"£22,080","dur":"4 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"£28,420","dur":"1 year","href":""},{"t":"MSc International Financial Analysis","l":"pg","fee":"£29,970","dur":"1 year","href":""},{"t":"LLM International Law","l":"pg","fee":"£22,080","dur":"1 year","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"£22,000","dur":"3–4 years","href":""}]},{"name":"University of Birmingham","loc":"Birmingham, UK · QS #80","c":"uk","progs":[{"t":"LLM International Law","l":"pg","fee":"£24,120","dur":"1 year","href":"program-law-birmingham.html"},{"t":"MSc Computer Science","l":"pg","fee":"£28,320","dur":"1 year","href":""},{"t":"MSc Money, Banking & Finance","l":"pg","fee":"£26,280","dur":"1 year","href":""},{"t":"MSc Public Health","l":"pg","fee":"£24,120","dur":"1 year","href":""},{"t":"BSc Computer Science","l":"ug","fee":"£26,280","dur":"3 years","href":""},{"t":"BEng Civil Engineering","l":"ug","fee":"£26,280","dur":"3 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"£22,000","dur":"3–4 years","href":""}]},{"name":"University of Illinois Urbana-Champaign","loc":"Illinois, USA · US Top-5 CS","c":"usa","progs":[{"t":"BSc Computer Science","l":"ug","fee":"$38,000","dur":"4 years","href":"program-computer-science.html"},{"t":"BSc Electrical Engineering","l":"ug","fee":"$38,000","dur":"4 years","href":""},{"t":"BSc Mechanical Engineering","l":"ug","fee":"$38,000","dur":"4 years","href":""},{"t":"BSc Business Administration","l":"ug","fee":"$36,000","dur":"4 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"$40,000","dur":"2 years","href":""},{"t":"MBA (Gies College)","l":"pg","fee":"$42,000","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"Purdue University","loc":"Indiana, USA · QS #89","c":"usa","progs":[{"t":"BSc Electrical Engineering","l":"ug","fee":"$31,104","dur":"4 years","href":"program-ee-purdue.html"},{"t":"BSc Computer Science","l":"ug","fee":"$31,104","dur":"4 years","href":""},{"t":"BSc Mechanical Engineering","l":"ug","fee":"$31,104","dur":"4 years","href":""},{"t":"BSc Aerospace Engineering","l":"ug","fee":"$31,104","dur":"4 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"$31,104","dur":"2 years","href":""},{"t":"MBA (Krannert)","l":"pg","fee":"$33,000","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"ASU W. P. Carey School of Business","loc":"Phoenix, Arizona · AACSB · US Top-30","c":"usa","progs":[{"t":"Full-Time MBA","l":"pg","fee":"$59,000","dur":"2 years","href":"program-mba.html"},{"t":"MSc Business Analytics","l":"pg","fee":"$52,000","dur":"1 year","href":""},{"t":"MSc Finance","l":"pg","fee":"$52,000","dur":"1 year","href":""},{"t":"BSc Business (multiple majors)","l":"ug","fee":"$32,000","dur":"4 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"$32,000","dur":"4 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"McGill University","loc":"Montreal, Canada · QS #27","c":"canada","progs":[{"t":"BEng Civil Engineering","l":"ug","fee":"CA$52,080","dur":"4 years","href":"program-civil-eng-mcgill.html"},{"t":"BEng Electrical Engineering","l":"ug","fee":"CA$52,080","dur":"4 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"CA$52,080","dur":"3 years","href":""},{"t":"BCom Commerce","l":"ug","fee":"CA$52,080","dur":"3 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"CA$24,000","dur":"2 years","href":""},{"t":"MBA (Desautels)","l":"pg","fee":"CA$92,000","dur":"1.5 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"University of Toronto (Rotman)","loc":"Toronto, Canada · QS #21","c":"canada","progs":[{"t":"Master of Finance","l":"pg","fee":"CA$62,310","dur":"16 months","href":"program-finance-toronto.html"},{"t":"MBA","l":"pg","fee":"CA$120,000","dur":"2 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"CA$52,000","dur":"2 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"CA$59,310","dur":"4 years","href":""},{"t":"BCom Commerce","l":"ug","fee":"CA$59,310","dur":"4 years","href":""},{"t":"BASc Engineering","l":"ug","fee":"CA$59,310","dur":"4 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"University of British Columbia","loc":"Vancouver, Canada · QS Top-40","c":"canada","progs":[{"t":"BSc Nursing","l":"ug","fee":"CA$42,000","dur":"4 years","href":"program-nursing.html"},{"t":"BSc Computer Science","l":"ug","fee":"CA$44,091","dur":"4 years","href":""},{"t":"BASc Engineering","l":"ug","fee":"CA$44,091","dur":"4 years","href":""},{"t":"BCom Commerce","l":"ug","fee":"CA$44,091","dur":"4 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"CA$9,131","dur":"2 years","href":""},{"t":"MBA (Sauder)","l":"pg","fee":"CA$66,550","dur":"16 months","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4–5 years","href":""}]},{"name":"Monash University","loc":"Melbourne, Australia · QS #37","c":"australia","progs":[{"t":"Bachelor of Commerce","l":"ug","fee":"A$48,800","dur":"3 years","href":"program-commerce-monash.html"},{"t":"BSc Computer Science","l":"ug","fee":"A$47,300","dur":"3 years","href":""},{"t":"Bachelor of Engineering","l":"ug","fee":"A$50,000","dur":"4 years","href":""},{"t":"Bachelor of Medicine (MBBS)","l":"ug","fee":"A$82,700","dur":"5 years","href":""},{"t":"Master of Business Administration","l":"pg","fee":"A$89,000","dur":"2 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"A$47,300","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Scholarships available","dur":"3–4 years","href":""}]},{"name":"University of Melbourne","loc":"Melbourne, Australia · QS Top-20","c":"australia","progs":[{"t":"Master of Engineering","l":"pg","fee":"AU$50,000","dur":"2–3 years","href":"program-engineering.html"},{"t":"Master of IT","l":"pg","fee":"AU$49,000","dur":"2 years","href":""},{"t":"Master of Finance","l":"pg","fee":"AU$50,000","dur":"2 years","href":""},{"t":"MBA (Melbourne Business School)","l":"pg","fee":"AU$92,000","dur":"1 year","href":""},{"t":"BSc Computer Science","l":"ug","fee":"AU$47,000","dur":"3 years","href":""},{"t":"BCom Commerce","l":"ug","fee":"AU$45,000","dur":"3 years","href":""},{"t":"Doctor of Medicine (MD)","l":"pg","fee":"AU$82,000","dur":"4 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Scholarships available","dur":"3–4 years","href":""}]},{"name":"University of Sydney","loc":"Sydney, Australia · QS #18","c":"australia","progs":[{"t":"Master of Public Health","l":"pg","fee":"A$49,000","dur":"1.5 years","href":"program-public-health-sydney.html"},{"t":"Master of Commerce","l":"pg","fee":"A$52,500","dur":"2 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"A$52,500","dur":"2 years","href":""},{"t":"Master of Engineering","l":"pg","fee":"A$50,000","dur":"1.5 years","href":""},{"t":"BCom Commerce","l":"ug","fee":"A$48,000","dur":"3 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"A$52,500","dur":"3 years","href":""},{"t":"Doctor of Medicine (MD)","l":"pg","fee":"A$82,000","dur":"4 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Scholarships available","dur":"3–4 years","href":""}]},{"name":"Universitat de Barcelona","loc":"Barcelona, Spain · QS ~150","c":"spain","progs":[{"t":"BA International Relations","l":"ug","fee":"€2,500","dur":"4 years","href":"program-intl-relations-barcelona.html"},{"t":"BA Economics","l":"ug","fee":"€2,500","dur":"4 years","href":""},{"t":"BA Business Administration","l":"ug","fee":"€2,500","dur":"4 years","href":""},{"t":"BA Law","l":"ug","fee":"€2,500","dur":"4 years","href":""},{"t":"MSc Economics","l":"pg","fee":"€4,000","dur":"1 year","href":""},{"t":"MA International Security","l":"pg","fee":"€4,500","dur":"1 year","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"€600","dur":"3–4 years","href":""}]},{"name":"IE University","loc":"Madrid, Spain · Top-ranked private","c":"spain","progs":[{"t":"MSc Data Analytics","l":"pg","fee":"€14,800","dur":"1 year","href":"program-data-analytics-ie.html"},{"t":"MSc Computer Science & AI","l":"pg","fee":"€38,200","dur":"1 year","href":""},{"t":"Master in Management","l":"pg","fee":"€38,200","dur":"1 year","href":""},{"t":"MBA","l":"pg","fee":"€72,200","dur":"1 year","href":""},{"t":"BBA Business Administration","l":"ug","fee":"€24,300","dur":"4 years","href":""},{"t":"BSc Data & Business Analytics","l":"ug","fee":"€24,300","dur":"4 years","href":""}]},{"name":"ESADE Business School","loc":"Barcelona, Spain · FT Top-10 Europe","c":"spain","progs":[{"t":"Full-Time MBA","l":"pg","fee":"€18,500","dur":"15–18 mo.","href":"program-mba-esade.html"},{"t":"MSc Finance","l":"pg","fee":"€28,200","dur":"1 year","href":""},{"t":"MSc Marketing Management","l":"pg","fee":"€26,500","dur":"1 year","href":""},{"t":"BBA Business Administration","l":"ug","fee":"€18,500","dur":"4 years","href":""},{"t":"Bachelor in Global Governance","l":"ug","fee":"€18,500","dur":"4 years","href":""}]},{"name":"Technical University of Munich","loc":"Munich, Germany · QS #28","c":"germany","progs":[{"t":"MSc Computer Science","l":"pg","fee":"€0","dur":"2 years","href":"program-cs-tum.html"},{"t":"MSc Mechanical Engineering","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Electrical Engineering","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Data Engineering & Analytics","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Management & Technology","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"BSc Mechanical Engineering","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3–5 years","href":""}]},{"name":"LMU Munich","loc":"Munich, Germany · QS #54","c":"germany","progs":[{"t":"BSc Business Administration","l":"ug","fee":"€0","dur":"3 years","href":"program-bba-lmu.html"},{"t":"BSc Computer Science","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"BA Economics","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"BA Law","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Economics","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3–5 years","href":""}]},{"name":"RWTH Aachen University","loc":"Aachen, Germany · QS ~90","c":"germany","progs":[{"t":"MSc Mechanical Engineering","l":"pg","fee":"€0","dur":"2 years","href":"program-mech-eng-rwth.html"},{"t":"MSc Electrical Engineering","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"€0","dur":"2 years","href":""},{"t":"BSc Mechanical Engineering","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"BSc Electrical Engineering","l":"ug","fee":"€0","dur":"3 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3–5 years","href":""}]},{"name":"Corvinus University","loc":"Budapest, Hungary · Accredited","c":"hungary","progs":[{"t":"BSc Business & Economics","l":"ug","fee":"€3,800","dur":"3 years","href":"program-business-corvinus.html"},{"t":"MSc Business Analytics","l":"pg","fee":"€4,500","dur":"2 years","href":"program-analytics-corvinus.html"},{"t":"BSc International Business","l":"ug","fee":"€3,800","dur":"3 years","href":""},{"t":"MSc Finance","l":"pg","fee":"€4,500","dur":"2 years","href":""},{"t":"MSc Marketing","l":"pg","fee":"€4,500","dur":"2 years","href":""},{"t":"PhD Business Administration","l":"phd","fee":"€5,000","dur":"3 years","href":""}]},{"name":"ELTE University","loc":"Budapest, Hungary · QS ~584","c":"hungary","progs":[{"t":"BSc Computer Science","l":"ug","fee":"€3,200","dur":"3 years","href":"program-cs-elte.html"},{"t":"BSc Mathematics","l":"ug","fee":"€3,200","dur":"3 years","href":""},{"t":"BA English Studies","l":"ug","fee":"€2,800","dur":"3 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"€3,800","dur":"2 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"€3,800","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"€4,000","dur":"3 years","href":""}]},{"name":"University of Debrecen","loc":"Debrecen, Hungary · QS ~563","c":"hungary","progs":[{"t":"General Medicine (MD)","l":"ug","fee":"€16,000","dur":"6 years","href":"program-medicine-debrecen.html"},{"t":"Dentistry","l":"ug","fee":"€16,000","dur":"5 years","href":""},{"t":"Pharmacy","l":"ug","fee":"€8,000","dur":"5 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"€5,500","dur":"3.5 years","href":""},{"t":"BSc Engineering","l":"ug","fee":"€5,500","dur":"3.5 years","href":""},{"t":"MSc Molecular Biology","l":"pg","fee":"€7,000","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"€6,000","dur":"3–4 years","href":""}]},{"name":"Warsaw University of Technology","loc":"Warsaw, Poland · QS ~550","c":"poland","progs":[{"t":"BSc Data Science","l":"ug","fee":"€4,000","dur":"3.5 years","href":"program-data-science-wut.html"},{"t":"BSc Computer Science","l":"ug","fee":"€4,000","dur":"3.5 years","href":""},{"t":"BSc Civil Engineering","l":"ug","fee":"€3,500","dur":"3.5 years","href":""},{"t":"BSc Electrical Engineering","l":"ug","fee":"€3,500","dur":"3.5 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"€4,500","dur":"1.5 years","href":""},{"t":"MSc Data Engineering","l":"pg","fee":"€4,500","dur":"1.5 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"4 years","href":""}]},{"name":"Jagiellonian University","loc":"Krakow, Poland · QS ~300","c":"poland","progs":[{"t":"MA International Relations","l":"pg","fee":"€3,000","dur":"2 years","href":"program-ir-jagiellonian.html"},{"t":"BA International Relations","l":"ug","fee":"€3,000","dur":"3 years","href":""},{"t":"BA European Studies","l":"ug","fee":"€3,000","dur":"3 years","href":""},{"t":"MSc Computer Science","l":"pg","fee":"€3,500","dur":"2 years","href":""},{"t":"MA Law","l":"pg","fee":"€3,500","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3–4 years","href":""}]},{"name":"Medical University of Warsaw","loc":"Warsaw, Poland · Top medical","c":"poland","progs":[{"t":"General Medicine (MD)","l":"ug","fee":"€13,500","dur":"6 years","href":"program-medicine-warsaw.html"},{"t":"Dentistry","l":"ug","fee":"€13,500","dur":"5 years","href":""},{"t":"Pharmacy","l":"ug","fee":"€10,000","dur":"5.5 years","href":""},{"t":"BSc Nursing","l":"ug","fee":"€8,000","dur":"3 years","href":""},{"t":"PhD Medical Sciences","l":"phd","fee":"€5,000","dur":"4 years","href":""}]},{"name":"Politecnico di Milano","loc":"Milan, Italy · QS #111","c":"italy","progs":[{"t":"MSc Design & Engineering","l":"pg","fee":"€3,900","dur":"2 years","href":"program-design-eng-polimi.html"},{"t":"MSc Architecture","l":"pg","fee":"€3,900","dur":"2 years","href":"program-architecture-polimi.html"},{"t":"MSc Computer Science & Engineering","l":"pg","fee":"€3,900","dur":"2 years","href":""},{"t":"MSc Mechanical Engineering","l":"pg","fee":"€3,900","dur":"2 years","href":""},{"t":"MSc Management Engineering","l":"pg","fee":"€3,900","dur":"2 years","href":""},{"t":"BSc Engineering (multiple tracks)","l":"ug","fee":"€3,900","dur":"3 years","href":""},{"t":"BSc Architecture","l":"ug","fee":"€3,900","dur":"3 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3 years","href":""}]},{"name":"University of Bologna","loc":"Bologna, Italy · World's oldest","c":"italy","progs":[{"t":"BA Economics & Business","l":"ug","fee":"€2,800","dur":"3 years","href":"program-economics-bologna.html"},{"t":"BA Political Science","l":"ug","fee":"€2,800","dur":"3 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"€2,800","dur":"3 years","href":""},{"t":"MSc Data Science","l":"pg","fee":"€2,800","dur":"2 years","href":""},{"t":"MSc International Relations","l":"pg","fee":"€2,800","dur":"2 years","href":""},{"t":"MSc Artificial Intelligence","l":"pg","fee":"€2,800","dur":"2 years","href":""},{"t":"PhD (Research Programmes)","l":"phd","fee":"Funded","dur":"3 years","href":""}]},{"name":"Caucasus University","loc":"Tbilisi, Georgia · English-taught","c":"georgia","progs":[{"t":"BBA Business Administration","l":"ug","fee":"$3,500","dur":"4 years","href":"program-bba-caucasus.html"},{"t":"BA International Relations","l":"ug","fee":"$3,500","dur":"4 years","href":""},{"t":"BSc Computer Science","l":"ug","fee":"$3,500","dur":"4 years","href":""},{"t":"MBA","l":"pg","fee":"$5,000","dur":"2 years","href":""},{"t":"MA Law","l":"pg","fee":"$4,000","dur":"2 years","href":""}]},{"name":"Tbilisi State Medical University","loc":"Tbilisi, Georgia · WHO-listed","c":"georgia","progs":[{"t":"General Medicine (MD)","l":"ug","fee":"$6,000","dur":"6 years","href":"program-medicine-tbilisi.html"},{"t":"Dentistry","l":"ug","fee":"$5,000","dur":"5 years","href":""},{"t":"Pharmacy","l":"ug","fee":"$4,000","dur":"4 years","href":""},{"t":"BSc Nursing","l":"ug","fee":"$3,000","dur":"4 years","href":""},{"t":"PhD Medical Sciences","l":"phd","fee":"$4,500","dur":"3 years","href":""}]},{"name":"European University Georgia","loc":"Tbilisi, Georgia · WHO-listed","c":"georgia","progs":[{"t":"Dentistry (DMD)","l":"ug","fee":"$4,500","dur":"5 years","href":"program-dentistry-european.html"},{"t":"General Medicine (MD)","l":"ug","fee":"$5,500","dur":"6 years","href":""},{"t":"BBA Business Administration","l":"ug","fee":"$3,000","dur":"4 years","href":""},{"t":"BA Law","l":"ug","fee":"$3,000","dur":"4 years","href":""},{"t":"MBA","l":"pg","fee":"$4,000","dur":"2 years","href":""}]}];
+
+var flagMap={uk:'🇬🇧',usa:'🇺🇸',canada:'🇨🇦',australia:'🇦🇺',spain:'🇪🇸',germany:'🇩🇪',hungary:'🇭🇺',poland:'🇵🇱',italy:'🇮🇹',georgia:'🇬🇪'};
+var countryNames={uk:'United Kingdom',usa:'United States',canada:'Canada',australia:'Australia',spain:'Spain',germany:'Germany',hungary:'Hungary',poland:'Poland',italy:'Italy',georgia:'Georgia'};
+var countryOrder=['uk','usa','canada','australia','spain','germany','hungary','poland','italy','georgia'];
+
+function groupByUni(progs){
+  var map={},order=[];
+  progs.forEach(function(p){
+    if(!map[p.u]){map[p.u]={name:p.u,loc:p.loc,country:p.c,img:p.img,progs:[]};order.push(p.u);}
+    map[p.u].progs.push(p);
+  });
+  return order.map(function(k){return map[k]});
+}
+
+function renderCards(){
+  var q=document.getElementById('uniSearch').value.toLowerCase();
+  var c=document.getElementById('uniCountry').value;
+  var filtered=universities.filter(function(u){
+    if(c && u.c!==c) return false;
+    if(q && u.name.toLowerCase().indexOf(q)===-1) return false;
+    return true;
+  });
+  var grid=document.getElementById('uniGrid');
+  grid.innerHTML='';
+  filtered.forEach(function(uni){
+    var ugCount=uni.progs.filter(function(p){return p.l==='ug'||p.l==='foundation'}).length;
+    var pgCount=uni.progs.filter(function(p){return p.l==='pg'}).length;
+    var phdCount=uni.progs.filter(function(p){return p.l==='phd'}).length;
+    var chips='';
+    if(ugCount) chips+='<span class="uni-chip uc-gold">'+ugCount+" Bachelor\'s</span>";
+    if(pgCount) chips+='<span class="uni-chip uc-teal">'+pgCount+" Master\'s</span>";
+    if(phdCount) chips+='<span class="uni-chip" style="background:oklch(0.94 0.03 300);color:oklch(0.35 0.1 300);border:1px solid oklch(0.7 0.1 300);">PhD</span>';
+    var minFee=999999;
+    uni.progs.forEach(function(p){var n=parseFloat(p.fee.replace(/[^0-9.]/g,''));if(n>0&&n<minFee)minFee=n;});
+    var feeLabel=minFee<999999?'From '+minFee.toLocaleString():'Free tuition';
+    var card=document.createElement('div');
+    card.className='uni-card';
+    card.onclick=function(){var slug=uniSlugs[uni.name];if(slug){window.location.href='university-'+slug+'.html';}else{openDetail(uni);}};
+    card.style.cursor='pointer';
+    card.innerHTML=
+      '<div class="uni-card-img">'+
+        '<div class="ph dark" style="width:100%;height:100%;border-radius:0;border:0;" data-label="'+uni.name+' campus"></div>'+
+        '<div class="uni-card-flag">'+flagMap[uni.c]+' '+countryNames[uni.c]+'</div>'+
+      '</div>'+
+      '<div class="uni-card-body">'+
+        '<div class="uni-card-name">'+uni.name+'</div>'+
+        '<div class="uni-card-loc">'+uni.loc+'</div>'+
+        '<div style="margin-bottom:12px">'+chips+'</div>'+
+        '<div class="uni-card-stats">'+
+          '<div class="uni-stat"><b>'+uni.progs.length+'</b> programmes</div>'+
+          '<div class="uni-stat">'+feeLabel+'/yr</div>'+
+        '</div>'+
+      '</div>';
+    grid.appendChild(card);
+  });
+  document.getElementById('uniCount').textContent='Showing '+filtered.length+' universit'+(filtered.length!==1?'ies':'y');
+}
+
+function openDetail(uni){
+  var header=document.getElementById('udHeader');
+  header.innerHTML='<h2>'+uni.name+'</h2><div class="ud-loc">'+flagMap[uni.c]+' '+uni.loc+'</div>';
+  var body=document.getElementById('udBody');
+  var html='';
+  var ugProgs=uni.progs.filter(function(p){return p.l==='ug'||p.l==='foundation'});
+  var pgProgs=uni.progs.filter(function(p){return p.l==='pg'});
+  var phdProgs=uni.progs.filter(function(p){return p.l==='phd'});
+  if(ugProgs.length){
+    html+='<div class="ud-level-title">Undergraduate programmes (Bachelor\'s)</div>';
+    ugProgs.forEach(function(p){
+      var tag=p.href?'a href="'+p.href+'"':'div';
+      var endTag=p.href?'a':'div';
+      html+='<'+tag+' class="ud-prog">'+
+        '<div><div class="ud-prog-name">'+p.t+'</div><div class="ud-prog-meta">'+p.dur+(p.l==='foundation'?' · Foundation pathway':'')+'</div></div>'+
+        '<div><div class="ud-prog-fee">'+p.fee+'</div><div class="ud-prog-dur">per year</div></div>'+
+      '</'+endTag+'>';
+    });
+  }
+  if(pgProgs.length){
+    html+='<div class="ud-level-title">Postgraduate programmes (Master\'s)</div>';
+    pgProgs.forEach(function(p){
+      var tag=p.href?'a href="'+p.href+'"':'div';
+      var endTag=p.href?'a':'div';
+      html+='<'+tag+' class="ud-prog">'+
+        '<div><div class="ud-prog-name">'+p.t+'</div><div class="ud-prog-meta">'+p.dur+'</div></div>'+
+        '<div><div class="ud-prog-fee">'+p.fee+'</div><div class="ud-prog-dur">per year</div></div>'+
+      '</'+endTag+'>';
+    });
+  }
+  if(phdProgs.length){
+    html+='<div class="ud-level-title">Doctoral programmes (PhD)</div>';
+    phdProgs.forEach(function(p){
+      var tag=p.href?'a href="'+p.href+'"':'div';
+      var endTag=p.href?'a':'div';
+      html+='<'+tag+' class="ud-prog">'+
+        '<div><div class="ud-prog-name">'+p.t+'</div><div class="ud-prog-meta">'+p.dur+'</div></div>'+
+        '<div><div class="ud-prog-fee">'+p.fee+'</div><div class="ud-prog-dur">per year</div></div>'+
+      '</'+endTag+'>';
+    });
+  }
+  html+='<div class="ud-cta"><span style="font-size:1.3rem;">🎓</span><p><b>Interested in '+uni.name+'?</b> Your counsellor handles the entire application — free of charge.</p><a href="contact.html" class="btn btn-accent">Apply now</a></div>';
+  body.innerHTML=html;
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+renderCards();
+
+/* slow wave reveal — runs after each renderCards() and re-runs as filters change */
+(function(){
+  if(typeof IntersectionObserver === 'undefined') return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('.uni-card').forEach(c => c.classList.add('in'));
+    return;
+  }
+  let io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+  function tag(){
+    const cards = document.querySelectorAll('.uni-card:not(.in)');
+    cards.forEach((c, i) => {
+      c.style.transitionDelay = (i * 0.32) + 's, ' + (i * 0.32) + 's, 0s';
+      io.observe(c);
+    });
+  }
+  tag();
+  // Re-tag when filters re-render the grid
+  const grid = document.getElementById('uniGrid');
+  if(grid){
+    const mo = new MutationObserver(() => { setTimeout(tag, 30); });
+    mo.observe(grid, { childList: true });
+  }
+})();
+</script>
+</body>
+</html>

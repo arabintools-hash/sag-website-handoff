@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Language Courses Abroad — Study Abroad Gate</title>
+<meta name="description" content="Study English abroad at accredited language institutes in England, USA, Australia, Canada, South Africa, Philippines and Indonesia. Compare Kings, Malvern, EF Education First, Kaplan, ILSC and more — courses, accreditations, branches and certificates.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="English Language Courses Abroad — Study Abroad Gate">
+<meta property="og:description" content="Compare top accredited English language institutes worldwide. From General English to IELTS prep — find your perfect course.">
+<meta property="og:url" content="https://www.studyabroadgate.com/english-courses.html">
+<link rel="canonical" href="https://www.studyabroadgate.com/english-courses.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<script src="image-slot.js" defer></script>
+<style>
+image-slot{display:block;width:100%;height:100%}
+.ph:has(> image-slot){background:none!important;background-image:none!important;border:0!important}
+.ph:has(> image-slot)::after{display:none}
+
+/* === English Courses page === */
+.eng-tabs { display:flex; gap:6px; flex-wrap:wrap; border-bottom:2px solid var(--line); padding-bottom:0; margin-bottom:32px; }
+.eng-tab { font-family:var(--sans); font-weight:600; font-size:0.92rem; padding:12px 20px; border:none; background:none; color:var(--muted); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all .18s ease; border-radius:8px 8px 0 0; display:inline-flex; align-items:center; gap:8px; }
+.eng-tab:hover { color:var(--ink); background:var(--sand); }
+.eng-tab.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--gold-soft); }
+.eng-tab .flag-em { font-size:1.15rem; }
+.eng-panel { display:none; }
+.eng-panel.active { display:block; }
+
+/* institute cards */
+.inst-card { background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:28px 28px 24px; margin-bottom:22px; }
+.inst-header { display:flex; align-items:flex-start; gap:18px; margin-bottom:18px; }
+.inst-logo { width:64px; height:64px; border-radius:14px; flex:0 0 auto; }
+.inst-header h3 { font-family:var(--serif); font-size:1.35rem; font-weight:700; margin-bottom:4px; }
+.inst-meta { font-size:0.85rem; color:var(--muted); }
+.inst-badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.inst-badge { font-size:0.72rem; font-weight:700; font-family:var(--mono); letter-spacing:0.04em; padding:4px 10px; border-radius:var(--r-pill); background:oklch(0.945 0.016 256); color:var(--navy); border:1px solid oklch(0.88 0.02 256); }
+.inst-card { position:relative; }
+.inst-card h3 a:hover { color:var(--gold); }
+.inst-badge.gold { background:var(--gold-soft); color:oklch(0.45 0.09 70); border-color:transparent; }
+
+/* course tabs (real institute course detail) */
+.course-tabs { margin-top:4px; }
+.ct-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.ct-tab { font-family:var(--sans); font-size:0.83rem; font-weight:600; padding:8px 14px; border-radius:var(--r-pill); background:oklch(0.96 0.012 256); color:var(--navy); border:1px solid var(--line); cursor:pointer; transition:background .15s, color .15s, border-color .15s; }
+.ct-tab:hover { border-color:var(--gold); }
+.ct-tab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+.ct-panel { display:none; }
+.ct-panel.active { display:block; animation:ctfade .24s ease; }
+@keyframes ctfade { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+.ct-detail { background:oklch(0.975 0.008 256); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+.ct-detail h5 { font-family:var(--sans); font-size:1.02rem; font-weight:700; color:var(--navy); margin:0 0 10px; }
+.ct-specs { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:12px; }
+.ct-spec { font-family:var(--mono); font-size:0.72rem; font-weight:600; padding:4px 10px; border-radius:var(--r-pill); background:#fff; border:1px solid var(--line); color:var(--navy); }
+.ct-spec.price { background:var(--gold-soft); color:oklch(0.45 0.09 70); border-color:transparent; }
+.ct-detail p { font-size:0.89rem; color:var(--muted); line-height:1.65; margin:0; }
+.ct-source { font-size:0.76rem; color:var(--muted); margin-top:10px; font-style:italic; }
+
+/* course type chips */
+.course-types { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 16px; }
+.ct { font-size:0.82rem; font-weight:600; padding:7px 14px; border-radius:var(--r-pill); background:var(--sand); color:var(--ink); border:1px solid var(--line); }
+
+/* branches grid */
+.branch-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:10px; margin-top:12px; }
+.branch-item { font-size:0.88rem; padding:10px 14px; background:var(--cream); border:1px solid var(--line-soft); border-radius:var(--r-sm); display:flex; align-items:center; gap:8px; }
+.branch-item .dot { width:8px; height:8px; border-radius:50%; background:var(--gold); flex:0 0 auto; }
+
+/* comparison table */
+.cmp-table { width:100%; border-collapse:collapse; background:var(--card); border-radius:var(--r); overflow:hidden; border:1px solid var(--line); font-size:0.88rem; margin:24px 0; }
+.cmp-table th, .cmp-table td { text-align:left; padding:13px 16px; border-bottom:1px solid var(--line-soft); }
+.cmp-table th { background:var(--sand); font-family:var(--sans); font-weight:700; font-size:0.76rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted); }
+.cmp-table td:first-child { font-weight:600; }
+.cmp-table tr:last-child td { border-bottom:0; }
+
+/* cert cards */
+.cert-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:16px; margin-top:16px; }
+.cert-card { background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:20px; }
+.cert-card h4 { font-family:var(--sans); font-size:1rem; font-weight:700; margin-bottom:6px; }
+.cert-card p { font-size:0.88rem; color:var(--muted); }
+
+/* destination summary cards in hero area */
+.dest-pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.dest-pill { display:inline-flex; align-items:center; gap:7px; padding:8px 16px; border-radius:var(--r-pill); background:oklch(1 0 0 / 0.1); border:1px solid oklch(1 0 0 / 0.2); color:#fff; font-size:0.88rem; font-weight:600; cursor:pointer; transition:all .18s; }
+.dest-pill:hover { background:oklch(1 0 0 / 0.18); border-color:oklch(1 0 0 / 0.35); }
+.dest-pill .flag-em { font-size:1.1rem; }
+
+@media (max-width:900px) {
+  .eng-tabs { gap:3px; }
+  .eng-tab { font-size:0.82rem; padding:10px 14px; }
+  .inst-header { flex-direction:column; gap:12px; }
+  .branch-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:620px) {
+  .eng-tab { font-size:0.78rem; padding:8px 10px; gap:5px; }
+  .eng-tab .flag-em { font-size:1rem; }
+  .branch-grid { grid-template-columns:1fr; }
+  .cert-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body data-screen-label="English Language Courses">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="destination.html" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html" class="has-caret" style="color:#fff;">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="contact.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section style="position:relative; background:var(--navy-deep); color:#fff; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image:radial-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1.2px); background-size:24px 24px; opacity:0.5; pointer-events:none;"></div>
+  <div class="wrap-wide" style="position:relative; padding-block: clamp(44px,5vw,72px) clamp(48px,6vw,80px);">
+    <div style="font-family:var(--mono); font-size:0.82rem; color:oklch(0.78 0.02 256); margin-bottom:22px; display:flex; gap:8px;">
+      <a href="index.html" style="color:inherit;">Home</a> <span>/</span> <span style="color:var(--gold);">English Language Courses</span>
+    </div>
+    <span class="chip chip-gold" style="margin-bottom:18px;">🌍 7 Destinations · 8+ Institutes</span>
+    <h1 class="h-display" style="color:#fff; max-width:16em;">English Language Courses Abroad</h1>
+    <p class="lead" style="color:oklch(0.85 0.02 256); max-width:40em; margin-top:18px;">Study English at the world's most accredited language institutes — from London to Sydney, New York to Manila. General English, IELTS, Cambridge, Business English and university pathways all in one place.</p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;">
+      <a href="#lead" class="btn btn-accent btn-lg">Get a free course recommendation</a>
+      <a href="#destinations" class="btn btn-ghost on-dark btn-lg">Compare destinations</a>
+    </div>
+    <div class="dest-pills">
+      <span class="dest-pill" data-tab="england"><span class="flag-em">🇬🇧</span> England</span>
+      <span class="dest-pill" data-tab="usa"><span class="flag-em">🇺🇸</span> USA</span>
+      <span class="dest-pill" data-tab="australia"><span class="flag-em">🇦🇺</span> Australia</span>
+      <span class="dest-pill" data-tab="canada"><span class="flag-em">🇨🇦</span> Canada</span>
+      <span class="dest-pill" data-tab="south-africa"><span class="flag-em">🇿🇦</span> South Africa</span>
+      <span class="dest-pill" data-tab="philippines"><span class="flag-em">🇵🇭</span> Philippines</span>
+      <span class="dest-pill" data-tab="indonesia"><span class="flag-em">🇮🇩</span> Indonesia</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENGLISH COURSE MATCHER BANNER ===== -->
+<section class="section" style="padding-block: 32px; background: var(--gold-soft);">
+  <div class="wrap-wide" style="display:grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;">
+    <div style="width:60px; height:60px; border-radius:14px; background:var(--gold); display:grid; place-items:center;">
+      <svg viewBox="0 0 24 24" stroke="#1a1410" stroke-width="2" fill="none" style="width:28px; height:28px;"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </div>
+    <div>
+      <h3 style="font-family:var(--serif); font-size:1.32rem; font-weight:600; color:var(--ink); margin-bottom:4px;">Build your full English course quote in 60 seconds</h3>
+      <p style="font-size:0.96rem; color:oklch(0.42 0.08 70); margin:0; max-width:46em;">Pick course type, duration, accommodation &amp; add-ons — see your total in real time, then send it to a counsellor on WhatsApp.</p>
+    </div>
+    <a href="english-course-matcher.html" class="btn btn-primary btn-lg" style="white-space:nowrap;">Try English Matcher →</a>
+  </div>
+</section>
+
+<!-- ===== FACT STRIP ===== -->
+<section class="section-sm">
+  <div class="wrap-wide">
+    <div class="facts">
+      <div class="fact"><div class="v">8+</div><div class="k">Accredited institutes</div></div>
+      <div class="fact"><div class="v">7</div><div class="k">Countries worldwide</div></div>
+      <div class="fact"><div class="v">50+</div><div class="k">Campus locations</div></div>
+      <div class="fact"><div class="v">2–52 wk</div><div class="k">Flexible course lengths</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN + STICKY CTA ===== -->
+<section class="section" id="destinations" style="padding-top:clamp(20px,3vw,40px);">
+  <div class="wrap-wide" style="display:grid; grid-template-columns:1fr 360px; gap:clamp(32px,5vw,64px); align-items:start;">
+
+    <!-- LEFT: tabbed content -->
+    <div>
+      <!-- ===== TAB NAV ===== -->
+      <div class="eng-tabs" role="tablist">
+        <button class="eng-tab active" role="tab" data-target="england"><span class="flag-em">🇬🇧</span> England</button>
+        <button class="eng-tab" role="tab" data-target="usa"><span class="flag-em">🇺🇸</span> USA</button>
+        <button class="eng-tab" role="tab" data-target="australia"><span class="flag-em">🇦🇺</span> Australia</button>
+        <button class="eng-tab" role="tab" data-target="canada"><span class="flag-em">🇨🇦</span> Canada</button>
+        <button class="eng-tab" role="tab" data-target="south-africa"><span class="flag-em">🇿🇦</span> S. Africa</button>
+        <button class="eng-tab" role="tab" data-target="philippines"><span class="flag-em">🇵🇭</span> Philippines</button>
+        <button class="eng-tab" role="tab" data-target="indonesia"><span class="flag-em">🇮🇩</span> Indonesia</button>
+      </div>
+
+      <!-- ===================== ENGLAND ===================== -->
+      <div class="eng-panel active" id="england">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">England</span>
+          <h2 class="h2">Study English in England</h2>
+          <p class="lead">The birthplace of the English language, home to world-renowned language institutes accredited by the British Council. From London to Oxford, Brighton to Bournemouth.</p>
+        </div>
+
+        <!-- Kings Education -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-kings-logo" placeholder="Kings Education logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-kings.html" style="color:inherit;text-decoration:none;">Kings Education</a></h3>
+              <p class="inst-meta">Founded 1957 · UK &amp; USA · kingseducation.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge gold">Ofsted</span>
+                <span class="inst-badge">English UK</span>
+                <span class="inst-badge">ALTO</span>
+                <span class="inst-badge">IELTS Test Centre (Oxford)</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="general">General English</button>
+              <button type="button" class="ct-tab" data-course="intensive">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="diploma">Diploma (long-term)</button>
+              <button type="button" class="ct-tab" data-course="ielts">IELTS Preparation</button>
+              <button type="button" class="ct-tab" data-course="cambridge">Cambridge FCE / CAE</button>
+              <button type="button" class="ct-tab" data-course="toefl">TOEFL Preparation</button>
+              <button type="button" class="ct-tab" data-course="business">Business English</button>
+              <button type="button" class="ct-tab" data-course="plus">English Plus</button>
+              <button type="button" class="ct-tab" data-course="pathway">University Pathways</button>
+            </div>
+
+            <div class="ct-panel active" data-course="general">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">20 lessons/week · 15 hrs</span>
+                  <span class="ct-spec">All levels A1–C2</span>
+                  <span class="ct-spec">Max 14/class · Age 16+</span>
+                  <span class="ct-spec">Start any Monday</span>
+                  <span class="ct-spec">UK &amp; USA</span>
+                  <span class="ct-spec price">from £300/week</span>
+                </div>
+                <p>Three hours of structured lessons each day across speaking, listening, reading and writing, with afternoons free to explore your city. Rolling weekly start dates at all six Kings schools — London, Oxford, Brighton, Bournemouth, Boston and New York.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="intensive">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week · 21 hrs</span>
+                  <span class="ct-spec">20 core + 8 electives</span>
+                  <span class="ct-spec">All levels</span>
+                  <span class="ct-spec">Start any Monday</span>
+                  <span class="ct-spec price">from £370/week</span>
+                </div>
+                <p>Adds eight Special Interest Group lessons — Conversation &amp; Pronunciation, English for Work, Current Affairs, British Culture and more — to the core 20. Includes the Kings Progress Guarantee on courses of 12+ weeks. Available across the UK and USA.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="diploma">
+              <div class="ct-detail">
+                <h5>Diploma of Intensive English (long-term)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week</span>
+                  <span class="ct-spec">24–48 weeks</span>
+                  <span class="ct-spec">All levels</span>
+                  <span class="ct-spec price">from £290/week</span>
+                </div>
+                <p>Kings' best-value long-stay programme — six months to a full year of immersion for deep, durable fluency, with regular progress reviews and a Kings Diploma on completion. A Diploma of General English is also available.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="ielts">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week · 21 hrs</span>
+                  <span class="ct-spec">Min. B1 level</span>
+                  <span class="ct-spec">UK schools</span>
+                  <span class="ct-spec">Start any Monday</span>
+                  <span class="ct-spec price">from £370/week</span>
+                </div>
+                <p>20 core lessons plus 8 dedicated IELTS sessions covering all four papers, with regular mock exams and band-score tracking. Kings Oxford is an official IELTS Test Centre, so you can prepare and sit the test in one building. Intensive IELTS (£495) and 2–3-week Super Intensive IELTS (£495) options are available in Oxford.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="cambridge">
+              <div class="ct-detail">
+                <h5>Cambridge English (B2 First / C1 Advanced)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week</span>
+                  <span class="ct-spec">12-week fixed course</span>
+                  <span class="ct-spec">Min. B2 / C1</span>
+                  <span class="ct-spec">Oxford</span>
+                  <span class="ct-spec price">£4,680 full course</span>
+                </div>
+                <p>Exam-focused preparation for the Cambridge B2 First (FCE) or C1 Advanced (CAE) certificates — qualifications recognised for life by employers and universities worldwide. Fixed terms align with official exam sessions.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="toefl">
+              <div class="ct-detail">
+                <h5>TOEFL Preparation</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">USA only</span>
+                  <span class="ct-spec">Boston &amp; New York</span>
+                  <span class="ct-spec">Min. B1 level</span>
+                  <span class="ct-spec">TOEFL iBT focus</span>
+                  <span class="ct-spec price">from $535/week</span>
+                </div>
+                <p>Targeted TOEFL iBT training across Reading, Listening, Speaking and Writing using authentic practice materials and projected-score tracking. An Intensive TOEFL option is available in Boston ($635/week).</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="business">
+              <div class="ct-detail">
+                <h5>Business English (English Plus Business, Marketing &amp; Finance)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week</span>
+                  <span class="ct-spec">20 core + 8 business modules</span>
+                  <span class="ct-spec">Min. B2 level</span>
+                  <span class="ct-spec">London</span>
+                  <span class="ct-spec price">from £475/week</span>
+                </div>
+                <p>Meetings, presentations, negotiation, report-writing and financial vocabulary taught through case studies alongside core English. Ideal for professionals and pre-MBA students.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="plus">
+              <div class="ct-detail">
+                <h5>English Plus (Art &amp; Design / Film / Law / Fashion)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">28 lessons/week</span>
+                  <span class="ct-spec">Min. B1–B2 level</span>
+                  <span class="ct-spec">London · Oxford · Brighton · New York</span>
+                  <span class="ct-spec price">from £475/week</span>
+                </div>
+                <p>Combine core English with a specialist strand: build an art &amp; design portfolio, produce a short film, study legal English and mooting, or explore fashion in New York. Studio and project facilities are included.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="pathway">
+              <div class="ct-detail">
+                <h5>University Pathways</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">1–3 terms</span>
+                  <span class="ct-spec">Guaranteed progression</span>
+                  <span class="ct-spec">UK &amp; USA</span>
+                  <span class="ct-spec price">from £8,400/term</span>
+                </div>
+                <p>The UK Academic Study Programme and Foundation routes lead to guaranteed conditional offers at Kings partner universities. In the US, "GO: Prepared" ($7,524/term) bridges into American degree study with academic English, TOEFL and study-skills support.</p>
+              </div>
+            </div>
+
+            <p class="ct-source">Course details &amp; 2026 prices sourced from kingseducation.com. Tuition shown is the lowest published weekly rate and varies by school and length of stay.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">Kings Certificate of Achievement · Cambridge FCE / CAE · IELTS Official Score · Pearson Assured Foundation</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London</div>
+            <div class="branch-item"><span class="dot"></span> Oxford</div>
+            <div class="branch-item"><span class="dot"></span> Bournemouth</div>
+            <div class="branch-item"><span class="dot"></span> Brighton</div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Other global branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> Boston, USA</div>
+            <div class="branch-item"><span class="dot"></span> New York, USA</div>
+          </div>
+        </div>
+
+        <!-- Bayswater Education -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-bayswater-logo" placeholder="Bayswater Education logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-bayswater.html" style="color:inherit;text-decoration:none;">Bayswater Education</a></h3>
+              <p class="inst-meta">Founded 1973 · UK · Canada · South Africa · Cyprus · bayswater.ac</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge">English UK</span>
+                <span class="inst-badge">ALTO</span>
+                <span class="inst-badge">Eurocentres Group</span>
+                <span class="inst-badge">IELTS Prep Centre</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="general">General English</button>
+              <button type="button" class="ct-tab" data-course="intensive">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="super">Super Intensive</button>
+              <button type="button" class="ct-tab" data-course="ielts">IELTS Preparation</button>
+              <button type="button" class="ct-tab" data-course="cambridge">Cambridge Prep</button>
+              <button type="button" class="ct-tab" data-course="explore">Explore London</button>
+              <button type="button" class="ct-tab" data-course="business">Business &amp; Digital Marketing</button>
+              <button type="button" class="ct-tab" data-course="junior">Junior &amp; Family</button>
+              <button type="button" class="ct-tab" data-course="longterm">Long-term / Academic Year</button>
+            </div>
+
+            <div class="ct-panel active" data-course="general">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">20 lessons/week · 15 hrs</span>
+                  <span class="ct-spec">All levels A1+</span>
+                  <span class="ct-spec">Max 15/class</span>
+                  <span class="ct-spec">Mon–Fri · 45-min lessons</span>
+                  <span class="ct-spec price">from £225/week</span>
+                </div>
+                <p>The four core skills — listening, speaking, reading and writing — taught with market-leading materials and a communicative method. Afternoons free to explore London. Students on 4+ weeks also earn a Global Skills Certificate and Digital Badges alongside their British Council–accredited certificate.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="intensive">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">25 lessons/week</span>
+                  <span class="ct-spec">20 General + 5 modules</span>
+                  <span class="ct-spec">All levels A1+</span>
+                </div>
+                <p>Adds five weekly elective module lessons to the General English core. Choose from Conversation &amp; Pronunciation, Writing &amp; Grammar, Exam English or English for Business to personalise your study and accelerate progress.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="super">
+              <div class="ct-detail">
+                <h5>Super Intensive English</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">30 lessons/week · 22.5 hrs</span>
+                  <span class="ct-spec">20 General + 10 modules</span>
+                  <span class="ct-spec">All levels A1+</span>
+                </div>
+                <p>The fastest route to fluency: full mornings of General English plus ten module lessons each week across two specialist strands. Ideal for students with a fixed timeframe who want maximum progress.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="ielts">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">20 IELTS lessons (standard)</span>
+                  <span class="ct-spec">+5 or +10 General option</span>
+                  <span class="ct-spec">Min. B1 level</span>
+                  <span class="ct-spec">London</span>
+                </div>
+                <p>Build the reading, listening, speaking and academic-writing skills the exam demands, with qualified instructors sharing exam techniques and regular practice tests. The standard 20-lesson course can be combined with 5 or 10 General English lessons as an Intensive or Super Intensive package. Bayswater is an accredited IELTS preparation centre.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="cambridge">
+              <div class="ct-detail">
+                <h5>Cambridge Preparation (B2 First / C1 Advanced)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">Fixed-date courses</span>
+                  <span class="ct-spec">Min. B2 level</span>
+                  <span class="ct-spec">London</span>
+                </div>
+                <p>Structured preparation for the Cambridge B2 First (FCE) and C1 Advanced (CAE) certificates — lifelong qualifications recognised by employers and universities. Timed mock exams and focused practice across all papers.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="explore">
+              <div class="ct-detail">
+                <h5>Explore London</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">General English + activities</span>
+                  <span class="ct-spec">Task-based, themed weekly</span>
+                  <span class="ct-spec">All levels</span>
+                </div>
+                <p>Standard General English combined with teacher-led activities around London after class. Each week explores a new theme through a task-based curriculum, so you practise real English with Londoners and classmates while getting to know the city.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="business">
+              <div class="ct-detail">
+                <h5>Business English &amp; Digital Marketing</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">Business English module</span>
+                  <span class="ct-spec">Prof. Diploma in Digital Marketing</span>
+                  <span class="ct-spec">NQF Level 5</span>
+                </div>
+                <p>Workplace-focused English for professionals, plus Bayswater's distinctive Professional Diploma in Digital Marketing (NQF Level 5) accredited by the Digital Marketing Institute — combine career-ready skills with English fluency.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="junior">
+              <div class="ct-detail">
+                <h5>Junior &amp; Family Programmes (Discover Summer)</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">Age 14+</span>
+                  <span class="ct-spec">20 lessons/week</span>
+                  <span class="ct-spec">Homestay + excursions</span>
+                </div>
+                <p>Summer English with full language immersion for younger learners, with a structured day of classes, excursions and social activities. Family options let parents and children study General English at the same time in different parts of the college.</p>
+              </div>
+            </div>
+
+            <div class="ct-panel" data-course="longterm">
+              <div class="ct-detail">
+                <h5>Long-term / Academic Year</h5>
+                <div class="ct-specs">
+                  <span class="ct-spec">24–48 weeks</span>
+                  <span class="ct-spec">All levels</span>
+                  <span class="ct-spec">Best value</span>
+                </div>
+                <p>Study from 24 up to 48 weeks to get the most from the academic facilities and reach deep, durable fluency. Combine General, Intensive, exam and professional courses into one personalised study plan.</p>
+              </div>
+            </div>
+
+            <p class="ct-source">Course details sourced from bayswater.ac. Tuition shown is the lowest published weekly rate; modules and length of stay affect the final price.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">British Council–accredited certificate · Global Skills Certificate + Digital Badges · Cambridge B2 First / C1 Advanced · IELTS Official Score · Professional Diploma in Digital Marketing (NQF L5)</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London (Queensway)</div>
+            <div class="branch-item"><span class="dot"></span> Liverpool</div>
+            <div class="branch-item"><span class="dot"></span> Brighton</div>
+            <div class="branch-item"><span class="dot"></span> Bournemouth</div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Other global branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> Vancouver, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Toronto, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Cape Town, South Africa</div>
+            <div class="branch-item"><span class="dot"></span> Limassol, Cyprus</div>
+          </div>
+        </div>
+
+        <!-- EF Education First -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-ef-logo" placeholder="EF Education First logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-ef.html" style="color:inherit;text-decoration:none;">EF Education First</a></h3>
+              <p class="inst-meta">Founded 1965 · 50+ campuses in 20+ countries · ef.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge gold">Eaquals</span>
+                <span class="inst-badge">English UK</span>
+                <span class="inst-badge">ISI</span>
+                <span class="inst-badge">ACCET (USA)</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="ef-0">General English</button>
+              <button type="button" class="ct-tab" data-course="ef-1">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="ef-2">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="ef-3">TOEFL Prep</button>
+              <button type="button" class="ct-tab" data-course="ef-4">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="ef-5">Business English</button>
+              <button type="button" class="ct-tab" data-course="ef-6">Professionals</button>
+              <button type="button" class="ct-tab" data-course="ef-7">University Pathway</button>
+              <button type="button" class="ct-tab" data-course="ef-8">Academic Year /</button>
+            </div>
+            <div class="ct-panel active" data-course="ef-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 lessons/week (13 hrs 20 min)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Build core English skills — speaking, listening, reading and writing — through EF's proprietary Efekta™ learning system. Interactive lessons with smart technology, small class sizes (max 17), plus access to EF's iLab online platform for self-study. Available at all 50+ campuses worldwide.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-1">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">26 lessons/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Accelerate your progress with 6 additional Special Interest lessons each week on top of the General English core. Choose electives like Media & Culture, Academic English, or Vocabulary Builder. Ideal for students who want maximum improvement in minimum time.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-2">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">26–32 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Structured exam preparation covering all four IELTS papers: Listening, Reading, Writing and Speaking. Includes regular mock exams, band-score tracking, and individual tutor feedback. Available at EF's UK, Australian and Canadian campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-3">
+              <div class="ct-detail">
+                <h5>TOEFL Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">26–32 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Comprehensive TOEFL iBT preparation at EF's US campuses. Master all four sections — Reading, Listening, Speaking and Writing — with authentic practice materials, timed tests and expert teacher coaching.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-4">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE / CPE)</h5>
+                <div class="ct-specs"><span class="ct-spec">26–32 lessons/week</span><span class="ct-spec">8, 10 or 12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Prepare for Cambridge First (B2), Advanced (C1) or Proficiency (C2) certificates. Fixed-date courses aligned with official exam sessions. Covers all papers with intensive practice, mock exams and personalised feedback from Cambridge-specialist teachers.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-5">
+              <div class="ct-detail">
+                <h5>Business English</h5>
+                <div class="ct-specs"><span class="ct-spec">26–32 lessons/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Develop workplace communication skills: meetings, presentations, emails, negotiations and cross-cultural communication. Includes industry case studies and professional English vocabulary. Option to add a Career Accelerator internship placement.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-6">
+              <div class="ct-detail">
+                <h5>English for Professionals (EF 25+)</h5>
+                <div class="ct-specs"><span class="ct-spec">26 lessons/week</span><span class="ct-spec">25+ years old</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Dedicated campuses for working professionals aged 25 and over. Smaller classes, professional networking events, and industry-focused content in sectors like finance, marketing, technology and healthcare. Available in London, New York, Sydney and other key cities.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-7">
+              <div class="ct-detail">
+                <h5>University Pathway (EF Campus Abroad)</h5>
+                <div class="ct-specs"><span class="ct-spec">Full-time</span><span class="ct-spec">6–11 months</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>EF's pathway programme guarantees placement at partner universities worldwide upon successful completion. Covers academic English, study skills, exam preparation and cultural orientation. Includes UCAS / US college application support.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ef-8">
+              <div class="ct-detail">
+                <h5>Academic Year / Semester Abroad</h5>
+                <div class="ct-specs"><span class="ct-spec">26 lessons/week</span><span class="ct-spec">6, 9 or 11 months</span><span class="ct-spec">All levels</span></div>
+                <p>Long-term immersion for deep fluency. Live and study abroad for a semester or full academic year. Combine General or Intensive English with exam preparation or special interest modules. Includes cultural excursions and EF social programme.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from ef.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">EF Certificate of Achievement · EF SET Certificate (free online) · Cambridge FCE / CAE / CPE · IELTS / TOEFL Official Score · EF University Pathway Certificate</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London</div>
+            <div class="branch-item"><span class="dot"></span> Cambridge</div>
+            <div class="branch-item"><span class="dot"></span> Oxford</div>
+            <div class="branch-item"><span class="dot"></span> Brighton</div>
+            <div class="branch-item"><span class="dot"></span> Bournemouth</div>
+            <div class="branch-item"><span class="dot"></span> Manchester</div>
+            <div class="branch-item"><span class="dot"></span> Bristol</div>
+            <div class="branch-item"><span class="dot"></span> Eastbourne</div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Other global branches (50+ campuses)</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> New York, USA</div>
+            <div class="branch-item"><span class="dot"></span> Los Angeles, USA</div>
+            <div class="branch-item"><span class="dot"></span> Miami, USA</div>
+            <div class="branch-item"><span class="dot"></span> Sydney, Australia</div>
+            <div class="branch-item"><span class="dot"></span> Toronto, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Cape Town, S. Africa</div>
+            <div class="branch-item"><span class="dot"></span> Dublin, Ireland</div>
+            <div class="branch-item"><span class="dot"></span> Malta</div>
+          </div>
+        </div>
+
+        <!-- Malvern House -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-malvern-logo" placeholder="Malvern House logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-malvern.html" style="color:inherit;text-decoration:none;">Malvern House London</a></h3>
+              <p class="inst-meta">Part of Malvern International PLC · 25+ years · malvernhouse.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge gold">ISI</span>
+                <span class="inst-badge">UK Visa Tier 4 Sponsor</span>
+                <span class="inst-badge">NCUK Partner</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="malvern-0">General English</button>
+              <button type="button" class="ct-tab" data-course="malvern-1">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="malvern-2">Academic English</button>
+              <button type="button" class="ct-tab" data-course="malvern-3">Professional English</button>
+              <button type="button" class="ct-tab" data-course="malvern-4">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="malvern-5">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="malvern-6">NCUK International</button>
+              <button type="button" class="ct-tab" data-course="malvern-7">Teacher Training</button>
+            </div>
+            <div class="ct-panel active" data-course="malvern-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">15–21 hrs/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Covers all four language skills — speaking, listening, reading and writing — through real-life topics and interactive activities. Small class sizes (max 15) with regular 1-to-1 tutorial sessions. Flexible morning, afternoon and evening timetables. Prices from around £65/week for part-time, making it one of London's most affordable accredited options.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-1">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">25+ hrs/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Faster progress through additional contact hours. Same core skills as General English with extra elective sessions covering pronunciation, conversation fluency, and exam strategies. Ideal for students on shorter stays who want maximum improvement.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-2">
+              <div class="ct-detail">
+                <h5>Academic English</h5>
+                <div class="ct-specs"><span class="ct-spec">15–21 hrs/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Prepares students for university study in the UK. Covers academic writing, critical thinking, note-taking, presentation skills and research methodology. Can be combined with NCUK pathway programmes for guaranteed university progression.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-3">
+              <div class="ct-detail">
+                <h5>Professional English</h5>
+                <div class="ct-specs"><span class="ct-spec">15–21 hrs/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Designed for working professionals. Covers business meetings, email writing, presentations, negotiations, telephone English and cross-cultural communication. Small classes with role-play methodology and real-world case studies.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-4">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">15–21 hrs/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Focused training for the IELTS Academic exam. Covers all four papers with regular mock tests, individual feedback, and band-score tracking. Teachers with specialist IELTS training help you achieve the score you need for university admission or professional registration.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-5">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE / CPE)</h5>
+                <div class="ct-specs"><span class="ct-spec">15–21 hrs/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Fixed dates</span></div>
+                <p>Preparation for Cambridge First (B2), Advanced (C1) or Proficiency (C2). Intensive practice across all papers with timed mock exams and personalised teacher feedback. Exam fees not included in tuition.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-6">
+              <div class="ct-detail">
+                <h5>NCUK International Foundation Year</h5>
+                <div class="ct-specs"><span class="ct-spec">Full-time</span><span class="ct-spec">3 terms</span><span class="ct-spec">Min. IELTS 4.5</span></div>
+                <p>A guaranteed pathway to 60+ UK universities. Combine English language with academic modules in Business, Engineering, Science or Humanities. On successful completion, receive a guaranteed conditional offer from NCUK partner universities including Manchester, Leeds, Sheffield, Bristol and more.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="malvern-7">
+              <div class="ct-detail">
+                <h5>Teacher Training</h5>
+                <div class="ct-specs"><span class="ct-spec">1–4 weeks</span><span class="ct-spec">Min. C1 level</span></div>
+                <p>CPD and methodology refresher courses for practising English teachers. Covers classroom techniques, materials development, lesson planning and the latest teaching technology. Can lead to Cambridge TKT certification.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from malvernhouse.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">Malvern House Certificate · IELTS Official Score · NCUK International Foundation Year Certificate (progression to 60+ UK universities) · Cambridge TKT</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London (King's Cross)</div>
+          </div>
+        </div>
+
+        <!-- Kaplan -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-kaplan-logo" placeholder="Kaplan International logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-kaplan.html" style="color:inherit;text-decoration:none;">Kaplan International Languages</a></h3>
+              <p class="inst-meta">Part of Kaplan Inc. · 35+ schools worldwide · kaplaninternational.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge gold">English UK</span>
+                <span class="inst-badge">ACCET (USA)</span>
+                <span class="inst-badge">NEAS (Australia)</span>
+                <span class="inst-badge">Languages Canada</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="kaplan-0">General English</button>
+              <button type="button" class="ct-tab" data-course="kaplan-1">Semi-Intensive</button>
+              <button type="button" class="ct-tab" data-course="kaplan-2">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="kaplan-3">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="kaplan-4">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="kaplan-5">TOEFL iBT Prep</button>
+              <button type="button" class="ct-tab" data-course="kaplan-6">Business English</button>
+              <button type="button" class="ct-tab" data-course="kaplan-7">Academic Year /</button>
+              <button type="button" class="ct-tab" data-course="kaplan-8">40+</button>
+            </div>
+            <div class="ct-panel active" data-course="kaplan-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 lessons/week (15 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Develop confidence in everyday English through Kaplan's integrated skills approach. Core lessons cover speaking, listening, reading and writing with real-world topics. Supplement with K+ Online and K+ Learning Clubs for extra practice. Max 15 per class.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-1">
+              <div class="ct-detail">
+                <h5>Semi-Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 + 7 K+ sessions/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>General English core lessons plus 7 structured K+ Online sessions for extra practice at your own pace. Ideal for students who want structured self-study alongside classroom learning.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-2">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 + 8 elective lessons + 7 K+/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Maximum contact hours with 20 core lessons, 8 specific skills electives (speaking & listening focus, business, exam prep or local culture) and 7 K+ sessions. The fastest route to fluency at Kaplan.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-3">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>20 IELTS-focused lessons plus 8 specific skills sessions per week. Covers all four exam papers with regular mock tests, score prediction and personalised feedback. Available at Kaplan UK, Australia and Canada campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-4">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE)</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">10 or 12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Intensive preparation for Cambridge First (B2) or Advanced (C1). Covers all five papers with authentic materials, timed practice and expert feedback. Fixed start dates aligned with Cambridge exam sessions.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-5">
+              <div class="ct-detail">
+                <h5>TOEFL iBT Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Dedicated TOEFL training at Kaplan US campuses. Covers all four sections — Reading, Listening, Speaking and Writing — with Kaplan's proprietary test-prep methodology and regular diagnostic tests.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-6">
+              <div class="ct-detail">
+                <h5>Business English</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>20 core lessons plus 8 specialist business modules covering meetings, presentations, negotiations, report writing, networking and industry-specific vocabulary. Available at major Kaplan centres.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-7">
+              <div class="ct-detail">
+                <h5>Academic Year / Semester</h5>
+                <div class="ct-specs"><span class="ct-spec">20–28 lessons/week</span><span class="ct-spec">5–9 months</span><span class="ct-spec">All levels</span></div>
+                <p>Long-term immersive programme for deep fluency. Choose General, Semi-Intensive or Intensive timetable over 5, 6 or 9 months. Includes all core lessons, electives and K+ platform access. Discounted long-term pricing.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="kaplan-8">
+              <div class="ct-detail">
+                <h5>English for 40+</h5>
+                <div class="ct-specs"><span class="ct-spec">20 lessons/week</span><span class="ct-spec">2 weeks</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>Specially designed programme for mature learners aged 40+. Combines English lessons with cultural excursions and social activities. Small classes with peers of similar age. Available at selected campuses during fixed dates.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from kaplaninternational.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">Kaplan Certificate of Achievement · Cambridge FCE / CAE · IELTS Official Score · K+ Progress Reports</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London (Covent Garden)</div>
+            <div class="branch-item"><span class="dot"></span> London (Leicester Sq.)</div>
+            <div class="branch-item"><span class="dot"></span> Oxford</div>
+            <div class="branch-item"><span class="dot"></span> Cambridge</div>
+            <div class="branch-item"><span class="dot"></span> Bath</div>
+            <div class="branch-item"><span class="dot"></span> Bournemouth</div>
+            <div class="branch-item"><span class="dot"></span> Liverpool</div>
+            <div class="branch-item"><span class="dot"></span> Torquay</div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Other global branches (35+)</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> New York, USA</div>
+            <div class="branch-item"><span class="dot"></span> Boston, USA</div>
+            <div class="branch-item"><span class="dot"></span> Sydney, Australia</div>
+            <div class="branch-item"><span class="dot"></span> Toronto, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Vancouver, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Dublin, Ireland</div>
+          </div>
+        </div>
+
+        <!-- ILSC -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-ilsc-logo" placeholder="ILSC Education Group logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-ilsc.html" style="color:inherit;text-decoration:none;">ILSC Education Group</a></h3>
+              <p class="inst-meta">Founded 1991 · Canada, Australia, India · ilsc.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">Languages Canada</span>
+                <span class="inst-badge gold">NEAS (Australia)</span>
+                <span class="inst-badge">PTIB (British Columbia)</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="ilsc-0">General English</button>
+              <button type="button" class="ct-tab" data-course="ilsc-1">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="ilsc-2">Academic English</button>
+              <button type="button" class="ct-tab" data-course="ilsc-3">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="ilsc-4">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="ilsc-5">Business English</button>
+              <button type="button" class="ct-tab" data-course="ilsc-6">Creative Arts</button>
+              <button type="button" class="ct-tab" data-course="ilsc-7">University Pathway</button>
+              <button type="button" class="ct-tab" data-course="ilsc-8">English +</button>
+            </div>
+            <div class="ct-panel active" data-course="ilsc-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">24 lessons/week (18 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Build fluency across all four skills through ILSC's topic-based curriculum. Each 4-week session focuses on different themes — from travel and culture to current affairs — keeping lessons fresh and engaging. Small classes, diverse nationalities, and a flexible schedule (morning or afternoon).</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-1">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week (22.5 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Full-day immersion combining core English in the morning with elective workshops in the afternoon. Choose from speaking & listening, grammar, vocabulary, reading & writing or exam prep. Maximum class size 15.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-2">
+              <div class="ct-detail">
+                <h5>Academic English</h5>
+                <div class="ct-specs"><span class="ct-spec">24–30 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Prepares students for university study. Covers academic writing, critical reading, note-taking, referencing, presentations and seminar discussions. Can connect to ILSC's University Pathway programme for conditional admission to partner universities.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-3">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">24–30 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Comprehensive IELTS training covering all four papers. Regular mock exams, band-score tracking, and individual feedback. Expert IELTS-trained teachers at all Canadian and Australian campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-4">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE)</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">8–12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Intensive preparation for Cambridge First or Advanced. Covers all papers with authentic materials, exam strategies and timed practice. Fixed start dates aligned with Cambridge exam sessions.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-5">
+              <div class="ct-detail">
+                <h5>Business English</h5>
+                <div class="ct-specs"><span class="ct-spec">24–30 lessons/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Develop professional communication skills: presentations, negotiations, business writing, meetings and networking. Industry case studies and role-play methodology. Available at Vancouver, Toronto and Sydney campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-6">
+              <div class="ct-detail">
+                <h5>English for Creative Arts</h5>
+                <div class="ct-specs"><span class="ct-spec">24 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Combine English learning with creative workshops — photography, filmmaking, graphic design, music production and digital media. Build a portfolio while improving language skills. Available at selected campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-7">
+              <div class="ct-detail">
+                <h5>University Pathway</h5>
+                <div class="ct-specs"><span class="ct-spec">Full-time</span><span class="ct-spec">8–16 weeks</span><span class="ct-spec">Min. B1 level</span></div>
+                <p>Guaranteed conditional admission to 70+ partner universities and colleges in Canada and Australia. Covers academic English, study skills, exam preparation and application support. No IELTS required for admission to some partners upon completion.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ilsc-8">
+              <div class="ct-detail">
+                <h5>English + Volunteering</h5>
+                <div class="ct-specs"><span class="ct-spec">24 lessons/week + placement</span><span class="ct-spec">Min. B2</span><span class="ct-spec">4+ weeks</span></div>
+                <p>Combine English study with volunteer work in the local community — animal welfare, environmental projects, community services or event coordination. Available at ILSC Vancouver and Toronto.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from ilsc.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">ILSC Certificate of Completion · Cambridge FCE / CAE · IELTS Official Score · Greystone College Diplomas (vocational)</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> Vancouver, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Toronto, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Montréal, Canada</div>
+            <div class="branch-item"><span class="dot"></span> Sydney, Australia</div>
+            <div class="branch-item"><span class="dot"></span> Melbourne, Australia</div>
+            <div class="branch-item"><span class="dot"></span> Brisbane, Australia</div>
+            <div class="branch-item"><span class="dot"></span> Adelaide, Australia</div>
+            <div class="branch-item"><span class="dot"></span> New Delhi, India</div>
+          </div>
+        </div>
+
+        <!-- Embassy English / EC English -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-ec-logo" placeholder="EC English logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-ec.html" style="color:inherit;text-decoration:none;">EC English Language Centres</a></h3>
+              <p class="inst-meta">Founded 1991 · 30+ schools worldwide · ecenglish.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge gold">English UK</span>
+                <span class="inst-badge">ACCET (USA)</span>
+                <span class="inst-badge">Languages Canada</span>
+                <span class="inst-badge">English Australia</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="ec-0">General English</button>
+              <button type="button" class="ct-tab" data-course="ec-1">Semi-Intensive</button>
+              <button type="button" class="ct-tab" data-course="ec-2">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="ec-3">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="ec-4">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="ec-5">TOEFL Prep</button>
+              <button type="button" class="ct-tab" data-course="ec-6">Business English</button>
+              <button type="button" class="ct-tab" data-course="ec-7">Club 30+</button>
+              <button type="button" class="ct-tab" data-course="ec-8">Academic Semester /</button>
+              <button type="button" class="ct-tab" data-course="ec-9">English in the City</button>
+            </div>
+            <div class="ct-panel active" data-course="ec-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 lessons/week (15 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Develop real-world communication skills through EC's communicative approach. Lessons focus on speaking fluency, listening comprehension, reading and writing through authentic materials. Max 15 per class. EC's free Online learning platform complements classroom study.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-1">
+              <div class="ct-detail">
+                <h5>Semi-Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">24 lessons/week (18 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>General English core plus 4 additional lessons per week focusing on a special area: conversation, writing, grammar or vocabulary.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-2">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week (22.5 hrs)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Maximum immersion with 20 core lessons, 10 elective sessions covering specialist topics like Global Issues, Media Studies, Film, Music, Creative Writing, or Academic Skills. The fastest route to fluency at EC.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-3">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>20 core English lessons plus 10 dedicated IELTS sessions per week. Covers all four papers with mock exams, score tracking and personalised feedback. Available at EC UK, Canada and Australia campuses.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-4">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE)</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">8, 10 or 12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Intensive Cambridge exam preparation with dedicated teachers. Covers all papers, exam strategies, and timed practice. Fixed-date courses aligned with official Cambridge exam sessions.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-5">
+              <div class="ct-detail">
+                <h5>TOEFL Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Dedicated TOEFL iBT training at EC US campuses. Covers all four sections with authentic materials, diagnostic tests and score-raising strategies.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-6">
+              <div class="ct-detail">
+                <h5>Business English Mini-Group</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Max 6 per class</span></div>
+                <p>Premium small-group business programme. Covers presentations, negotiations, meetings, networking, telephoning and email writing. Maximum 6 students per class for intensive interaction and personalised feedback.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-7">
+              <div class="ct-detail">
+                <h5>Club 30+</h5>
+                <div class="ct-specs"><span class="ct-spec">20–30 lessons/week</span><span class="ct-spec">30+ years old</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>EC's exclusive programme for mature learners aged 30 and over. Separate classrooms, tailored content, and social activities designed for professional adults. Available in London, New York, Malta, Toronto, Dublin and Cape Town.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-8">
+              <div class="ct-detail">
+                <h5>Academic Semester / Year</h5>
+                <div class="ct-specs"><span class="ct-spec">20–30 lessons/week</span><span class="ct-spec">24–48 weeks</span><span class="ct-spec">All levels</span></div>
+                <p>Long-term programme combining General or Intensive English with optional exam preparation or business electives. Includes progress reviews, certificate ceremonies, and discounted semester/year pricing.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="ec-9">
+              <div class="ct-detail">
+                <h5>English in the City</h5>
+                <div class="ct-specs"><span class="ct-spec">30 lessons/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Unique programme combining classroom lessons with guided city exploration. Learn English through real-world experiences — markets, museums, neighbourhoods and cultural events. Available at all EC campuses.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from ecenglish.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 6px;">Certificates awarded</h4>
+          <p style="font-size:0.88rem; color:var(--muted);">EC Certificate of Completion · Cambridge FCE / CAE / CPE · IELTS / TOEFL Official Score</p>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London (Euston)</div>
+            <div class="branch-item"><span class="dot"></span> London (30+)</div>
+            <div class="branch-item"><span class="dot"></span> Cambridge</div>
+            <div class="branch-item"><span class="dot"></span> Oxford</div>
+            <div class="branch-item"><span class="dot"></span> Brighton</div>
+            <div class="branch-item"><span class="dot"></span> Bristol</div>
+            <div class="branch-item"><span class="dot"></span> Manchester</div>
+          </div>
+        </div>
+
+        <!-- St Giles -->
+        <div class="inst-card">
+          <div class="inst-header">
+            <span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-inst-stgiles-logo" placeholder="St Giles International logo"></image-slot></span>
+            <div>
+              <h3><a href="institute-stgiles.html" style="color:inherit;text-decoration:none;">St Giles International</a></h3>
+              <p class="inst-meta">Founded 1955 · UK, USA, Canada · stgiles-international.com</p>
+              <div class="inst-badges">
+                <span class="inst-badge gold">British Council</span>
+                <span class="inst-badge">English UK</span>
+                <span class="inst-badge">ACCET (USA)</span>
+              </div>
+            </div>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="stgiles-0">General English</button>
+              <button type="button" class="ct-tab" data-course="stgiles-1">Intensive English</button>
+              <button type="button" class="ct-tab" data-course="stgiles-2">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="stgiles-3">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="stgiles-4">Business English</button>
+              <button type="button" class="ct-tab" data-course="stgiles-5">Platinum Course</button>
+              <button type="button" class="ct-tab" data-course="stgiles-6">University Prep</button>
+              <button type="button" class="ct-tab" data-course="stgiles-7">Teacher Training</button>
+            </div>
+            <div class="ct-panel active" data-course="stgiles-0">
+              <div class="ct-detail">
+                <h5>General English</h5>
+                <div class="ct-specs"><span class="ct-spec">20 lessons/week (16 hrs 40 min)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>St Giles' flagship course covering speaking, listening, reading, writing, grammar and vocabulary through communicative methodology. Max 12 per class — one of the smallest class sizes in the industry. Regular progress tests, tutorials and end-of-course certificate.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-1">
+              <div class="ct-detail">
+                <h5>Intensive English</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week (23 hrs 20 min)</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>General English plus additional afternoon sessions covering conversation, pronunciation, exam skills or business topics. Same small class sizes (max 12). Ideal for students who want rapid improvement.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-2">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Dedicated IELTS training alongside General English. Covers all four papers with regular mock exams, score tracking and personalised feedback. Teachers with specialist IELTS qualifications.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-3">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE)</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">4–12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Intensive preparation with fixed dates aligned to Cambridge exam sessions. Covers all five papers — reading, writing, listening, speaking and use of English — with authentic practice materials and detailed teacher feedback.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-4">
+              <div class="ct-detail">
+                <h5>Business English</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B2 level</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Develop professional communication skills through case studies, role-plays and real-world business materials. Covers meetings, presentations, negotiations, report writing and professional correspondence.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-5">
+              <div class="ct-detail">
+                <h5>Platinum Course (Executive 1-to-1)</h5>
+                <div class="ct-specs"><span class="ct-spec">15–35 private lessons/week</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>St Giles' premium offering: fully private tuition in a dedicated executive centre. Personalised curriculum designed around your professional needs — from medical English to legal, finance or technology. Includes private study room, complimentary refreshments and business-class facilities. Available at London Central and Brighton.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-6">
+              <div class="ct-detail">
+                <h5>University Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">28 lessons/week</span><span class="ct-spec">Min. B1 level</span><span class="ct-spec">8–12 weeks</span></div>
+                <p>Academic English programme preparing students for UK university study. Covers academic writing, presentations, research skills, critical thinking and IELTS preparation. St Giles offers guidance on university applications and personal statements.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="stgiles-7">
+              <div class="ct-detail">
+                <h5>Teacher Training (CELTA)</h5>
+                <div class="ct-specs"><span class="ct-spec">Full-time</span><span class="ct-spec">4 weeks</span><span class="ct-spec">Min. C1 level</span></div>
+                <p>Cambridge CELTA — the gold-standard initial teaching qualification. 120 hours of input sessions, 6 hours of observed teaching practice, and lesson planning. Qualifies you to teach English worldwide. Available at St Giles London Central.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from stgiles-international.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">England branches</h4>
+          <div class="branch-grid">
+            <div class="branch-item"><span class="dot"></span> London Central</div>
+            <div class="branch-item"><span class="dot"></span> London Highgate</div>
+            <div class="branch-item"><span class="dot"></span> Brighton</div>
+            <div class="branch-item"><span class="dot"></span> Eastbourne</div>
+            <div class="branch-item"><span class="dot"></span> Cambridge</div>
+          </div>
+        </div>
+      </div><!-- /england -->
+
+      <!-- ===================== USA ===================== -->
+      <div class="eng-panel" id="usa">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">United States</span>
+          <h2 class="h2">Study English in the USA</h2>
+          <p class="lead">Immerse yourself in American English across iconic cities. F-1 student visa for full-time programs; campuses accredited by ACCET and English USA.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-usa-kings" placeholder="Kings logo" data-editable=""></image-slot></span><div><h3><a href="institute-kings.html" style="color:inherit;text-decoration:none;">Kings Education — USA</a></h3><p class="inst-meta">Boston · Los Angeles · New York</p><div class="inst-badges"><span class="inst-badge gold">ACCET</span><span class="inst-badge">English USA</span><span class="inst-badge">SEVP Certified</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">TOEFL Preparation</span><span class="ct">English Plus (Film, Art, Business)</span><span class="ct">Diploma of English</span><span class="ct">University Pathways</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">USA branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Boston</div><div class="branch-item"><span class="dot"></span> Los Angeles (Hollywood)</div><div class="branch-item"><span class="dot"></span> New York</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-usa-ef" placeholder="EF logo" data-editable=""></image-slot></span><div><h3><a href="institute-ef.html" style="color:inherit;text-decoration:none;">EF Education First — USA</a></h3><p class="inst-meta">10+ campuses across the United States</p><div class="inst-badges"><span class="inst-badge gold">ACCET</span><span class="inst-badge">English USA</span><span class="inst-badge">Eaquals</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">TOEFL Preparation</span><span class="ct">Business English</span><span class="ct">University Pathways</span><span class="ct">Career Accelerator</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">USA branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> New York</div><div class="branch-item"><span class="dot"></span> Los Angeles</div><div class="branch-item"><span class="dot"></span> Miami</div><div class="branch-item"><span class="dot"></span> San Francisco</div><div class="branch-item"><span class="dot"></span> Boston</div><div class="branch-item"><span class="dot"></span> Honolulu</div><div class="branch-item"><span class="dot"></span> Seattle</div><div class="branch-item"><span class="dot"></span> San Diego</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-usa-kaplan" placeholder="Kaplan logo" data-editable=""></image-slot></span><div><h3><a href="institute-kaplan.html" style="color:inherit;text-decoration:none;">Kaplan International — USA</a></h3><p class="inst-meta">10+ schools across major US cities</p><div class="inst-badges"><span class="inst-badge gold">ACCET</span><span class="inst-badge">English USA</span><span class="inst-badge">SEVP Certified</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive / Semi-Intensive</span><span class="ct">TOEFL iBT Prep</span><span class="ct">Business English</span><span class="ct">Academic Year / Semester</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">USA branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> New York (Central Park)</div><div class="branch-item"><span class="dot"></span> Boston (Harvard Sq.)</div><div class="branch-item"><span class="dot"></span> Los Angeles</div><div class="branch-item"><span class="dot"></span> San Francisco</div><div class="branch-item"><span class="dot"></span> Chicago</div><div class="branch-item"><span class="dot"></span> Miami</div><div class="branch-item"><span class="dot"></span> Seattle</div><div class="branch-item"><span class="dot"></span> Santa Barbara</div></div>
+        </div>
+      </div>
+
+      <!-- ===================== AUSTRALIA ===================== -->
+      <div class="eng-panel" id="australia">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">Australia</span>
+          <h2 class="h2">Study English in Australia</h2>
+          <p class="lead">World-class ELICOS programs regulated by ASQA and accredited by English Australia. Work up to 48 hours per fortnight on a student visa while studying.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-au-ef" placeholder="EF logo" data-editable=""></image-slot></span><div><h3><a href="institute-ef.html" style="color:inherit;text-decoration:none;">EF Education First — Australia</a></h3><p class="inst-meta">Sydney · Brisbane</p><div class="inst-badges"><span class="inst-badge gold">ASQA</span><span class="inst-badge gold">English Australia</span><span class="inst-badge">CRICOS</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">IELTS Preparation</span><span class="ct">Cambridge Prep</span><span class="ct">Business English</span><span class="ct">University Pathways</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Australia branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Sydney</div><div class="branch-item"><span class="dot"></span> Brisbane</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-au-kaplan" placeholder="Kaplan logo" data-editable=""></image-slot></span><div><h3><a href="institute-kaplan.html" style="color:inherit;text-decoration:none;">Kaplan International — Australia</a></h3><p class="inst-meta">Sydney · Melbourne · Brisbane · Perth · Adelaide</p><div class="inst-badges"><span class="inst-badge gold">ASQA</span><span class="inst-badge gold">NEAS</span><span class="inst-badge">English Australia</span><span class="inst-badge">CRICOS</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive / Intensive Night</span><span class="ct">IELTS Preparation</span><span class="ct">Cambridge FCE / CAE</span><span class="ct">English for Academic Purposes</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Australia branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Sydney</div><div class="branch-item"><span class="dot"></span> Melbourne</div><div class="branch-item"><span class="dot"></span> Brisbane</div><div class="branch-item"><span class="dot"></span> Perth</div><div class="branch-item"><span class="dot"></span> Adelaide</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-au-ilsc" placeholder="ILSC logo" data-editable=""></image-slot></span><div><h3><a href="institute-ilsc.html" style="color:inherit;text-decoration:none;">ILSC — Australia</a></h3><p class="inst-meta">Sydney · Melbourne · Brisbane · Adelaide</p><div class="inst-badges"><span class="inst-badge gold">NEAS</span><span class="inst-badge">English Australia</span><span class="inst-badge">CRICOS</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Academic English</span><span class="ct">IELTS / Cambridge Prep</span><span class="ct">Business English</span><span class="ct">English for Creative Arts</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Australia branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Sydney</div><div class="branch-item"><span class="dot"></span> Melbourne</div><div class="branch-item"><span class="dot"></span> Brisbane</div><div class="branch-item"><span class="dot"></span> Adelaide</div></div>
+        </div>
+      </div>
+
+      <!-- ===================== CANADA ===================== -->
+      <div class="eng-panel" id="canada">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">Canada</span>
+          <h2 class="h2">Study English in Canada</h2>
+          <p class="lead">A welcoming, multicultural country with programs accredited by Languages Canada. Affordable tuition and a clear pathway to work and residency after study.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ca-ef" placeholder="EF logo" data-editable=""></image-slot></span><div><h3><a href="institute-ef.html" style="color:inherit;text-decoration:none;">EF Education First — Canada</a></h3><p class="inst-meta">Vancouver · Toronto</p><div class="inst-badges"><span class="inst-badge gold">Languages Canada</span><span class="inst-badge">PTIB (BC)</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">IELTS Preparation</span><span class="ct">Business English</span><span class="ct">University Pathways</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Canada branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Vancouver</div><div class="branch-item"><span class="dot"></span> Toronto</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ca-ilsc" placeholder="ILSC logo" data-editable=""></image-slot></span><div><h3><a href="institute-ilsc.html" style="color:inherit;text-decoration:none;">ILSC — Canada</a></h3><p class="inst-meta">Vancouver · Toronto · Montréal</p><div class="inst-badges"><span class="inst-badge gold">Languages Canada</span><span class="inst-badge">PTIB (BC)</span><span class="inst-badge">DLI Listed</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">IELTS / Cambridge Prep</span><span class="ct">Business English</span><span class="ct">Academic English</span><span class="ct">University Pathway</span><span class="ct">English + Volunteer</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Canada branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Vancouver</div><div class="branch-item"><span class="dot"></span> Toronto</div><div class="branch-item"><span class="dot"></span> Montréal</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ca-kaplan" placeholder="Kaplan logo" data-editable=""></image-slot></span><div><h3><a href="institute-kaplan.html" style="color:inherit;text-decoration:none;">Kaplan International — Canada</a></h3><p class="inst-meta">Toronto · Vancouver</p><div class="inst-badges"><span class="inst-badge gold">Languages Canada</span><span class="inst-badge">DLI Listed</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive / Semi-Intensive</span><span class="ct">IELTS Preparation</span><span class="ct">Business English</span><span class="ct">Academic Year / Semester</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Canada branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Toronto</div><div class="branch-item"><span class="dot"></span> Vancouver</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ca-ec" placeholder="EC logo" data-editable=""></image-slot></span><div><h3><a href="institute-ec.html" style="color:inherit;text-decoration:none;">EC English — Canada</a></h3><p class="inst-meta">Toronto · Vancouver · Montréal</p><div class="inst-badges"><span class="inst-badge gold">Languages Canada</span><span class="inst-badge">DLI Listed</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive / Semi-Intensive</span><span class="ct">IELTS / Cambridge / TOEFL</span><span class="ct">Business Mini-Group</span><span class="ct">Club 30+</span><span class="ct">Academic Year</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Canada branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Toronto</div><div class="branch-item"><span class="dot"></span> Vancouver</div><div class="branch-item"><span class="dot"></span> Montréal</div></div>
+        </div>
+      </div>
+
+      <!-- ===================== SOUTH AFRICA ===================== -->
+      <div class="eng-panel" id="south-africa">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">South Africa</span>
+          <h2 class="h2">Study English in South Africa</h2>
+          <p class="lead">One of the most affordable English-speaking destinations in the world. Stunning nature, vibrant culture, and Eaquals / QCTO-accredited programmes in Cape Town.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-sa-ef" placeholder="EF logo" data-editable=""></image-slot></span><div><h3><a href="institute-ef.html" style="color:inherit;text-decoration:none;">EF Education First — South Africa</a></h3><p class="inst-meta">Cape Town</p><div class="inst-badges"><span class="inst-badge gold">Eaquals</span><span class="inst-badge gold">QCTO</span><span class="inst-badge">EduSA</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">IELTS Preparation</span><span class="ct">Business English</span><span class="ct">Volunteer Programme</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">South Africa branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Cape Town</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-sa-good-hope" placeholder="Good Hope Studies logo" data-editable=""></image-slot></span><div><h3>Good Hope Studies</h3><p class="inst-meta">Est. 2000 · Cape Town · goodhopestudies.com</p><div class="inst-badges"><span class="inst-badge gold">EduSA</span><span class="inst-badge gold">SAQA</span><span class="inst-badge">Quality English</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Intensive English</span><span class="ct">IELTS / Cambridge Prep</span><span class="ct">Business English</span><span class="ct">English + Volunteering</span><span class="ct">English + Surfing / Wildlife</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Cape Town (City Centre)</div><div class="branch-item"><span class="dot"></span> Cape Town (Newlands)</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-sa-ec" placeholder="EC English logo" data-editable=""></image-slot></span><div><h3><a href="institute-ec.html" style="color:inherit;text-decoration:none;">EC English — Cape Town</a></h3><p class="inst-meta">Cape Town city centre campus</p><div class="inst-badges"><span class="inst-badge gold">EduSA</span><span class="inst-badge">English UK member</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">Semi-Intensive / Intensive</span><span class="ct">IELTS Preparation</span><span class="ct">English in the City</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Cape Town</div></div>
+        </div>
+      </div>
+
+      <!-- ===================== PHILIPPINES ===================== -->
+      <div class="eng-panel" id="philippines">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">Philippines</span>
+          <h2 class="h2">Study English in the Philippines</h2>
+          <p class="lead">The most cost-effective English study destination in Asia. Known for intensive 1-on-1 tuition, Spartan-style immersive programs, and TESDA-accredited schools in Cebu, Manila, and Baguio.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ph-smeag" placeholder="SMEAG logo" data-editable=""></image-slot></span><div><h3><a href="institute-smeag.html" style="color:inherit;text-decoration:none;">SMEAG Global Education</a></h3><p class="inst-meta">Largest English academy in the Philippines · smeag.com</p><div class="inst-badges"><span class="inst-badge gold">TESDA</span><span class="inst-badge gold">British Council Partner</span><span class="inst-badge">Cambridge Test Centre</span><span class="inst-badge">IELTS Test Centre</span><span class="inst-badge">TOEIC Test Centre</span></div></div></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin-bottom:6px;">Available courses <span style="font-weight:500; color:var(--muted);">— tap a course for full details</span></h4>
+          <div class="course-tabs">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" class="ct-tab active" data-course="smeag-0">ESL</button>
+              <button type="button" class="ct-tab" data-course="smeag-1">Intensive ESL</button>
+              <button type="button" class="ct-tab" data-course="smeag-2">Sparta English</button>
+              <button type="button" class="ct-tab" data-course="smeag-3">IELTS Prep</button>
+              <button type="button" class="ct-tab" data-course="smeag-4">TOEFL Prep</button>
+              <button type="button" class="ct-tab" data-course="smeag-5">TOEIC Prep</button>
+              <button type="button" class="ct-tab" data-course="smeag-6">Cambridge English</button>
+              <button type="button" class="ct-tab" data-course="smeag-7">Business English</button>
+              <button type="button" class="ct-tab" data-course="smeag-8">Pre-University</button>
+            </div>
+            <div class="ct-panel active" data-course="smeag-0">
+              <div class="ct-detail">
+                <h5>ESL (General English)</h5>
+                <div class="ct-specs"><span class="ct-spec">6 hrs/day</span><span class="ct-spec">1-on-1 + group</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>The foundation programme combining 4 hours of 1-on-1 tuition with 2 hours of group classes and 2 hours of optional self-study daily. Covers speaking, listening, reading, writing, grammar and vocabulary. Small group classes (max 8). One of the most cost-effective English programmes globally — tuition, accommodation and meals from around $200/week.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-1">
+              <div class="ct-detail">
+                <h5>Intensive ESL</h5>
+                <div class="ct-specs"><span class="ct-spec">8 hrs/day</span><span class="ct-spec">1-on-1 + group</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>Maximise your study time with 6 hours of 1-on-1 lessons plus 2 hours of group classes daily. The most intensive 1-on-1 programme available at SMEAG. Ideal for students who want rapid improvement in a short time.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-2">
+              <div class="ct-detail">
+                <h5>Sparta English</h5>
+                <div class="ct-specs"><span class="ct-spec">10+ hrs/day</span><span class="ct-spec">Mandatory study</span><span class="ct-spec">All levels</span><span class="ct-spec">Start any Monday</span></div>
+                <p>SMEAG's strictest programme with an English-only policy, mandatory morning and evening study sessions, and daily tests. 4 hours 1-on-1, 4 hours group, 2 hours mandatory self-study and 1.5 hours evening class. No going out on weekdays. Ideal for self-discipline and fast results.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-3">
+              <div class="ct-detail">
+                <h5>IELTS Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">8 hrs/day</span><span class="ct-spec">1-on-1 + group</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>Dedicated IELTS programme at the only British Council-partnered IELTS test centre in Cebu. 4 hours 1-on-1 IELTS coaching, 2 hours group IELTS classes, 2 hours self-study. Weekly mock exams with band-score tracking. IELTS Guarantee programme available (12 weeks, guaranteed band score or free extension).</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-4">
+              <div class="ct-detail">
+                <h5>TOEFL Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">8 hrs/day</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>Comprehensive TOEFL iBT training with 1-on-1 coaching and group sessions. Covers all four sections with regular mock exams and score-prediction tracking. TOEFL Guarantee programme available.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-5">
+              <div class="ct-detail">
+                <h5>TOEIC Preparation</h5>
+                <div class="ct-specs"><span class="ct-spec">8 hrs/day</span><span class="ct-spec">Min. A2 level</span></div>
+                <p>Official TOEIC test centre programme. Prepares for the TOEIC Listening & Reading test used by employers worldwide. 1-on-1 coaching with mock exams and score tracking.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-6">
+              <div class="ct-detail">
+                <h5>Cambridge English (FCE / CAE)</h5>
+                <div class="ct-specs"><span class="ct-spec">8 hrs/day</span><span class="ct-spec">8–12 weeks</span><span class="ct-spec">Min. B2 level</span></div>
+                <p>Prepare for Cambridge First or Advanced at SMEAG's official Cambridge exam centre. Intensive preparation with 1-on-1 coaching, group classes, and regular mock exams. Cambridge-qualified teachers.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-7">
+              <div class="ct-detail">
+                <h5>Business English</h5>
+                <div class="ct-specs"><span class="ct-spec">6 hrs/day</span><span class="ct-spec">1-on-1 + group</span><span class="ct-spec">Min. B1 level</span></div>
+                <p>Develop professional English skills through 1-on-1 coaching in presentations, meetings, negotiations, emails and business vocabulary. Ideal for professionals looking to boost their career with certified English proficiency.</p>
+              </div>
+            </div>
+            <div class="ct-panel" data-course="smeag-8">
+              <div class="ct-detail">
+                <h5>Pre-University English</h5>
+                <div class="ct-specs"><span class="ct-spec">Full-time</span><span class="ct-spec">8–12 weeks</span><span class="ct-spec">Min. B1 level</span></div>
+                <p>Academic English preparation for students planning to study at universities in the UK, USA, Australia or Canada. Covers academic writing, critical thinking, presentations and IELTS/TOEFL preparation. Cost-effective preparation before moving to a more expensive English-speaking country.</p>
+              </div>
+            </div>
+            <p class="ct-source">Course details sourced from smeag.com.</p>
+          </div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Philippines branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Cebu (Capital)</div><div class="branch-item"><span class="dot"></span> Cebu (Classic)</div><div class="branch-item"><span class="dot"></span> Cebu (Sparta)</div></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Other global branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Melbourne, Australia</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ph-cia" placeholder="CIA logo" data-editable=""></image-slot></span><div><h3><a href="institute-smeag.html" style="color:inherit;text-decoration:none;">Cebu International Academy (CIA)</a></h3><p class="inst-meta">Premium campus · Cebu · cia-english.com</p><div class="inst-badges"><span class="inst-badge gold">TESDA</span><span class="inst-badge">SSP Licensed</span></div></div></div>
+          <div class="course-types"><span class="ct">ESL (Regular / Intensive)</span><span class="ct">IELTS (Regular / Guarantee)</span><span class="ct">TOEIC Preparation</span><span class="ct">Business English</span><span class="ct">Working Holiday Prep</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Cebu (Mactan campus)</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-ph-pines" placeholder="PINES logo" data-editable=""></image-slot></span><div><h3><a href="institute-smeag.html" style="color:inherit;text-decoration:none;">PINES International Academy</a></h3><p class="inst-meta">Baguio City · Sparta-style immersion · pinesacademy.com</p><div class="inst-badges"><span class="inst-badge gold">TESDA</span><span class="inst-badge">SSP Licensed</span></div></div></div>
+          <div class="course-types"><span class="ct">Power ESL (6–8 hrs/day)</span><span class="ct">Intensive ESL (10 hrs/day)</span><span class="ct">IELTS / TOEIC Prep</span><span class="ct">Sparta Programme</span><span class="ct">Speaking Master</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Baguio (Main campus)</div><div class="branch-item"><span class="dot"></span> Baguio (Chapis campus)</div></div>
+        </div>
+      </div>
+
+      <!-- ===================== INDONESIA ===================== -->
+      <div class="eng-panel" id="indonesia">
+        <div class="sec-head" style="margin-bottom:28px;">
+          <span class="kicker">Indonesia</span>
+          <h2 class="h2">Study English in Indonesia</h2>
+          <p class="lead">Emerging as a popular destination for affordable English study, especially in Bali and Jakarta. Combine language learning with cultural immersion in one of Asia's most diverse countries.</p>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-id-ef" placeholder="EF logo"></image-slot></span><div><h3>EF English First — Indonesia</h3><p class="inst-meta">Largest English school network in Indonesia · ef.co.id</p><div class="inst-badges"><span class="inst-badge gold">ISO 9001</span><span class="inst-badge">Kemendikbud Licensed</span></div></div></div>
+          <div class="course-types"><span class="ct">General English (Kids, Teens, Adults)</span><span class="ct">Business English</span><span class="ct">IELTS / TOEFL Preparation</span><span class="ct">Conversation Classes</span><span class="ct">Online + Offline Hybrid</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Indonesia branches (70+ centres)</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Jakarta (20+ centres)</div><div class="branch-item"><span class="dot"></span> Surabaya</div><div class="branch-item"><span class="dot"></span> Bandung</div><div class="branch-item"><span class="dot"></span> Medan</div><div class="branch-item"><span class="dot"></span> Bali</div><div class="branch-item"><span class="dot"></span> Semarang</div><div class="branch-item"><span class="dot"></span> Yogyakarta</div><div class="branch-item"><span class="dot"></span> Makassar</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-id-wall-street" placeholder="Wall Street English logo"></image-slot></span><div><h3>Wall Street English — Indonesia</h3><p class="inst-meta">Global network · 400+ centres in 28 countries · wallstreetenglish.co.id</p><div class="inst-badges"><span class="inst-badge gold">ISO 9001</span><span class="inst-badge">Kemendikbud</span></div></div></div>
+          <div class="course-types"><span class="ct">General English (20 levels)</span><span class="ct">Business English</span><span class="ct">IELTS / TOEFL Prep</span><span class="ct">Online + Centre Blended</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Indonesia branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Jakarta (multiple)</div><div class="branch-item"><span class="dot"></span> Surabaya</div><div class="branch-item"><span class="dot"></span> Bali</div></div>
+        </div>
+
+        <div class="inst-card">
+          <div class="inst-header"><span class="ph" style="width:64px;height:64px;border-radius:14px;"><image-slot id="eng-id-ialf" placeholder="IALF logo"></image-slot></span><div><h3>IALF (Indonesia Australia Language Foundation)</h3><p class="inst-meta">Est. 1989 · Bali, Jakarta, Surabaya · ialf.edu</p><div class="inst-badges"><span class="inst-badge gold">Official IELTS Test Centre</span><span class="inst-badge">Cambridge Test Centre</span><span class="inst-badge">Kemendikbud</span></div></div></div>
+          <div class="course-types"><span class="ct">General English</span><span class="ct">IELTS Preparation</span><span class="ct">Academic English</span><span class="ct">Cambridge Prep</span><span class="ct">Business English</span><span class="ct">Teacher Training</span></div>
+          <h4 style="font-family:var(--sans); font-size:0.92rem; font-weight:700; margin:16px 0 8px;">Indonesia branches</h4>
+          <div class="branch-grid"><div class="branch-item"><span class="dot"></span> Bali</div><div class="branch-item"><span class="dot"></span> Jakarta</div><div class="branch-item"><span class="dot"></span> Surabaya</div></div>
+        </div>
+      </div><!-- /indonesia -->
+
+      <!-- ===== SAG SERVICES ===== -->
+      <div class="sec-head" style="margin:56px 0 20px;">
+        <span class="kicker">We handle everything</span>
+        <h2 class="h2">Our services — beyond just the course</h2>
+        <p class="lead">Study Abroad Gate doesn't just place you in a course — we take care of your entire journey, from booking flights to settling in.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:18px; margin-bottom:32px;">
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 22px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--gold-soft);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px;">✈️</div>
+          <h4 style="font-family:var(--sans); font-size:1.05rem; font-weight:700; margin-bottom:6px;">Flight booking</h4>
+          <p style="font-size:0.88rem; color:var(--muted); line-height:1.6;">We find and book the best flights for your travel dates and budget — including student fare discounts where available.</p>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 22px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:oklch(0.94 0.03 200);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px;">🛬</div>
+          <h4 style="font-family:var(--sans); font-size:1.05rem; font-weight:700; margin-bottom:6px;">Airport pickup</h4>
+          <p style="font-size:0.88rem; color:var(--muted); line-height:1.6;">A driver meets you at the airport and takes you directly to your accommodation — no stress on day one in a new country.</p>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 22px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:oklch(0.94 0.04 150);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px;">🏥</div>
+          <h4 style="font-family:var(--sans); font-size:1.05rem; font-weight:700; margin-bottom:6px;">Health insurance</h4>
+          <p style="font-size:0.88rem; color:var(--muted); line-height:1.6;">We arrange comprehensive medical and travel insurance that meets your destination's visa requirements — so you're covered from the moment you leave.</p>
+        </div>
+        <div style="background:var(--card); border:1px solid var(--line); border-radius:var(--r-lg); padding:24px 22px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:oklch(0.94 0.035 280);display:grid;place-items:center;font-size:1.4rem;margin-bottom:14px;">🏠</div>
+          <h4 style="font-family:var(--sans); font-size:1.05rem; font-weight:700; margin-bottom:6px;">Accommodation</h4>
+          <p style="font-size:0.88rem; color:var(--muted); line-height:1.6;">Homestay, student residence, or shared apartment — we book your accommodation close to campus so you can focus on studying, not searching.</p>
+        </div>
+      </div>
+
+      <!-- ===== CERTIFICATES & ACCREDITATIONS ===== -->
+      <div class="sec-head" style="margin:56px 0 20px;">
+        <span class="kicker">Certificates &amp; quality</span>
+        <h2 class="h2">Key accreditations explained</h2>
+        <p class="lead">These quality marks guarantee your course meets strict international standards.</p>
+      </div>
+      <table class="cmp-table">
+        <thead><tr><th>Accreditation</th><th>Region</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><b>British Council</b></td><td>UK</td><td>Gold standard for English language teaching in the UK. Regular inspections of teaching, management, premises and welfare.</td></tr>
+          <tr><td><b>ACCET</b></td><td>USA</td><td>Accrediting Council for Continuing Education &amp; Training — recognised by the US Department of Education for language programmes.</td></tr>
+          <tr><td><b>Languages Canada</b></td><td>Canada</td><td>National association guaranteeing quality language programmes from both public and private providers.</td></tr>
+          <tr><td><b>ASQA / NEAS</b></td><td>Australia</td><td>Australian Skills Quality Authority and National ELT Accreditation Scheme — regulatory oversight of ELICOS programmes.</td></tr>
+          <tr><td><b>Eaquals</b></td><td>International</td><td>Evaluation and Accreditation of Quality in Language Services — one of the toughest international inspection schemes.</td></tr>
+          <tr><td><b>English UK</b></td><td>UK</td><td>National association for accredited English language centres in the UK with rigorous membership standards.</td></tr>
+          <tr><td><b>EduSA</b></td><td>South Africa</td><td>Quality assurance body for English language schools in South Africa.</td></tr>
+          <tr><td><b>TESDA</b></td><td>Philippines</td><td>Technical Education and Skills Development Authority — government regulator for vocational and language schools.</td></tr>
+          <tr><td><b>Cambridge Assessment</b></td><td>Global</td><td>Authorised test centres administer Cambridge English exams (FCE, CAE, CPE) recognised by 25,000+ institutions.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- ===== COMPARISON TABLE ===== -->
+      <div class="sec-head" style="margin:56px 0 20px;">
+        <span class="kicker">At a glance</span>
+        <h2 class="h2">Destination comparison</h2>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="cmp-table" style="min-width:760px;">
+          <thead><tr><th>Country</th><th>Avg. tuition/week</th><th>Living cost/month</th><th>Work rights</th><th>Visa type</th></tr></thead>
+          <tbody>
+            <tr><td><b>🇬🇧 England</b></td><td>£250–£450</td><td>£800–£1,500</td><td>No (Short-term Study); 20 hrs (Tier 4)</td><td>Short-term Study / Student Visa</td></tr>
+            <tr><td><b>🇺🇸 USA</b></td><td>$300–$500</td><td>$1,200–$2,500</td><td>On-campus only (F-1)</td><td>F-1 Student Visa / B-2</td></tr>
+            <tr><td><b>🇦🇺 Australia</b></td><td>A$300–A$450</td><td>A$1,500–A$2,500</td><td>48 hrs/fortnight (Student visa)</td><td>Student Visa (subclass 500)</td></tr>
+            <tr><td><b>🇨🇦 Canada</b></td><td>C$280–C$420</td><td>C$1,200–C$2,000</td><td>20 hrs/week (Study Permit)</td><td>Study Permit</td></tr>
+            <tr><td><b>🇿🇦 South Africa</b></td><td>$200–$350</td><td>$600–$1,000</td><td>No (Study Visa)</td><td>Study Visa</td></tr>
+            <tr><td><b>🇵🇭 Philippines</b></td><td>$200–$400 (all-inclusive)</td><td>$500–$800</td><td>Not permitted (SSP)</td><td>Tourist + SSP</td></tr>
+            <tr><td><b>🇮🇩 Indonesia</b></td><td>$100–$250</td><td>$400–$700</td><td>Not permitted</td><td>Social/Cultural Visa (C312)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== HOW WE HELP ===== -->
+      <div class="sec-head" style="margin:56px 0 24px;">
+        <span class="kicker">Your English course, handled</span>
+        <h2 class="h2">From choosing a course to arriving on campus</h2>
+      </div>
+      <div class="steps" style="grid-template-columns:repeat(5,1fr);">
+        <div class="step"><div class="n">01</div><h4>Free consultation</h4><p>We assess your English level, goals and budget to recommend the best institute and destination.</p></div>
+        <div class="step"><div class="n">02</div><h4>Course placement</h4><p>We handle the full application with your chosen institute and secure your enrolment letter.</p></div>
+        <div class="step"><div class="n">03</div><h4>Visa support</h4><p>We prepare your student visa application, financial documents and interview coaching.</p></div>
+        <div class="step"><div class="n">04</div><h4>Pre-departure</h4><p>Accommodation booking, health insurance, airport pickup — everything arranged before you fly.</p></div>
+        <div class="step"><div class="n">05</div><h4>Ongoing support</h4><p>Once abroad, our team stays in touch for academic progress, visa renewals and any issues.</p></div>
+      </div>
+
+    </div><!-- /left column -->
+
+    <!-- RIGHT: embedded English course matcher (scrolls with page) -->
+    <aside id="lead" style="position:relative; top:auto;">
+      <div class="ecw-wrap">
+        <style>
+          .ecw-wrap { background:#fff; border:1px solid var(--line); border-radius:var(--r-lg); padding:22px; box-shadow:var(--sh-1); }
+          .ecw-head { padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--line-soft); }
+          .ecw-head h3 { font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--ink); line-height:1.25; margin-bottom:4px; }
+          .ecw-head p { color:var(--muted); font-size:0.82rem; line-height:1.45; margin:0; }
+          .ecw-sec { padding-bottom:14px; margin-bottom:14px; border-bottom:1px dashed var(--line-soft); }
+          .ecw-sec:last-child { border-bottom:0; margin-bottom:0; padding-bottom:0; }
+          .ecw-label { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-strong); font-weight:700; margin-bottom:8px; display:block; }
+          .ecw-sel, .ecw-in { width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:8px; background:#fff; font-family:var(--sans); font-size:0.88rem; color:var(--ink); }
+          .ecw-sel { appearance:none; background-image:url("data:image/svg+xml;utf8,<svg fill='none' stroke='%238A5E16' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 8px center; background-size:14px; padding-right:28px; cursor:pointer; }
+          .ecw-sel:focus, .ecw-in:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
+          .ecw-sel:disabled { opacity:0.5; cursor:not-allowed; background:var(--sand); }
+          .ecw-row2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+          .ecw-fields { display:grid; gap:8px; }
+          .ecw-opts { display:grid; gap:6px; }
+          .ecw-opts.r3 { grid-template-columns:repeat(3,1fr); }
+          .ecw-opt { display:flex; align-items:center; gap:8px; padding:9px 10px; border:1.5px solid var(--line); border-radius:8px; background:#fff; cursor:pointer; font:inherit; text-align:left; color:var(--ink); transition:all .12s; }
+          .ecw-opt:hover { border-color:var(--gold); }
+          .ecw-opt.sel { border-color:var(--gold); background:var(--gold-soft); }
+          .ecw-opt .ti { flex:1; min-width:0; font-size:0.84rem; font-weight:600; }
+          .ecw-opt .pp { font-family:var(--mono); font-size:0.72rem; color:var(--gold-strong); font-weight:600; white-space:nowrap; }
+          .ecw-opts.r3 .ecw-opt { padding:6px 4px; justify-content:center; font-size:0.74rem; flex-direction:column; gap:2px; text-align:center; }
+          .ecw-pw-info { background:oklch(0.95 0.04 145); color:oklch(0.4 0.1 150); border-left:3px solid oklch(0.6 0.14 150); border-radius:4px; padding:8px 10px; font-size:0.74rem; margin-top:8px; display:none; }
+          .ecw-pw-info.show { display:block; }
+          .ecw-slider-row { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; }
+          .ecw-slider-row input[type=range] { width:100%; accent-color:var(--gold); }
+          .ecw-weeks { font-family:var(--serif); font-size:1.05rem; font-weight:600; color:var(--gold-strong); padding:4px 10px; background:var(--gold-soft); border-radius:6px; min-width:62px; text-align:center; }
+          .ecw-addons { display:grid; gap:6px; }
+          .ecw-addon { display:flex; align-items:center; gap:8px; padding:7px 9px; border:1.5px solid var(--line); border-radius:7px; cursor:pointer; user-select:none; }
+          .ecw-addon input { display:none; }
+          .ecw-addon .bx { width:17px; height:17px; border:2px solid var(--line); border-radius:4px; flex:0 0 auto; display:grid; place-items:center; }
+          .ecw-addon.on { border-color:var(--gold); background:var(--gold-soft); }
+          .ecw-addon.on .bx { background:var(--gold); border-color:var(--gold); }
+          .ecw-addon.on .bx::after { content:"✓"; font-size:0.7rem; font-weight:700; color:var(--ink); }
+          .ecw-addon .at { flex:1; min-width:0; font-size:0.78rem; font-weight:600; color:var(--ink); }
+          .ecw-addon .ap { font-family:var(--mono); font-size:0.7rem; color:var(--gold-strong); white-space:nowrap; }
+          .ecw-result { margin-top:16px; padding:18px; background:var(--navy-deep); color:#fff; border-radius:var(--r); }
+          .ecw-result .r-title { font-family:var(--serif); font-size:0.96rem; font-weight:600; color:#fff; line-height:1.25; margin-bottom:2px; }
+          .ecw-result .r-sub { font-size:0.74rem; color:oklch(0.84 0.02 256); margin-bottom:12px; }
+          .ecw-cur { display:grid; grid-template-columns:repeat(6,1fr); gap:3px; padding:3px; background:oklch(1 0 0 / 0.07); border-radius:6px; border:1px solid oklch(1 0 0 / 0.12); margin-bottom:10px; }
+          .ecw-cur button { background:transparent; border:0; padding:6px 2px; font-family:var(--sans); font-size:0.7rem; font-weight:600; color:oklch(0.86 0.02 256); cursor:pointer; border-radius:4px; transition:all .12s; }
+          .ecw-cur button.on { background:var(--gold); color:var(--ink); }
+          .ecw-fx { font-family:var(--mono); font-size:0.62rem; color:oklch(0.74 0.02 256); margin-bottom:10px; display:flex; align-items:center; gap:5px; }
+          .ecw-fx .dot { width:6px; height:6px; border-radius:50%; background:oklch(0.78 0.16 145); display:inline-block; }
+          .ecw-fx .dot.fallback { background:oklch(0.78 0.14 70); }
+          .ecw-total { padding:14px; background:oklch(1 0 0 / 0.08); border:1px solid oklch(1 0 0 / 0.12); border-radius:8px; text-align:center; margin-bottom:10px; }
+          .ecw-total .lb { font-family:var(--mono); font-size:0.62rem; color:oklch(0.82 0.02 256); letter-spacing:0.1em; text-transform:uppercase; }
+          .ecw-total .vv { font-family:var(--serif); font-size:1.7rem; color:var(--gold); font-weight:600; line-height:1.05; margin-top:3px; }
+          .ecw-total .un { font-family:var(--mono); font-size:0.62rem; color:oklch(0.74 0.02 256); margin-top:3px; }
+          .ecw-bd { list-style:none; margin:0 0 12px; padding:0; max-height:130px; overflow-y:auto; }
+          .ecw-bd li { display:grid; grid-template-columns:1fr auto; gap:8px; padding:6px 0; border-bottom:1px dashed oklch(1 0 0 / 0.1); font-size:0.76rem; }
+          .ecw-bd li:last-child { border-bottom:0; }
+          .ecw-bd .l { color:oklch(0.92 0.015 256); }
+          .ecw-bd .v { font-family:var(--mono); color:#fff; }
+          .ecw-cap { padding-top:10px; border-top:1px solid oklch(1 0 0 / 0.14); }
+          .ecw-cap h4 { color:#fff; font-family:var(--serif); font-size:0.9rem; font-weight:600; margin-bottom:6px; }
+          .ecw-cap p { font-size:0.72rem; color:oklch(0.82 0.02 256); margin-bottom:8px; }
+          .ecw-cap .ph-row { display:grid; grid-template-columns:80px 1fr; gap:5px; margin-bottom:7px; }
+          .ecw-cap select, .ecw-cap input { padding:8px 8px; font:inherit; font-family:var(--sans); font-size:0.8rem; border-radius:6px; border:1.5px solid oklch(1 0 0 / 0.16); background:oklch(1 0 0 / 0.08); color:#fff; }
+          .ecw-cap select { appearance:none; background-image:url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23C48E2E' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 5px center; background-size:11px; padding-right:22px; }
+          .ecw-cap select option { color:var(--ink); background:#fff; }
+          .ecw-cap input::placeholder { color:oklch(0.78 0.02 256); }
+          .ecw-cap .btn-wa { width:100%; background:#25D366; color:#fff; border-color:#25D366; display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:11px; font-size:0.86rem; border-radius:6px; border:1.5px solid #25D366; cursor:pointer; font-family:var(--sans); font-weight:600; transition:all .15s; }
+          .ecw-cap .btn-wa:hover { background:#1ebe5a; border-color:#1ebe5a; }
+          .ecw-cap .btn-wa svg { width:15px; height:15px; fill:currentColor; }
+          .ecw-fine { font-family:var(--mono); font-size:0.62rem; color:oklch(0.78 0.02 256); margin-top:5px; text-align:center; }
+        </style>
+
+        <div class="ecw-head">
+          <span class="chip chip-gold" style="margin-bottom:8px; font-size:0.7rem;">🎓 Course matcher</span>
+          <h3>Build your English course quote</h3>
+          <p>Pick institute, branch &amp; add-ons — live total in 6 currencies.</p>
+        </div>
+
+        <!-- pathway -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Pathway / Foundation?</span>
+          <div class="ecw-opts r3" id="ecwPathway">
+            <button type="button" class="ecw-opt"     data-v="yes">✅ Yes</button>
+            <button type="button" class="ecw-opt sel" data-v="maybe">🤔 Maybe</button>
+            <button type="button" class="ecw-opt"     data-v="no">❌ No</button>
+          </div>
+          <div class="ecw-pw-info" id="ecwPwInfo">Showing only pathway-accredited institutes.</div>
+        </div>
+
+        <!-- where -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Country → Institute → Branch</span>
+          <div class="ecw-fields">
+            <select class="ecw-sel" id="ecwCountry"></select>
+            <select class="ecw-sel" id="ecwInstitute"></select>
+            <select class="ecw-sel" id="ecwBranch"></select>
+          </div>
+        </div>
+
+        <!-- course type -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Course type · weekly tuition</span>
+          <div class="ecw-opts" id="ecwCourse">
+            <button type="button" class="ecw-opt sel" data-v="general"  data-m="1.0"><span class="ti">🇬🇧 General English</span><span class="pp" data-pp="general"></span></button>
+            <button type="button" class="ecw-opt"     data-v="business" data-m="1.25"><span class="ti">💼 Business English</span><span class="pp" data-pp="business"></span></button>
+            <button type="button" class="ecw-opt"     data-v="ielts"    data-m="1.15"><span class="ti">🎯 IELTS / TOEFL prep</span><span class="pp" data-pp="ielts"></span></button>
+            <button type="button" class="ecw-opt"     data-v="academic" data-m="1.10"><span class="ti">🎓 Academic EAP</span><span class="pp" data-pp="academic"></span></button>
+            <button type="button" class="ecw-opt"     data-v="junior"   data-m="1.50"><span class="ti">🧒 Junior (12–17)</span><span class="pp" data-pp="junior"></span></button>
+            <button type="button" class="ecw-opt"     data-v="intensive" data-m="1.35"><span class="ti">⚡ Intensive</span><span class="pp" data-pp="intensive"></span></button>
+          </div>
+        </div>
+
+        <!-- duration -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Duration</span>
+          <div class="ecw-slider-row">
+            <input type="range" id="ecwWeeks" min="2" max="52" step="1" value="12"/>
+            <span class="ecw-weeks"><span id="ecwWeeksL">12</span>w</span>
+          </div>
+        </div>
+
+        <!-- accommodation -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Accommodation</span>
+          <div class="ecw-opts ecw-row2" id="ecwAcc" style="grid-template-columns:1fr 1fr;">
+            <button type="button" class="ecw-opt sel" data-v="residence" data-p="180"><span class="ti">🏢 Residence</span></button>
+            <button type="button" class="ecw-opt"     data-v="homestay"  data-p="220"><span class="ti">🏠 Homestay</span></button>
+          </div>
+        </div>
+
+        <!-- add-ons -->
+        <div class="ecw-sec">
+          <span class="ecw-label">Add-ons (tap to include)</span>
+          <div class="ecw-addons" id="ecwAddons">
+            <label class="ecw-addon"    data-v="sim"><input type="checkbox"/><span class="bx"></span><span class="at">📱 Mobile SIM</span><span class="ap" data-pp="sim"></span></label>
+            <label class="ecw-addon"    data-v="internet"><input type="checkbox"/><span class="bx"></span><span class="at">📶 Home Wi-Fi</span><span class="ap" data-pp="internet"></span></label>
+            <label class="ecw-addon on" data-v="meal"><input type="checkbox" checked/><span class="bx"></span><span class="at">🍽️ Meal plan</span><span class="ap" data-pp="meal"></span></label>
+            <label class="ecw-addon on" data-v="transport"><input type="checkbox" checked/><span class="bx"></span><span class="at">🚇 Transport</span><span class="ap" data-pp="transport"></span></label>
+            <label class="ecw-addon on" data-v="insurance"><input type="checkbox" checked/><span class="bx"></span><span class="at">🛡️ Insurance</span><span class="ap" data-pp="insurance"></span></label>
+            <label class="ecw-addon on" data-v="pickup"><input type="checkbox" checked/><span class="bx"></span><span class="at">🚖 Airport pickup</span><span class="ap" data-pp="pickup"></span></label>
+          </div>
+        </div>
+
+        <!-- result -->
+        <div class="ecw-result">
+          <div class="r-title" id="ecwTitle">—</div>
+          <div class="r-sub" id="ecwSub">—</div>
+          <div class="ecw-cur" id="ecwCur">
+            <button type="button" class="on" data-v="USD">USD</button>
+            <button type="button" data-v="EUR">EUR</button>
+            <button type="button" data-v="GBP">GBP</button>
+            <button type="button" data-v="SAR">SAR</button>
+            <button type="button" data-v="AED">AED</button>
+            <button type="button" data-v="EGP">EGP</button>
+          </div>
+          <div class="ecw-fx" id="ecwFx"><span class="dot"></span><span id="ecwFxT">FX loading…</span></div>
+          <div class="ecw-total">
+            <div class="lb">Total estimate</div>
+            <div class="vv" id="ecwTotal">—</div>
+            <div class="un">incl. tuition, accommodation, add-ons + 10% admin</div>
+          </div>
+          <ul class="ecw-bd" id="ecwBd"></ul>
+          <div class="ecw-cap">
+            <h4>Get the quote on WhatsApp</h4>
+            <p>A counsellor sends start dates &amp; locks in your price — free.</p>
+            <form id="ecwForm" novalidate>
+              <div class="ph-row">
+                <select id="ecwCc" aria-label="Country code">
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+20">🇪🇬 +20</option>
+                  <option value="+965">🇰🇼 +965</option>
+                  <option value="+974">🇶🇦 +974</option>
+                  <option value="+973">🇧🇭 +973</option>
+                  <option value="+968">🇴🇲 +968</option>
+                </select>
+                <input type="tel" id="ecwPhone" placeholder="WhatsApp number" required inputmode="tel"/>
+              </div>
+              <button type="submit" class="btn-wa">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                Get full shortlist on WhatsApp
+              </button>
+              <div class="ecw-fine">🔒 We only message you on WhatsApp.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+<script>
+(function(){
+  /* ---- DATA ---- */
+  /* Branch lists verified against official institute websites (Kings: kingseducation.com,
+     EF: ef.com, Kaplan: kaplaninternational.com + Wikipedia, EC: ecenglish.com, St Giles:
+     stgiles-international.com, ILSC: ilsc.com, Malvern: malvernhouse.com). */
+  const INST = [
+    { id:'kings', name:'Kings Education', basePrice:300, pathway:true, branches:[
+      {n:'London',c:'UK'},{n:'Oxford',c:'UK'},{n:'Bournemouth',c:'UK'},{n:'Brighton',c:'UK'},
+      {n:'Boston',c:'USA'},{n:'New York (Riverdale)',c:'USA'},{n:'Los Angeles (Marymount)',c:'USA'},{n:'Concordia (Oregon)',c:'USA'},
+    ]},
+    { id:'ef', name:'EF Education First', basePrice:355, pathway:true, branches:[
+      {n:'London',c:'UK'},{n:'Cambridge',c:'UK'},{n:'Manchester',c:'UK'},{n:'Bristol',c:'UK'},{n:'Brighton',c:'UK'},{n:'Oxford',c:'UK'},
+      {n:'Dublin',c:'Ireland'},
+      {n:'Boston',c:'USA'},{n:'New York',c:'USA'},{n:'San Diego',c:'USA'},{n:'Santa Barbara',c:'USA'},
+      {n:'Chicago',c:'USA'},{n:'Seattle',c:'USA'},{n:'Washington DC',c:'USA'},{n:'Honolulu',c:'USA'},{n:'Miami Beach',c:'USA'},
+      {n:'Toronto',c:'Canada'},{n:'Vancouver',c:'Canada'},
+      {n:'Sydney',c:'Australia'},{n:'Brisbane',c:'Australia'},{n:'Perth',c:'Australia'},
+      {n:'Auckland',c:'New Zealand'},
+      {n:'Cape Town',c:'South Africa'},
+      {n:'St Julian\'s',c:'Malta'},
+      {n:'Singapore',c:'Singapore'},
+      {n:'Dubai',c:'UAE'},
+    ]},
+    { id:'malvern', name:'Malvern House London', basePrice:280, pathway:true, branches:[
+      {n:'London Bridge',c:'UK'},
+    ]},
+    { id:'kaplan', name:'Kaplan International Languages', basePrice:320, pathway:true, branches:[
+      {n:'London Covent Garden',c:'UK'},{n:'London Leicester Square',c:'UK'},
+      {n:'Bath',c:'UK'},{n:'Bournemouth',c:'UK'},{n:'Cambridge',c:'UK'},{n:'Liverpool',c:'UK'},
+      {n:'Manchester',c:'UK'},{n:'Oxford',c:'UK'},{n:'Torquay',c:'UK'},{n:'Edinburgh',c:'UK'},
+      {n:'Dublin',c:'Ireland'},
+      {n:'Berkeley',c:'USA'},{n:'Boston Harvard Square',c:'USA'},{n:'Chicago',c:'USA'},
+      {n:'Los Angeles Westwood',c:'USA'},{n:'Los Angeles Whittier',c:'USA'},{n:'Miami',c:'USA'},
+      {n:'New York Central Park',c:'USA'},{n:'Philadelphia',c:'USA'},{n:'Portland (Oregon)',c:'USA'},
+      {n:'San Diego',c:'USA'},{n:'San Francisco',c:'USA'},{n:'Santa Barbara',c:'USA'},
+      {n:'Seattle',c:'USA'},{n:'Washington DC',c:'USA'},
+      {n:'Toronto',c:'Canada'},{n:'Vancouver',c:'Canada'},
+      {n:'Adelaide',c:'Australia'},{n:'Brisbane',c:'Australia'},{n:'Melbourne',c:'Australia'},
+      {n:'Perth',c:'Australia'},{n:'Sydney',c:'Australia'},
+      {n:'Auckland',c:'New Zealand'},
+    ]},
+    { id:'ilsc', name:'ILSC Education Group', basePrice:290, pathway:true, branches:[
+      {n:'Vancouver',c:'Canada'},{n:'Toronto',c:'Canada'},{n:'Montreal',c:'Canada'},
+      {n:'Brisbane',c:'Australia'},{n:'Sydney',c:'Australia'},{n:'Melbourne',c:'Australia'},
+      {n:'New Delhi',c:'India'},
+    ]},
+    { id:'ec', name:'EC English Language Centres', basePrice:310, pathway:true, branches:[
+      {n:'London Central',c:'UK'},{n:'London 30+',c:'UK'},
+      {n:'Cambridge',c:'UK'},{n:'Brighton',c:'UK'},{n:'Bristol',c:'UK'},{n:'Manchester',c:'UK'},{n:'Oxford',c:'UK'},
+      {n:'Dublin',c:'Ireland'},
+      {n:'Boston',c:'USA'},{n:'New York',c:'USA'},{n:'New York 30+',c:'USA'},
+      {n:'Los Angeles',c:'USA'},{n:'San Francisco',c:'USA'},{n:'San Diego',c:'USA'},
+      {n:'Toronto',c:'Canada'},{n:'Toronto 30+',c:'Canada'},
+      {n:'Vancouver',c:'Canada'},{n:'Vancouver 30+',c:'Canada'},{n:'Montreal',c:'Canada'},
+      {n:'St Julian\'s',c:'Malta'},
+      {n:'Cape Town',c:'South Africa'},
+      {n:'Dubai',c:'UAE'},
+    ]},
+    { id:'stgiles', name:'St Giles International', basePrice:340, pathway:true, branches:[
+      {n:'London Central',c:'UK'},{n:'London Highgate',c:'UK'},
+      {n:'Brighton',c:'UK'},{n:'Eastbourne',c:'UK'},{n:'Cambridge',c:'UK'},
+      {n:'San Francisco',c:'USA'},{n:'New York',c:'USA'},
+      {n:'Vancouver',c:'Canada'},
+    ]},
+    { id:'smeag', name:'SMEAG Global Education', basePrice:180, pathway:false, branches:[
+      {n:'Cebu — Classic Campus',c:'Philippines'},
+      {n:'Cebu — Sparta Campus',c:'Philippines'},
+      {n:'Cebu — Capital Campus',c:'Philippines'},
+    ]},
+    { id:'cia', name:'CIA — Cebu International Academy', basePrice:180, pathway:false, branches:[
+      {n:'Cebu',c:'Philippines'},
+    ]},
+    { id:'pines', name:'PINES International Academy', basePrice:170, pathway:false, branches:[
+      {n:'Baguio — Chapis Campus',c:'Philippines'},
+      {n:'Baguio — Main Campus',c:'Philippines'},
+    ]},
+    { id:'efid', name:'EF English First Indonesia', basePrice:200, pathway:false, branches:[
+      {n:'Jakarta',c:'Indonesia'},{n:'Surabaya',c:'Indonesia'},
+      {n:'Bandung',c:'Indonesia'},{n:'Bali',c:'Indonesia'},
+    ]},
+    { id:'wse', name:'Wall Street English Indonesia', basePrice:220, pathway:false, branches:[
+      {n:'Jakarta',c:'Indonesia'},{n:'Surabaya',c:'Indonesia'},
+    ]},
+    { id:'ialf', name:'IALF Indonesia', basePrice:230, pathway:false, branches:[
+      {n:'Bali (Denpasar)',c:'Indonesia'},{n:'Jakarta',c:'Indonesia'},
+    ]},
+    { id:'goodhope', name:'Good Hope Studies', basePrice:190, pathway:false, branches:[
+      {n:'Cape Town',c:'South Africa'},
+      {n:'Stellenbosch',c:'South Africa'},
+    ]},
+  ];
+  const C_LBL = { general:'General English', business:'Business English', ielts:'IELTS / TOEFL prep', academic:'Academic English (EAP)', junior:'Junior summer', intensive:'Intensive English' };
+  const A_LBL = { residence:'Student residence', homestay:'Homestay' };
+  const AD_LBL= { sim:'Mobile SIM', internet:'Home Wi-Fi', meal:'Meal plan', transport:'Transport', insurance:'Insurance', pickup:'Airport pickup' };
+  const AD_PR = { sim:15, internet:10, meal:120, transport:30, insurance:20, pickup:140 };
+  const AD_U  = { sim:'wk', internet:'wk', meal:'wk', transport:'wk', insurance:'wk', pickup:'once' };
+  const C_MULT= { general:1.0, business:1.25, ielts:1.15, academic:1.10, junior:1.50, intensive:1.35 };
+  const SYM   = { USD:'$', EUR:'€', GBP:'£', SAR:'SAR ', AED:'AED ', EGP:'E£' };
+  let FX = { USD:1, EUR:0.92, GBP:0.79, SAR:3.75, AED:3.67, EGP:50 };
+  let FX_LIVE = false, FX_TIME = null;
+
+  const S = { pathway:'maybe', destC:'', instId:'', brIdx:0, course:'general', weeks:12, acc:{v:'residence', price:180}, addons:{meal:true,transport:true,insurance:true,pickup:true,sim:false,internet:false}, curr:'USD' };
+
+  function $(id){ return document.getElementById(id); }
+  function active(){ return INST.filter(i => S.pathway === 'yes' ? i.pathway : true); }
+  function countries(){ return [...new Set(active().flatMap(i => i.branches.map(b => b.c)))].sort(); }
+  function instsIn(c){ return active().filter(i => i.branches.some(b => b.c === c)); }
+  function brsIn(id, c){ const i = INST.find(x => x.id === id); return i ? i.branches.filter(b => b.c === c) : []; }
+  function curInst(){ return INST.find(i => i.id === S.instId); }
+  function curBr(){ const list = brsIn(S.instId, S.destC); return list[S.brIdx] || list[0] || null; }
+  function bp(){ const i = curInst(); return i ? i.basePrice : 250; }
+  function cp(k){ return Math.round(bp() * (C_MULT[k] || 1)); }
+  function fmt(usd){ return (SYM[S.curr] || '$') + Math.round(usd * (FX[S.curr] || 1)).toLocaleString(); }
+
+  async function loadFx(){
+    try {
+      const r = await fetch('https://open.er-api.com/v6/latest/USD', { cache:'no-store' });
+      if (!r.ok) throw 0;
+      const j = await r.json();
+      if (j.result !== 'success' || !j.rates) throw 0;
+      ['EUR','GBP','SAR','AED','EGP'].forEach(c => { if (typeof j.rates[c] === 'number') FX[c] = j.rates[c]; });
+      FX_LIVE = true; FX_TIME = j.time_last_update_utc || new Date().toUTCString();
+    } catch (e) { FX_LIVE = false; FX_TIME = new Date().toUTCString(); }
+    fxStamp(); render();
+  }
+  function fxStamp(){
+    const dot = $('ecwFx').querySelector('.dot');
+    if (FX_LIVE) { dot.classList.remove('fallback'); const d = FX_TIME ? new Date(FX_TIME).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : 'now'; $('ecwFxT').textContent = 'Live FX · ' + d; }
+    else { dot.classList.add('fallback'); $('ecwFxT').textContent = 'Reference FX (live offline)'; }
+  }
+
+  function rebuildCountries(){
+    const sel = $('ecwCountry'); const list = countries(); const prev = S.destC;
+    sel.innerHTML = list.map(c => `<option value="${c}">${c}</option>`).join('');
+    S.destC = list.includes(prev) ? prev : list[0] || '';
+    sel.value = S.destC; rebuildInsts();
+  }
+  function rebuildInsts(){
+    const sel = $('ecwInstitute'); const list = instsIn(S.destC); const prev = S.instId;
+    sel.innerHTML = list.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+    S.instId = list.some(i => i.id === prev) ? prev : (list[0] ? list[0].id : '');
+    sel.value = S.instId; rebuildBranches();
+  }
+  function rebuildBranches(){
+    const sel = $('ecwBranch'); const list = brsIn(S.instId, S.destC);
+    sel.innerHTML = list.map((b, i) => `<option value="${i}">${b.n}</option>`).join('');
+    if (S.brIdx >= list.length) S.brIdx = 0;
+    sel.value = S.brIdx; render();
+  }
+
+  function render(){
+    document.querySelectorAll('#ecwCourse .ecw-opt').forEach(b => { const k = b.dataset.v; const lbl = b.querySelector('.pp'); if (lbl) lbl.textContent = fmt(cp(k)) + '/wk'; });
+    document.querySelectorAll('#ecwAddons .ecw-addon').forEach(el => { const k = el.dataset.v; const s = el.querySelector('.ap'); const u = AD_U[k]; s.textContent = '+ ' + fmt(AD_PR[k]) + (u === 'wk' ? '/wk' : ' once'); });
+
+    const w = S.weeks;
+    const tu = cp(S.course) * w;
+    const ac = S.acc.price * w;
+    let ad = 0; const adBd = {};
+    Object.entries(S.addons).forEach(([k, on]) => { if (!on) return; const p = AD_PR[k]; const v = AD_U[k] === 'wk' ? p * w : p; adBd[k] = v; ad += v; });
+    const admin = Math.round((tu + ac + ad) * 0.10);
+    const total = tu + ac + ad + admin;
+
+    const inst = curInst(); const br = curBr();
+    $('ecwTitle').textContent = inst ? `${inst.name} — ${br ? br.n : ''}` : '—';
+    $('ecwSub').textContent = `${w}w · ${C_LBL[S.course]} · ${A_LBL[S.acc.v]}`;
+    $('ecwTotal').textContent = fmt(total);
+
+    const bd = [ {l:`Tuition (${w}×${fmt(cp(S.course))})`, v:fmt(tu)}, {l:`Stay (${w}×${fmt(S.acc.price)})`, v:fmt(ac)} ];
+    Object.entries(adBd).forEach(([k, v]) => bd.push({ l:AD_LBL[k], v:fmt(v) }));
+    bd.push({ l:'Admin & visa (10%)', v:fmt(admin) });
+    $('ecwBd').innerHTML = bd.map(b => `<li><span class="l">${b.l}</span><span class="v">${b.v}</span></li>`).join('');
+
+    $('ecwPwInfo').classList.toggle('show', S.pathway === 'yes');
+  }
+
+  function bindOpts(id, key){
+    const c = $(id);
+    c.querySelectorAll('.ecw-opt').forEach(b => b.addEventListener('click', () => {
+      c.querySelectorAll('.ecw-opt').forEach(x => x.classList.remove('sel'));
+      b.classList.add('sel');
+      const v = b.dataset.v;
+      if (key === 'acc') S.acc = { v, price:Number(b.dataset.p) };
+      else if (key === 'pathway') { S.pathway = v; rebuildCountries(); }
+      else S[key] = v;
+      render();
+    }));
+  }
+  bindOpts('ecwPathway','pathway');
+  bindOpts('ecwCourse','course');
+  bindOpts('ecwAcc','acc');
+
+  $('ecwCountry').addEventListener('change', e => { S.destC = e.target.value; rebuildInsts(); });
+  $('ecwInstitute').addEventListener('change', e => { S.instId = e.target.value; S.brIdx = 0; rebuildBranches(); });
+  $('ecwBranch').addEventListener('change', e => { S.brIdx = Number(e.target.value); render(); });
+  $('ecwWeeks').addEventListener('input', e => { S.weeks = Number(e.target.value); $('ecwWeeksL').textContent = S.weeks; render(); });
+
+  document.querySelectorAll('#ecwAddons .ecw-addon').forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    const v = el.dataset.v;
+    S.addons[v] = !S.addons[v];
+    el.classList.toggle('on', S.addons[v]);
+    el.querySelector('input').checked = S.addons[v];
+    render();
+  }));
+
+  document.querySelectorAll('#ecwCur button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('#ecwCur button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on'); S.curr = b.dataset.v; render();
+  }));
+
+  $('ecwForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const cc = $('ecwCc').value;
+    const ph = $('ecwPhone').value.replace(/\D/g,'');
+    if (ph.length < 6) { $('ecwPhone').focus(); return; }
+    const w = S.weeks;
+    const tu = cp(S.course) * w; const ac = S.acc.price * w;
+    let ad = 0; Object.entries(S.addons).forEach(([k, on]) => { if (on) ad += (AD_U[k] === 'wk' ? AD_PR[k] * w : AD_PR[k]); });
+    const total = tu + ac + ad + Math.round((tu + ac + ad) * 0.10);
+    const inst = curInst(); const br = curBr();
+    const ons = Object.entries(S.addons).filter(([_, v]) => v).map(([k]) => AD_LBL[k]).join(', ') || 'None';
+    const msg = `Hi! I built an English-course quote on SAG:\n\n🏫 ${inst ? inst.name : '—'} — ${br ? br.n + ' (' + br.c + ')' : '—'}\n📚 ${C_LBL[S.course]} · ${w} weeks\n🎓 Pathway: ${S.pathway}\n🏠 ${A_LBL[S.acc.v]}\n➕ ${ons}\n\n💰 Total: ${fmt(total)} (${S.curr})\n\nCan a counsellor confirm dates?`;
+    window.location.href = `https://wa.me/${(cc+ph).replace('+','')}?text=` + encodeURIComponent(msg);
+  });
+
+  rebuildCountries();
+  fxStamp();
+  loadFx();
+})();
+</script>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-hungary.html">Hungary</a></li><li><a href="destination-poland.html">Poland</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-italy.html">Italy</a></li><li><a href="destination-georgia.html">Georgia</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div>
+      <div class="foot-col"><h5>Explore</h5><ul><li><a href="program.html">Programs</a></li><li><a href="university.html">Universities</a></li><li><a href="english-courses.html">English Courses</a></li><li><a href="services.html">Free counselling</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li><li><a href="university.html#scholarships">Scholarships</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="index.html#parents">For parents</a></li><li><a href="contact.html">Find an office</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/" class="wa-float" aria-label="Chat on WhatsApp" style="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 14px rgba(0,0,0,0.25);display:grid;place-items:center;z-index:90;"><svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 6.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2z"/></svg></a>
+
+<script>
+/* Tab switching */
+(function(){
+  var tabs = document.querySelectorAll('.eng-tab');
+  var panels = document.querySelectorAll('.eng-panel');
+  var pills = document.querySelectorAll('.dest-pill[data-tab]');
+
+  function activate(id){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.target === id); });
+    panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    var el = document.getElementById(id);
+    if(el){ el.scrollIntoView && setTimeout(function(){ document.getElementById('destinations').scrollIntoView({behavior:'smooth',block:'start'}); },50); }
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.dataset.target); });
+  });
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){ activate(p.dataset.tab); });
+  });
+})();
+
+/* Form submission */
+(function(){
+  document.querySelectorAll('form[data-sag-form]').forEach(function(f){
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true;
+      f.querySelectorAll('[data-validate]').forEach(function(el){
+        var req = (el.getAttribute('data-validate')||'').indexOf('required') !== -1;
+        if(req && (!el.value || (el.type==='checkbox' && !el.checked))){ ok=false; el.style.borderColor='var(--color-danger)'; } else { el.style.borderColor=''; }
+      });
+      if(!ok) return;
+      var s = f.querySelector('[data-success]');
+      f.querySelectorAll('.field, .form-note, hr, button[type="submit"], .chip, h3, p').forEach(function(el){ if(!el.closest('[data-success]')) el.style.display='none'; });
+      f.querySelectorAll('a.btn').forEach(function(a){ if(!a.closest('[data-success]')) a.style.display='none'; });
+      if(s){ s.style.display='block'; s.focus && s.focus(); }
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll('.course-tabs').forEach(function(group){
+    group.addEventListener('click', function(e){
+      var tab = e.target.closest('.ct-tab');
+      if(!tab || !group.contains(tab)) return;
+      var key = tab.getAttribute('data-course');
+      group.querySelectorAll('.ct-tab').forEach(function(t){ t.classList.toggle('active', t === tab); });
+      group.querySelectorAll('.ct-panel').forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-course') === key); });
+    });
+  });
+})();
+</script>
+</body>
+</html>

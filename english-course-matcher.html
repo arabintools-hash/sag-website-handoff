@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Course Matcher — Build Your Quote | Study Abroad Gate</title>
+<meta name="description" content="Pick institute, branch, course type, duration, accommodation and add-ons — see your real-time quote in 6 currencies, then send it to a counsellor on WhatsApp.">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<style>
+  .ec-hero { background: var(--navy-deep); color:#fff; padding: clamp(48px,6vw,72px) 0 clamp(60px,7vw,90px); position: relative; overflow: hidden; }
+  .ec-hero::after { content:""; position:absolute; inset:auto -10% -40% auto; width:480px; height:480px; border-radius:50%; background: radial-gradient(circle, oklch(0.42 0.08 70 / 0.22), transparent 65%); pointer-events:none; }
+  .ec-hero .crumbs { font-family: var(--mono); font-size: 0.82rem; color: oklch(0.78 0.02 256); margin-bottom: 22px; display:flex; gap:8px; }
+  .ec-hero .crumbs a { color: inherit; } .ec-hero .crumbs .here { color: var(--gold); }
+  .ec-hero h1 { color:#fff; font-size: clamp(2rem, 3.6vw, 3rem); max-width: 18em; }
+  .ec-hero p.lead { color: oklch(0.86 0.02 256); max-width: 44em; margin-top: 16px; }
+
+  .ec-shell { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; max-width: 1200px; margin-inline: auto; margin-top: -52px; position: relative; z-index: 2; }
+  .ec-panel { background: var(--card); border-radius: var(--r-lg); box-shadow: var(--sh-2); padding: clamp(24px,3vw,36px); border: 1px solid var(--line); }
+
+  .ec-sec { padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px solid var(--line-soft); }
+  .ec-sec:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+  .ec-sec h2 { font-family: var(--serif); font-size: 1.18rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; display:flex; align-items:center; gap:10px; }
+  .ec-sec h2 .num { width: 26px; height: 26px; border-radius: 50%; background: var(--gold-soft); color: var(--gold-strong); display: grid; place-items: center; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; }
+  .ec-sec .help { font-size: 0.88rem; color: var(--muted); margin: 4px 0 16px 36px; }
+
+  .ec-field { margin-bottom: 14px; }
+  .ec-field:last-child { margin-bottom: 0; }
+  .ec-label { display:block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 600; }
+  .ec-select, .ec-input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r); background: var(--card); font-family: var(--sans); font-size: 0.96rem; color: var(--ink); }
+  .ec-select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%238A5E16' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px 16px; padding-right: 40px; cursor: pointer; }
+  .ec-select:focus, .ec-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+  .ec-select:disabled { opacity: 0.5; cursor: not-allowed; background-color: var(--sand); }
+
+  .ec-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ec-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+  .ec-opts { display: grid; gap: 10px; }
+  .ec-opts.col2 { grid-template-columns: repeat(2, 1fr); }
+  .ec-opts.col3 { grid-template-columns: repeat(3, 1fr); }
+  .ec-opt { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: var(--r); border: 2px solid var(--line); background: var(--card); cursor: pointer; transition: all .15s; text-align: left; font: inherit; color: var(--ink); position: relative; }
+  .ec-opt:hover { border-color: var(--gold); background: oklch(0.97 0.018 86); }
+  .ec-opt.sel { border-color: var(--gold); background: var(--gold-soft); }
+  .ec-opt .em { font-size: 1.3rem; line-height: 1; }
+  .ec-opt .tx { flex: 1; min-width: 0; }
+  .ec-opt .tx b { display: block; font-size: 0.94rem; font-weight: 600; }
+  .ec-opt .tx small { color: var(--muted); font-size: 0.78rem; }
+  .ec-opt .pr { font-family: var(--mono); font-size: 0.78rem; color: var(--gold-strong); font-weight: 600; white-space: nowrap; }
+
+  .ec-slider-row { display:grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+  .ec-slider input[type=range] { width: 100%; accent-color: var(--gold); }
+  .ec-weeks-val { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--gold); padding: 6px 16px; background: var(--gold-soft); border-radius: var(--r); min-width: 100px; text-align: center; }
+  .ec-weeks-val small { display:block; font-family: var(--mono); font-size: 0.62rem; color: var(--gold-strong); letter-spacing: 0.08em; }
+
+  .ec-addons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ec-addon { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: var(--r); background: var(--card); cursor: pointer; transition: all .15s; user-select: none; }
+  .ec-addon:hover { border-color: var(--gold); }
+  .ec-addon input { display: none; }
+  .ec-addon .box { width: 22px; height: 22px; border: 2px solid var(--line); border-radius: 6px; flex: 0 0 auto; display: grid; place-items: center; transition: all .15s; }
+  .ec-addon.on .box { background: var(--gold); border-color: var(--gold); }
+  .ec-addon.on .box::after { content:"✓"; color: var(--ink); font-weight: 700; font-size: 0.84rem; }
+  .ec-addon.on { border-color: var(--gold); background: var(--gold-soft); }
+  .ec-addon .tx { flex: 1; min-width: 0; }
+  .ec-addon .tx b { display: block; font-size: 0.9rem; }
+  .ec-addon .tx small { color: var(--muted); font-size: 0.76rem; }
+  .ec-addon .price { font-family: var(--mono); font-size: 0.78rem; color: var(--gold-strong); white-space: nowrap; }
+
+  /* Results panel */
+  .ec-out { background: var(--navy-deep); color:#fff; border-radius: var(--r-lg); padding: clamp(24px,3vw,32px); position: sticky; top: 100px; align-self: start; }
+  .ec-out .kicker { color: var(--gold); } .ec-out .kicker::before { background: var(--gold); }
+  .ec-out h2 { color:#fff; font-family: var(--serif); font-size: 1.32rem; font-weight: 600; margin: 8px 0 4px; }
+  .ec-out .sub { color: oklch(0.84 0.02 256); font-size: 0.9rem; margin-bottom: 18px; }
+
+  /* Currency switcher */
+  .ec-cur { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; padding: 4px; background: oklch(1 0 0 / 0.07); border-radius: var(--r); border: 1px solid oklch(1 0 0 / 0.12); margin-bottom: 16px; }
+  .ec-cur button { background: transparent; border: 0; padding: 9px 4px; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: oklch(0.86 0.02 256); cursor: pointer; border-radius: calc(var(--r) - 4px); transition: all .15s; }
+  .ec-cur button.on { background: var(--gold); color: var(--ink); }
+  .ec-fx-stamp { font-family: var(--mono); font-size: 0.66rem; color: oklch(0.74 0.02 256); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+  .ec-fx-stamp .dot { width: 7px; height: 7px; border-radius: 50%; background: oklch(0.78 0.16 145); display: inline-block; }
+  .ec-fx-stamp .dot.fallback { background: oklch(0.78 0.14 70); }
+
+  .ec-total { padding: 20px; background: oklch(1 0 0 / 0.08); border: 1px solid oklch(1 0 0 / 0.12); border-radius: var(--r); text-align: center; margin-bottom: 18px; }
+  .ec-total .lbl { font-family: var(--mono); font-size: 0.7rem; color: oklch(0.82 0.02 256); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .ec-total .val { font-family: var(--serif); font-size: clamp(1.85rem, 3vw, 2.4rem); color: var(--gold); font-weight: 600; line-height: 1; }
+  .ec-total .unit { font-family: var(--mono); font-size: 0.7rem; color: oklch(0.74 0.02 256); margin-top: 6px; }
+
+  .ec-bd { list-style: none; margin: 0; padding: 0; }
+  .ec-bd li { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 10px 0; border-bottom: 1px dashed oklch(1 0 0 / 0.1); align-items: center; }
+  .ec-bd li:last-child { border-bottom: 0; }
+  .ec-bd li .lab { color: oklch(0.92 0.015 256); font-size: 0.9rem; }
+  .ec-bd li .val { font-family: var(--mono); font-size: 0.88rem; color: #fff; font-weight: 500; }
+
+  .ec-cap { margin-top: 22px; padding-top: 18px; border-top: 1px solid oklch(1 0 0 / 0.14); display: grid; gap: 10px; }
+  .ec-cap h3 { color: #fff; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; margin: 0; }
+  .ec-cap p { font-size: 0.82rem; color: oklch(0.82 0.02 256); margin: 0 0 6px; }
+  .ec-cap .row { display: grid; grid-template-columns: 110px 1fr; gap: 8px; }
+  .ec-cap select, .ec-cap input { padding: 11px 12px; font: inherit; font-family: var(--sans); font-size: 0.94rem; border-radius: var(--r); border: 1.5px solid oklch(1 0 0 / 0.16); background: oklch(1 0 0 / 0.08); color: #fff; }
+  .ec-cap select { appearance:none; background-image:url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23C48E2E' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>"); background-repeat:no-repeat; background-position:right 8px center; background-size:14px; padding-right:28px; }
+  .ec-cap select option { color: var(--ink); background: var(--card); }
+  .ec-cap input::placeholder { color: oklch(0.78 0.02 256); }
+  .btn-wa { background: #25D366; color: #fff; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+  .btn-wa:hover { background: #1ebe5a; border-color: #1ebe5a; }
+  .btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+  .ec-fine { font-family: var(--mono); font-size: 0.72rem; color: oklch(0.78 0.02 256); margin-top: 4px; }
+
+  .ec-pw-info { margin-top: 12px; padding: 12px 14px; background: oklch(0.97 0.02 145 / 1); border-left: 3px solid oklch(0.6 0.14 150); border-radius: 6px; font-size: 0.86rem; color: oklch(0.4 0.1 150); display: none; }
+  .ec-pw-info.show { display: block; }
+
+  @media (max-width: 980px) {
+    .ec-shell { grid-template-columns: 1fr; }
+    .ec-out { position: static; }
+    .ec-addons { grid-template-columns: 1fr; }
+    .ec-opts.col3 { grid-template-columns: repeat(2, 1fr); }
+    .ec-row3 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 580px) {
+    .ec-row2 { grid-template-columns: 1fr; }
+    .ec-opts.col2, .ec-opts.col3 { grid-template-columns: 1fr; }
+    .ec-cur { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body data-screen-label="Free tool · English course matcher">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="index.html#destinations" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="ar/index.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="ec-hero">
+  <div class="wrap-wide">
+    <div class="crumbs">
+      <a href="index.html">Home</a> <span>/</span>
+      <a href="index.html#tools">Free tools</a> <span>/</span>
+      <span class="here">English course matcher</span>
+    </div>
+    <span class="kicker on-dark" style="margin-bottom: 16px;">Real institutes · live FX rates · WhatsApp ready</span>
+    <h1>Find &amp; price your perfect English course</h1>
+    <p class="lead">Pick the institute, branch, course type and add-ons — see your full quote in real time across 6 currencies, then send it to a Study Abroad Gate counsellor on WhatsApp for confirmation.</p>
+  </div>
+</section>
+
+<!-- ===== MATCHER ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap-wide">
+    <div class="ec-shell">
+
+      <!-- LEFT: FORM -->
+      <div class="ec-panel">
+
+        <!-- 1. About you -->
+        <div class="ec-sec">
+          <h2><span class="num">1</span> About you</h2>
+          <div class="help">So we can tailor recommendations and visa support.</div>
+          <div class="ec-row3">
+            <div class="ec-field">
+              <label class="ec-label" for="ecAge">Your age</label>
+              <input type="number" class="ec-input" id="ecAge" placeholder="e.g. 22" min="10" max="80" value="22"/>
+            </div>
+            <div class="ec-field">
+              <label class="ec-label" for="ecCountry">Current country</label>
+              <select class="ec-select" id="ecCountry">
+                <option>Egypt</option><option>Saudi Arabia</option><option>UAE</option>
+                <option>Kuwait</option><option>Qatar</option><option>Bahrain</option><option>Oman</option>
+                <option>Jordan</option><option>Lebanon</option><option>Morocco</option>
+                <option>Tunisia</option><option>Algeria</option><option>Other</option>
+              </select>
+            </div>
+            <div class="ec-field">
+              <label class="ec-label" for="ecNationality">Nationality</label>
+              <select class="ec-select" id="ecNationality">
+                <option>Egyptian</option><option>Saudi</option><option>Emirati</option>
+                <option>Kuwaiti</option><option>Qatari</option><option>Bahraini</option><option>Omani</option>
+                <option>Jordanian</option><option>Lebanese</option><option>Moroccan</option>
+                <option>Tunisian</option><option>Algerian</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Pathway -->
+        <div class="ec-sec">
+          <h2><span class="num">2</span> Continue to a Pathway / Foundation Year?</h2>
+          <div class="help">A pathway program guarantees progression into a UK / USA / Australian degree. Saying yes filters institutes to only those officially accredited by partner universities.</div>
+          <div class="ec-opts col3" id="ecPathway">
+            <button type="button" class="ec-opt" data-v="yes"><span class="em">✅</span><span class="tx"><b>Yes, please</b><small>Pathway-accredited only</small></span></button>
+            <button type="button" class="ec-opt sel" data-v="maybe"><span class="em">🤔</span><span class="tx"><b>Maybe</b><small>Show all institutes</small></span></button>
+            <button type="button" class="ec-opt" data-v="no"><span class="em">❌</span><span class="tx"><b>No</b><small>English only</small></span></button>
+          </div>
+          <div class="ec-pw-info" id="ecPwInfo"><b>Pathway filter active:</b> showing only institutes officially accredited by UK / USA / Canada / Australia universities for pathway &amp; foundation progression.</div>
+        </div>
+
+        <!-- 3. Where -->
+        <div class="ec-sec">
+          <h2><span class="num">3</span> Where do you want to study?</h2>
+          <div class="help">Pick country, then institute, then your preferred branch. Course prices update automatically based on the institute.</div>
+          <div class="ec-row3">
+            <div class="ec-field">
+              <label class="ec-label" for="ecDestCountry">Country</label>
+              <select class="ec-select" id="ecDestCountry"></select>
+            </div>
+            <div class="ec-field">
+              <label class="ec-label" for="ecInstitute">Institute</label>
+              <select class="ec-select" id="ecInstitute"></select>
+            </div>
+            <div class="ec-field">
+              <label class="ec-label" for="ecBranch">Branch / campus</label>
+              <select class="ec-select" id="ecBranch"></select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Course type -->
+        <div class="ec-sec">
+          <h2><span class="num">4</span> Course type</h2>
+          <div class="help">Prices below are this institute's published <b>weekly tuition</b> — update as you switch institute.</div>
+          <div class="ec-opts col2" id="ecCourse">
+            <button type="button" class="ec-opt sel" data-v="general"   data-mult="1.0">
+              <span class="em">🇬🇧</span><span class="tx"><b>General English</b><small>Speaking, listening, grammar · A1–C2</small></span><span class="pr" data-pr="general"></span></button>
+            <button type="button" class="ec-opt" data-v="business" data-mult="1.25">
+              <span class="em">💼</span><span class="tx"><b>Business English</b><small>Workplace fluency · meetings &amp; emails</small></span><span class="pr" data-pr="business"></span></button>
+            <button type="button" class="ec-opt" data-v="ielts"    data-mult="1.15">
+              <span class="em">🎯</span><span class="tx"><b>IELTS / TOEFL prep</b><small>Score-focused with mock tests</small></span><span class="pr" data-pr="ielts"></span></button>
+            <button type="button" class="ec-opt" data-v="academic" data-mult="1.10">
+              <span class="em">🎓</span><span class="tx"><b>Academic English (EAP)</b><small>For university preparation</small></span><span class="pr" data-pr="academic"></span></button>
+            <button type="button" class="ec-opt" data-v="junior"   data-mult="1.50">
+              <span class="em">🧒</span><span class="tx"><b>Junior summer (12–17)</b><small>Lessons + supervised activities</small></span><span class="pr" data-pr="junior"></span></button>
+            <button type="button" class="ec-opt" data-v="intensive" data-mult="1.35">
+              <span class="em">⚡</span><span class="tx"><b>Intensive English</b><small>25–30 hrs/week · fastest progress</small></span><span class="pr" data-pr="intensive"></span></button>
+          </div>
+        </div>
+
+        <!-- 5. Duration -->
+        <div class="ec-sec">
+          <h2><span class="num">5</span> Course duration</h2>
+          <div class="help">From 2 weeks (short stay) up to 52 weeks (full year).</div>
+          <div class="ec-slider-row">
+            <div class="ec-slider"><input type="range" id="ecWeeks" min="2" max="52" step="1" value="12"/></div>
+            <div class="ec-weeks-val"><span id="ecWeeksLbl">12</span><small>WEEKS</small></div>
+          </div>
+        </div>
+
+        <!-- 6. Reason -->
+        <div class="ec-sec">
+          <h2><span class="num">6</span> Why are you learning English?</h2>
+          <div class="help">Helps us match you with the right teaching style and certificate.</div>
+          <div class="ec-opts col3" id="ecReason">
+            <button type="button" class="ec-opt sel" data-v="study"><span class="em">🎓</span><span class="tx"><b>Study abroad</b></span></button>
+            <button type="button" class="ec-opt" data-v="work"><span class="em">💼</span><span class="tx"><b>Work / career</b></span></button>
+            <button type="button" class="ec-opt" data-v="exam"><span class="em">📝</span><span class="tx"><b>Pass an exam</b></span></button>
+            <button type="button" class="ec-opt" data-v="travel"><span class="em">✈️</span><span class="tx"><b>Travel &amp; culture</b></span></button>
+            <button type="button" class="ec-opt" data-v="migration"><span class="em">🌍</span><span class="tx"><b>Migration / PR</b></span></button>
+            <button type="button" class="ec-opt" data-v="personal"><span class="em">🌟</span><span class="tx"><b>Personal interest</b></span></button>
+          </div>
+        </div>
+
+        <!-- 7. Accommodation -->
+        <div class="ec-sec">
+          <h2><span class="num">7</span> Accommodation</h2>
+          <div class="help">Bookable through Study Abroad Gate alongside your course.</div>
+          <div class="ec-opts col2" id="ecAcc">
+            <button type="button" class="ec-opt sel" data-v="residence" data-price="180">
+              <span class="em">🏢</span><span class="tx"><b>Student residence</b><small>Self-catered · meet other students</small></span></button>
+            <button type="button" class="ec-opt" data-v="homestay" data-price="220">
+              <span class="em">🏠</span><span class="tx"><b>Homestay (host family)</b><small>Half-board · immersive practice</small></span></button>
+          </div>
+        </div>
+
+        <!-- 8. Add-ons -->
+        <div class="ec-sec">
+          <h2><span class="num">8</span> Add-ons</h2>
+          <div class="help">Tap any add-on to include it in your total.</div>
+          <div class="ec-addons" id="ecAddons">
+            <label class="ec-addon" data-v="sim"><input type="checkbox"/><span class="box"></span><span class="tx"><b>📱 Mobile SIM + data</b><small>Local number from day 1</small></span><span class="price" data-pp="sim"></span></label>
+            <label class="ec-addon" data-v="internet"><input type="checkbox"/><span class="box"></span><span class="tx"><b>📶 Home Wi-Fi top-up</b><small>If not bundled with stay</small></span><span class="price" data-pp="internet"></span></label>
+            <label class="ec-addon on" data-v="meal"><input type="checkbox" checked/><span class="box"></span><span class="tx"><b>🍽️ Food &amp; drink plan</b><small>Daily meals + snacks</small></span><span class="price" data-pp="meal"></span></label>
+            <label class="ec-addon on" data-v="transport"><input type="checkbox" checked/><span class="box"></span><span class="tx"><b>🚇 Transport pass</b><small>Unlimited bus + metro</small></span><span class="price" data-pp="transport"></span></label>
+            <label class="ec-addon on" data-v="insurance"><input type="checkbox" checked/><span class="box"></span><span class="tx"><b>🛡️ Medical insurance</b><small>Required for most visas</small></span><span class="price" data-pp="insurance"></span></label>
+            <label class="ec-addon on" data-v="pickup"><input type="checkbox" checked/><span class="box"></span><span class="tx"><b>🚖 Airport pickup &amp; drop-off</b><small>Round-trip from airport</small></span><span class="price" data-pp="pickup"></span></label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: RESULTS -->
+      <div class="ec-out" id="ecOut">
+        <span class="kicker">Your live quote</span>
+        <h2 id="ecTitle">—</h2>
+        <div class="sub" id="ecSub">—</div>
+
+        <div class="ec-cur" role="tablist" id="ecCur">
+          <button type="button" class="on" data-v="USD">USD</button>
+          <button type="button" data-v="EUR">EUR</button>
+          <button type="button" data-v="GBP">GBP</button>
+          <button type="button" data-v="SAR">SAR</button>
+          <button type="button" data-v="AED">AED</button>
+          <button type="button" data-v="EGP">EGP</button>
+        </div>
+        <div class="ec-fx-stamp" id="ecFxStamp"><span class="dot"></span> <span id="ecFxText">Live FX rates · loading…</span></div>
+
+        <div class="ec-total">
+          <div class="lbl">Total estimate</div>
+          <div class="val" id="ecTotal">—</div>
+          <div class="unit">includes tuition, accommodation &amp; selected add-ons + 10% admin/visa support</div>
+        </div>
+
+        <ul class="ec-bd" id="ecBd"></ul>
+
+        <div class="ec-cap">
+          <h3>Get your itinerary on WhatsApp</h3>
+          <p>A certified counsellor sends your full quote + start dates — free.</p>
+          <form id="ecForm" novalidate>
+            <div class="row">
+              <select id="ecCc" aria-label="Country code">
+                <option value="+966">🇸🇦 +966</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+20">🇪🇬 +20</option>
+                <option value="+965">🇰🇼 +965</option>
+                <option value="+974">🇶🇦 +974</option>
+                <option value="+973">🇧🇭 +973</option>
+                <option value="+968">🇴🇲 +968</option>
+              </select>
+              <input type="tel" id="ecPhone" placeholder="WhatsApp number" required inputmode="tel"/>
+            </div>
+            <button type="submit" class="btn btn-lg btn-wa" style="margin-top:8px; width:100%;">
+              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              Get your full shortlist on WhatsApp
+            </button>
+            <small class="ec-fine">🔒 We only message you on WhatsApp. No spam, ever.</small>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling — from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li></ul></div>
+      <div class="foot-col"><h5>Free tools</h5><ul><li><a href="english-course-matcher.html">English course matcher</a></li><li><a href="cost-calculator.html">Cost calculator</a></li><li><a href="academic-matcher.html">University academic matcher</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact</a></li><li><a href="services.html">Services</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <div class="foot-lang" role="group" aria-label="Language">
+        <a href="index.html" aria-current="true">English</a>
+        <a href="ar/index.html" lang="ar">العربية</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ INSTITUTES DATABASE ============ */
+/* basePrice = weekly tuition in USD for General English;
+   course type multiplier is applied on top. Branches mirror english-courses.html. */
+/* Branch lists verified against official institute websites in 2026 (Kings: kingseducation.com,
+   EF: ef.com, Kaplan: kaplaninternational.com + Wikipedia, EC: ecenglish.com, St Giles:
+   stgiles-international.com, ILSC: ilsc.com, Malvern: malvernhouse.com, SMEAG / CIA / PINES
+   official sites, EF English First / Wall Street English / IALF Indonesia, Good Hope Studies SA). */
+const INSTITUTES = [
+  { id:'kings', name:'Kings Education', basePrice:300, pathway:true, branches:[
+    {name:'London', country:'UK'},{name:'Oxford', country:'UK'},
+    {name:'Bournemouth', country:'UK'},{name:'Brighton', country:'UK'},
+    {name:'Boston', country:'USA'},{name:'New York (Riverdale)', country:'USA'},
+    {name:'Los Angeles (Marymount)', country:'USA'},{name:'Concordia (Oregon)', country:'USA'},
+  ]},
+  { id:'ef', name:'EF Education First', basePrice:355, pathway:true, branches:[
+    {name:'London', country:'UK'},{name:'Cambridge', country:'UK'},{name:'Manchester', country:'UK'},
+    {name:'Bristol', country:'UK'},{name:'Brighton', country:'UK'},{name:'Oxford', country:'UK'},
+    {name:'Dublin', country:'Ireland'},
+    {name:'Boston', country:'USA'},{name:'New York', country:'USA'},{name:'San Diego', country:'USA'},
+    {name:'Santa Barbara', country:'USA'},{name:'Chicago', country:'USA'},{name:'Seattle', country:'USA'},
+    {name:'Washington DC', country:'USA'},{name:'Honolulu', country:'USA'},{name:'Miami Beach', country:'USA'},
+    {name:'Toronto', country:'Canada'},{name:'Vancouver', country:'Canada'},
+    {name:'Sydney', country:'Australia'},{name:'Brisbane', country:'Australia'},{name:'Perth', country:'Australia'},
+    {name:'Auckland', country:'New Zealand'},
+    {name:'Cape Town', country:'South Africa'},
+    {name:"St Julian's", country:'Malta'},
+    {name:'Singapore', country:'Singapore'},
+    {name:'Dubai', country:'UAE'},
+  ]},
+  { id:'malvern', name:'Malvern House London', basePrice:280, pathway:true, branches:[
+    {name:'London Bridge', country:'UK'},
+  ]},
+  { id:'kaplan', name:'Kaplan International Languages', basePrice:320, pathway:true, branches:[
+    {name:'London Covent Garden', country:'UK'},{name:'London Leicester Square', country:'UK'},
+    {name:'Bath', country:'UK'},{name:'Bournemouth', country:'UK'},{name:'Cambridge', country:'UK'},
+    {name:'Liverpool', country:'UK'},{name:'Manchester', country:'UK'},{name:'Oxford', country:'UK'},
+    {name:'Torquay', country:'UK'},{name:'Edinburgh', country:'UK'},
+    {name:'Dublin', country:'Ireland'},
+    {name:'Berkeley', country:'USA'},{name:'Boston Harvard Square', country:'USA'},
+    {name:'Chicago', country:'USA'},{name:'Los Angeles Westwood', country:'USA'},
+    {name:'Los Angeles Whittier', country:'USA'},{name:'Miami', country:'USA'},
+    {name:'New York Central Park', country:'USA'},{name:'Philadelphia', country:'USA'},
+    {name:'Portland (Oregon)', country:'USA'},{name:'San Diego', country:'USA'},
+    {name:'San Francisco', country:'USA'},{name:'Santa Barbara', country:'USA'},
+    {name:'Seattle', country:'USA'},{name:'Washington DC', country:'USA'},
+    {name:'Toronto', country:'Canada'},{name:'Vancouver', country:'Canada'},
+    {name:'Adelaide', country:'Australia'},{name:'Brisbane', country:'Australia'},
+    {name:'Melbourne', country:'Australia'},{name:'Perth', country:'Australia'},
+    {name:'Sydney', country:'Australia'},
+    {name:'Auckland', country:'New Zealand'},
+  ]},
+  { id:'ilsc', name:'ILSC Education Group', basePrice:290, pathway:true, branches:[
+    {name:'Vancouver', country:'Canada'},{name:'Toronto', country:'Canada'},{name:'Montreal', country:'Canada'},
+    {name:'Brisbane', country:'Australia'},{name:'Sydney', country:'Australia'},{name:'Melbourne', country:'Australia'},
+    {name:'New Delhi', country:'India'},
+  ]},
+  { id:'ec', name:'EC English Language Centres', basePrice:310, pathway:true, branches:[
+    {name:'London Central', country:'UK'},{name:'London 30+', country:'UK'},
+    {name:'Cambridge', country:'UK'},{name:'Brighton', country:'UK'},
+    {name:'Bristol', country:'UK'},{name:'Manchester', country:'UK'},{name:'Oxford', country:'UK'},
+    {name:'Dublin', country:'Ireland'},
+    {name:'Boston', country:'USA'},{name:'New York', country:'USA'},{name:'New York 30+', country:'USA'},
+    {name:'Los Angeles', country:'USA'},{name:'San Francisco', country:'USA'},{name:'San Diego', country:'USA'},
+    {name:'Toronto', country:'Canada'},{name:'Toronto 30+', country:'Canada'},
+    {name:'Vancouver', country:'Canada'},{name:'Vancouver 30+', country:'Canada'},{name:'Montreal', country:'Canada'},
+    {name:"St Julian's", country:'Malta'},
+    {name:'Cape Town', country:'South Africa'},
+    {name:'Dubai', country:'UAE'},
+  ]},
+  { id:'stgiles', name:'St Giles International', basePrice:340, pathway:true, branches:[
+    {name:'London Central', country:'UK'},{name:'London Highgate', country:'UK'},
+    {name:'Brighton', country:'UK'},{name:'Eastbourne', country:'UK'},{name:'Cambridge', country:'UK'},
+    {name:'San Francisco', country:'USA'},{name:'New York', country:'USA'},
+    {name:'Vancouver', country:'Canada'},
+  ]},
+  { id:'smeag', name:'SMEAG Global Education', basePrice:180, pathway:false, branches:[
+    {name:'Cebu — Classic Campus', country:'Philippines'},
+    {name:'Cebu — Sparta Campus', country:'Philippines'},
+    {name:'Cebu — Capital Campus', country:'Philippines'},
+  ]},
+  { id:'cia', name:'CIA — Cebu International Academy', basePrice:180, pathway:false, branches:[
+    {name:'Cebu', country:'Philippines'},
+  ]},
+  { id:'pines', name:'PINES International Academy', basePrice:170, pathway:false, branches:[
+    {name:'Baguio — Chapis Campus', country:'Philippines'},
+    {name:'Baguio — Main Campus', country:'Philippines'},
+  ]},
+  { id:'efid', name:'EF English First Indonesia', basePrice:200, pathway:false, branches:[
+    {name:'Jakarta', country:'Indonesia'},{name:'Surabaya', country:'Indonesia'},
+    {name:'Bandung', country:'Indonesia'},{name:'Bali', country:'Indonesia'},
+  ]},
+  { id:'wse', name:'Wall Street English Indonesia', basePrice:220, pathway:false, branches:[
+    {name:'Jakarta', country:'Indonesia'},{name:'Surabaya', country:'Indonesia'},
+  ]},
+  { id:'ialf', name:'IALF Indonesia', basePrice:230, pathway:false, branches:[
+    {name:'Bali (Denpasar)', country:'Indonesia'},{name:'Jakarta', country:'Indonesia'},
+  ]},
+  { id:'goodhope', name:'Good Hope Studies', basePrice:190, pathway:false, branches:[
+    {name:'Cape Town', country:'South Africa'},
+    {name:'Stellenbosch', country:'South Africa'},
+  ]},
+];
+
+/* ============ LABELS ============ */
+const COURSE_LABELS = {
+  general: 'General English', business: 'Business English', ielts: 'IELTS / TOEFL prep',
+  academic: 'Academic English (EAP)', junior: 'Junior summer programme', intensive: 'Intensive English'
+};
+const REASON_LABELS = {
+  study: 'To study abroad', work: 'For work / career', exam: 'Pass an exam',
+  travel: 'Travel & culture', migration: 'Migration / PR', personal: 'Personal interest'
+};
+const PATHWAY_LABELS = { yes: 'Yes — wants pathway/foundation', maybe: 'Maybe', no: 'No — English only' };
+const ACC_LABELS = { residence: 'Student residence', homestay: 'Homestay (host family)' };
+const ADDON_LABELS = {
+  sim: 'Mobile SIM + data', internet: 'Home Wi-Fi top-up', meal: 'Food & drink plan',
+  transport: 'Transport pass', insurance: 'Medical insurance', pickup: 'Airport pickup & drop-off'
+};
+const COURSE_MULT = { general:1.0, business:1.25, ielts:1.15, academic:1.10, junior:1.50, intensive:1.35 };
+const ADDON_PRICES = { sim:15, internet:10, meal:120, transport:30, insurance:20, pickup:140 };
+const ADDON_UNITS  = { sim:'wk', internet:'wk', meal:'wk', transport:'wk', insurance:'wk', pickup:'once' };
+
+/* ============ FX RATES (live, with fallback) ============ */
+const CURR = {
+  USD: { sym: '$',    dec: 0 },
+  EUR: { sym: '€',    dec: 0 },
+  GBP: { sym: '£',    dec: 0 },
+  SAR: { sym: 'SAR ', dec: 0 },
+  AED: { sym: 'AED ', dec: 0 },
+  EGP: { sym: 'E£',   dec: 0 },
+};
+/* Fallback (updated June 2026) — used if live API fails */
+let FX_RATES = { USD:1, EUR:0.92, GBP:0.79, SAR:3.75, AED:3.67, EGP:50 };
+let FX_LIVE = false;
+let FX_TIME = null;
+
+async function loadLiveRates() {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD', { cache: 'no-store' });
+    if (!res.ok) throw new Error('rate fetch failed');
+    const j = await res.json();
+    if (j.result !== 'success' || !j.rates) throw new Error('bad rate payload');
+    ['EUR','GBP','SAR','AED','EGP'].forEach(c => {
+      if (typeof j.rates[c] === 'number') FX_RATES[c] = j.rates[c];
+    });
+    FX_LIVE = true;
+    FX_TIME = j.time_last_update_utc || new Date().toUTCString();
+    updateFxStamp();
+    render();
+  } catch (e) {
+    FX_LIVE = false;
+    FX_TIME = new Date().toUTCString();
+    updateFxStamp();
+  }
+}
+function updateFxStamp() {
+  const stamp = document.getElementById('ecFxStamp');
+  const dot = stamp.querySelector('.dot');
+  const text = document.getElementById('ecFxText');
+  if (FX_LIVE) {
+    dot.classList.remove('fallback');
+    const d = FX_TIME ? new Date(FX_TIME).toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : 'now';
+    text.textContent = `Live FX rates · updated ${d}`;
+  } else {
+    dot.classList.add('fallback');
+    text.textContent = 'Reference FX rates (live rates temporarily offline)';
+  }
+}
+
+/* ============ STATE ============ */
+const state = {
+  pathway: 'maybe',
+  destCountry: '',
+  instituteId: '',
+  branchIdx: 0,
+  course: 'general',
+  weeks: 12,
+  reason: 'study',
+  acc: { v: 'residence', price: 180 },
+  addons: { meal: true, transport: true, insurance: true, pickup: true, sim: false, internet: false },
+  curr: 'USD',
+};
+
+/* ============ HELPERS ============ */
+function activeInstitutes() {
+  return INSTITUTES.filter(i => state.pathway === 'yes' ? i.pathway : true);
+}
+function countriesForState() {
+  const list = activeInstitutes().flatMap(i => i.branches.map(b => b.country));
+  return [...new Set(list)].sort();
+}
+function institutesInCountry(country) {
+  return activeInstitutes().filter(i => i.branches.some(b => b.country === country));
+}
+function branchesInInstituteAndCountry(instituteId, country) {
+  const inst = INSTITUTES.find(i => i.id === instituteId);
+  if (!inst) return [];
+  return inst.branches.filter(b => b.country === country);
+}
+function currentInstitute() { return INSTITUTES.find(i => i.id === state.instituteId); }
+function currentBranch() {
+  const inst = currentInstitute();
+  if (!inst) return null;
+  const list = branchesInInstituteAndCountry(state.instituteId, state.destCountry);
+  return list[state.branchIdx] || list[0] || null;
+}
+function basePrice() {
+  const inst = currentInstitute();
+  return inst ? inst.basePrice : 250;
+}
+function coursePrice(courseKey) {
+  return Math.round(basePrice() * (COURSE_MULT[courseKey] || 1));
+}
+function fmt(usdAmt) {
+  const rate = FX_RATES[state.curr] || 1;
+  const sym = CURR[state.curr].sym;
+  const val = Math.round(usdAmt * rate);
+  return sym + val.toLocaleString();
+}
+
+/* ============ DROPDOWN BUILDERS ============ */
+function rebuildCountries() {
+  const sel = document.getElementById('ecDestCountry');
+  const countries = countriesForState();
+  // Keep selection if still valid; otherwise pick first
+  const prev = state.destCountry;
+  sel.innerHTML = countries.map(c => `<option value="${c}">${c}</option>`).join('');
+  state.destCountry = countries.includes(prev) ? prev : countries[0] || '';
+  sel.value = state.destCountry;
+  rebuildInstitutes();
+}
+function rebuildInstitutes() {
+  const sel = document.getElementById('ecInstitute');
+  const list = institutesInCountry(state.destCountry);
+  const prev = state.instituteId;
+  sel.innerHTML = list.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+  state.instituteId = list.some(i => i.id === prev) ? prev : (list[0] ? list[0].id : '');
+  sel.value = state.instituteId;
+  rebuildBranches();
+}
+function rebuildBranches() {
+  const sel = document.getElementById('ecBranch');
+  const list = branchesInInstituteAndCountry(state.instituteId, state.destCountry);
+  sel.innerHTML = list.map((b, i) => `<option value="${i}">${b.name}</option>`).join('');
+  if (state.branchIdx >= list.length) state.branchIdx = 0;
+  sel.value = state.branchIdx;
+  render();
+}
+
+/* ============ RENDER ============ */
+function render() {
+  // Update course-option price labels
+  document.querySelectorAll('#ecCourse .ec-opt').forEach(b => {
+    const k = b.dataset.v;
+    const lbl = b.querySelector('.pr');
+    if (lbl) lbl.textContent = fmt(coursePrice(k)) + '/wk';
+  });
+  // Update add-on price labels (converted to current currency)
+  document.querySelectorAll('#ecAddons .ec-addon').forEach(el => {
+    const k = el.dataset.v;
+    const span = el.querySelector('.price');
+    if (!span) return;
+    const unit = ADDON_UNITS[k];
+    span.textContent = '+ ' + fmt(ADDON_PRICES[k]) + (unit === 'wk' ? '/wk' : ' once');
+  });
+
+  // Compute
+  const w = state.weeks;
+  const tuition = coursePrice(state.course) * w;
+  const acc = state.acc.price * w;
+  let addons = 0;
+  const addonBd = {};
+  Object.entries(state.addons).forEach(([k, on]) => {
+    if (!on) return;
+    const p = ADDON_PRICES[k];
+    const v = ADDON_UNITS[k] === 'wk' ? p * w : p;
+    addonBd[k] = v;
+    addons += v;
+  });
+  const admin = Math.round((tuition + acc + addons) * 0.10);
+  const total = tuition + acc + addons + admin;
+
+  // Headers
+  const inst = currentInstitute();
+  const branch = currentBranch();
+  document.getElementById('ecTitle').textContent =
+    inst ? `${inst.name} — ${branch ? branch.name : ''}` : 'Pick an institute';
+  document.getElementById('ecSub').textContent =
+    `${w} week${w === 1 ? '' : 's'} · ${COURSE_LABELS[state.course]} · ${ACC_LABELS[state.acc.v]}`;
+
+  document.getElementById('ecTotal').textContent = fmt(total);
+
+  const bd = [
+    { lab: `Tuition (${w} × ${fmt(coursePrice(state.course))})`, val: fmt(tuition) },
+    { lab: `Accommodation (${w} × ${fmt(state.acc.price)})`, val: fmt(acc) },
+  ];
+  Object.entries(addonBd).forEach(([k, v]) => {
+    bd.push({ lab: ADDON_LABELS[k], val: fmt(v) });
+  });
+  bd.push({ lab: 'Admin & visa support (10%)', val: fmt(admin) });
+
+  document.getElementById('ecBd').innerHTML = bd
+    .map(b => `<li><span class="lab">${b.lab}</span><span class="val">${b.val}</span></li>`).join('');
+
+  // Pathway info banner
+  document.getElementById('ecPwInfo').classList.toggle('show', state.pathway === 'yes');
+}
+
+/* ============ BINDINGS ============ */
+function bindOpts(containerId, key) {
+  const c = document.getElementById(containerId);
+  c.querySelectorAll('.ec-opt').forEach(b => b.addEventListener('click', () => {
+    c.querySelectorAll('.ec-opt').forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel');
+    const val = b.dataset.v;
+    if (key === 'acc') {
+      state.acc = { v: val, price: Number(b.dataset.price) };
+    } else if (key === 'pathway') {
+      state.pathway = val;
+      rebuildCountries();   // re-filter from country down
+    } else if (key === 'course') {
+      state.course = val;
+    } else {
+      state[key] = val;
+    }
+    render();
+  }));
+}
+bindOpts('ecPathway', 'pathway');
+bindOpts('ecCourse', 'course');
+bindOpts('ecReason', 'reason');
+bindOpts('ecAcc', 'acc');
+
+document.getElementById('ecDestCountry').addEventListener('change', (e) => {
+  state.destCountry = e.target.value;
+  rebuildInstitutes();
+});
+document.getElementById('ecInstitute').addEventListener('change', (e) => {
+  state.instituteId = e.target.value;
+  state.branchIdx = 0;
+  rebuildBranches();
+});
+document.getElementById('ecBranch').addEventListener('change', (e) => {
+  state.branchIdx = Number(e.target.value);
+  render();
+});
+
+document.getElementById('ecWeeks').addEventListener('input', (e) => {
+  state.weeks = Number(e.target.value);
+  document.getElementById('ecWeeksLbl').textContent = state.weeks;
+  render();
+});
+
+document.querySelectorAll('#ecAddons .ec-addon').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    const v = el.dataset.v;
+    state.addons[v] = !state.addons[v];
+    el.classList.toggle('on', state.addons[v]);
+    el.querySelector('input').checked = state.addons[v];
+    render();
+  });
+});
+
+// Currency switcher
+document.querySelectorAll('#ecCur button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#ecCur button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  state.curr = b.dataset.v;
+  render();
+}));
+
+// Form
+document.getElementById('ecForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const cc = document.getElementById('ecCc').value;
+  const phone = document.getElementById('ecPhone').value.replace(/\D/g, '');
+  if (phone.length < 6) { document.getElementById('ecPhone').focus(); return; }
+  const w = state.weeks;
+  const tuition = coursePrice(state.course) * w;
+  const acc = state.acc.price * w;
+  let addons = 0;
+  Object.entries(state.addons).forEach(([k, on]) => { if (on) addons += (ADDON_UNITS[k] === 'wk' ? ADDON_PRICES[k] * w : ADDON_PRICES[k]); });
+  const total = tuition + acc + addons + Math.round((tuition + acc + addons) * 0.10);
+  const age = document.getElementById('ecAge').value || '—';
+  const country = document.getElementById('ecCountry').value;
+  const nat = document.getElementById('ecNationality').value;
+  const inst = currentInstitute();
+  const branch = currentBranch();
+  const addonsOn = Object.entries(state.addons).filter(([_, v]) => v).map(([k]) => ADDON_LABELS[k]).join(', ') || 'None';
+  const msg = `Hi! I built an English-course quote with the SAG English Course Matcher:
+
+👤 Age: ${age} · ${nat} living in ${country}
+🏫 Institute: ${inst ? inst.name : '—'} — ${branch ? branch.name + ' (' + branch.country + ')' : '—'}
+📚 Course: ${COURSE_LABELS[state.course]} · ${w} weeks
+🎯 Reason: ${REASON_LABELS[state.reason]}
+🎓 Pathway/Foundation: ${PATHWAY_LABELS[state.pathway]}
+🏠 Accommodation: ${ACC_LABELS[state.acc.v]}
+➕ Add-ons: ${addonsOn}
+
+💰 Estimated total: ${fmt(total)} (${state.curr})
+
+Can a counsellor confirm dates and lock in my quote?`;
+  const num = (cc + phone).replace('+', '');
+  window.location.href = `https://wa.me/${num}?text=` + encodeURIComponent(msg);
+});
+
+/* ============ INIT ============ */
+rebuildCountries();
+updateFxStamp();
+loadLiveRates();
+</script>
+</body>
+</html>

@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Programs — Study Abroad Gate</title>
+<meta name="description" content="Explore popular study abroad programs across the UK, USA, Canada, Australia, Europe and more. Compare tuition, duration, and requirements — then apply free with a certified counsellor.">
+<link rel="canonical" href="https://www.studyabroadgate.com/program.html">
+<link rel="alternate" hreflang="en" href="https://www.studyabroadgate.com/program.html">
+<link rel="alternate" hreflang="ar" href="https://www.studyabroadgate.com/ar/program.html">
+<link rel="alternate" hreflang="x-default" href="https://www.studyabroadgate.com/program.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<script src="image-slot.js" defer></script>
+<style>
+image-slot{display:block;width:100%;height:100%}
+.ph:has(> image-slot){background:none!important;background-image:none!important;border:0!important}
+.ph:has(> image-slot)::after{display:none}
+
+/* ---- programs browse ---- */
+.prog-hero { background: var(--navy-deep); color: #fff; padding: clamp(36px,5vw,64px) 0; }
+.prog-hero h1 { color: #fff; }
+.prog-hero .lead { color: oklch(0.84 0.02 256); }
+
+.country-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+.country-tab { font-family: var(--sans); font-size: 0.92rem; font-weight: 600; padding: 10px 18px; border-radius: var(--r-pill); border: 1.5px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: .15s; white-space: nowrap; }
+.country-tab:hover { border-color: var(--navy); background: oklch(0.96 0.02 256); }
+.country-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+.country-section { margin-bottom: 48px; }
+.country-section h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+.country-section .subtitle { color: var(--muted); font-size: 0.95rem; margin-bottom: 22px; }
+
+.prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.prog-card { position: relative; display: flex; flex-direction: column; padding: 22px; border: 1.5px solid var(--line); border-radius: var(--r); background: var(--card); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: pointer; text-decoration: none; color: inherit; }
+.prog-card:hover { transform: translateY(-3px); box-shadow: var(--sh-2); border-color: var(--navy); }
+.prog-card .prog-level { margin-bottom: 10px; }
+.prog-card h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 700; line-height: 1.25; margin-bottom: 6px; color: var(--ink); }
+.prog-card .prog-uni { font-size: 0.88rem; color: var(--muted); margin-bottom: 14px; line-height: 1.4; }
+.prog-card .prog-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+.prog-card .prog-fee { font-family: var(--mono); font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+.prog-card .prog-dur { font-size: 0.85rem; color: var(--muted); }
+
+/* ---- tooltip ---- */
+.prog-tooltip { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 300px; background: var(--navy-deep); color: #fff; border-radius: var(--r); padding: 18px 20px; box-shadow: 0 12px 32px oklch(0 0 0 / 0.25); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 20; }
+.prog-tooltip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--navy-deep); }
+.prog-card:hover .prog-tooltip { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(-4px); }
+.prog-tooltip .tt-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.86rem; border-bottom: 1px solid oklch(1 0 0 / 0.1); }
+.prog-tooltip .tt-row:last-of-type { border-bottom: 0; }
+.prog-tooltip .tt-label { color: oklch(0.7 0.02 256); }
+.prog-tooltip .tt-val { font-weight: 600; }
+.prog-tooltip .tt-cta { display: block; text-align: center; margin-top: 12px; padding: 9px 16px; background: var(--gold); color: var(--ink); border-radius: var(--r-sm); font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: .15s; }
+.prog-tooltip .tt-cta:hover { background: var(--gold-strong); }
+
+/* ---- responsive ---- */
+@media (max-width: 1080px) {
+  .prog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .prog-grid { grid-template-columns: 1fr; }
+  .prog-tooltip { display: none; }
+}
+</style>
+</head>
+<body data-screen-label="Programs browse">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="destination.html" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret" style="color:var(--gold);">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="ar/program.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="prog-hero">
+  <div class="wrap-wide">
+    <div style="font-family:var(--mono); font-size:0.82rem; color:oklch(0.7 0.02 256); margin-bottom:18px;">
+      <a href="index.html" style="color:inherit;">Home</a> <span>/</span> <span style="color:var(--gold);">Programs</span>
+    </div>
+    <h1 class="h-display" style="max-width:16em;">Browse study programs</h1>
+    <p class="lead" style="max-width:40em; margin-top:14px;">Explore top programs across 10+ destinations. Hover any program for a quick overview — then apply free with a certified counsellor.</p>
+  </div>
+</section>
+
+<!-- ===== COURSE MATCHER BANNER ===== -->
+<section class="section" style="padding-block: 28px; background: var(--gold-soft);">
+  <div class="wrap-wide" style="display:grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;">
+    <div style="width:54px; height:54px; border-radius:14px; background:var(--gold); display:grid; place-items:center;">
+      <svg viewBox="0 0 24 24" stroke="#1a1410" stroke-width="2" fill="none" style="width:26px; height:26px;"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </div>
+    <div>
+      <h3 style="font-family:var(--serif); font-size:1.2rem; font-weight:600; color:var(--ink); margin-bottom:4px;">Not sure which program is right for you?</h3>
+      <p style="font-size:0.94rem; color:oklch(0.42 0.08 70); margin:0;">Answer 6 quick questions — we'll match you with 3 real programs that fit your goals, grades and budget.</p>
+    </div>
+    <a href="academic-matcher.html" class="btn btn-primary btn-lg" style="white-space:nowrap;">Try Academic Matcher →</a>
+  </div>
+</section>
+
+<!-- ===== FILTERS ===== -->
+<section class="section" style="padding-bottom:0;">
+  <div class="wrap-wide">
+    <div class="country-tabs" id="countryTabs">
+      <button class="country-tab active" data-country="all">All countries</button>
+      <button class="country-tab" data-country="uk">🇬🇧 United Kingdom</button>
+      <button class="country-tab" data-country="usa">🇺🇸 United States</button>
+      <button class="country-tab" data-country="ca">🇨🇦 Canada</button>
+      <button class="country-tab" data-country="au">🇦🇺 Australia</button>
+      <button class="country-tab" data-country="es">🇪🇸 Spain</button>
+      <button class="country-tab" data-country="de">🇩🇪 Germany</button>
+      <button class="country-tab" data-country="hu">🇭🇺 Hungary</button>
+      <button class="country-tab" data-country="pl">🇵🇱 Poland</button>
+      <button class="country-tab" data-country="it">🇮🇹 Italy</button>
+      <button class="country-tab" data-country="ge">🇬🇪 Georgia</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAMS BY COUNTRY ===== -->
+<section class="section" style="padding-top:24px;">
+  <div class="wrap-wide">
+
+    <!-- UK -->
+    <div class="country-section" data-country="uk">
+      <h2>🇬🇧 United Kingdom</h2>
+      <p class="subtitle">One-year master's, centuries of prestige, and a 2-year post-study work visa.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-data-science.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Science</h3>
+          <p class="prog-uni">University of Manchester · QS #35</p>
+          <div class="prog-meta"><span class="prog-fee">£29,500/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£29,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-ai-edinburgh.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Artificial Intelligence</h3>
+          <p class="prog-uni">University of Edinburgh · QS #27</p>
+          <div class="prog-meta"><span class="prog-fee">£31,200/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£31,200/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 in CS/Maths, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-business-analytics-kcl.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Business Analytics</h3>
+          <p class="prog-uni">King's College London · QS #31</p>
+          <div class="prog-meta"><span class="prog-fee">£33,000/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£33,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 degree, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-intl-business-glasgow.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA International Business</h3>
+          <p class="prog-uni">University of Glasgow · QS #78</p>
+          <div class="prog-meta"><span class="prog-fee">£22,800/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£22,800/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ABB at A-level, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-law-birmingham.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>LLM International Law</h3>
+          <p class="prog-uni">University of Birmingham · QS #80</p>
+          <div class="prog-meta"><span class="prog-fee">£25,200/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£25,200/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 in Law, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-foundation-ncuk.html">
+          <span class="chip chip-gold prog-level">Foundation</span>
+          <h3>International Foundation Year</h3>
+          <p class="prog-uni">NCUK · Multiple UK universities</p>
+          <div class="prog-meta"><span class="prog-fee">£16,000/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£16,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school diploma, IELTS 5.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Sep 2026 / Jan 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Computer Science</h3>
+          <p class="prog-uni">Imperial College London · QS #6</p>
+          <div class="prog-meta"><span class="prog-fee">£42,200/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£42,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">1st degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Finance</h3>
+          <p class="prog-uni">London School of Economics · QS #50</p>
+          <div class="prog-meta"><span class="prog-fee">£42,696/yr</span><span class="prog-dur">10 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">10 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£42,696/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 in quantitative discipline, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Mechanical Engineering</h3>
+          <p class="prog-uni">Imperial College London · QS #6</p>
+          <div class="prog-meta"><span class="prog-fee">£40,400/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£40,400/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1 in engineering, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>LLB Law</h3>
+          <p class="prog-uni">University College London · QS #9</p>
+          <div class="prog-meta"><span class="prog-fee">£32,100/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£32,100/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">A*AA, LNAT, IELTS 7.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Economics</h3>
+          <p class="prog-uni">University of Warwick · QS #69</p>
+          <div class="prog-meta"><span class="prog-fee">£28,820/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£28,820/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">A*AA incl Maths, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MA International Relations</h3>
+          <p class="prog-uni">University of Oxford · QS #3</p>
+          <div class="prog-meta"><span class="prog-fee">£36,290/yr</span><span class="prog-dur">21 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">21 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">£36,290/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">2:1, IELTS 7.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-computer-science.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">UIUC (Illinois) · QS #69</p>
+          <div class="prog-meta"><span class="prog-fee">$42,868/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$42,868/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 3.8+, SAT 1450+, TOEFL 102</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-ee-purdue.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Electrical Engineering</h3>
+          <p class="prog-uni">Purdue University · QS #89</p>
+          <div class="prog-meta"><span class="prog-fee">$31,104/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$31,104/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 3.6+, SAT 1300+, TOEFL 88</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-mba.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Full-time MBA</h3>
+          <p class="prog-uni">ASU W.P. Carey · Top US MBA</p>
+          <div class="prog-meta"><span class="prog-fee">$59,000/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$59,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GMAT 660+, 2y work exp, TOEFL 100</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Science</h3>
+          <p class="prog-uni">NYU Courant · QS #38</p>
+          <div class="prog-meta"><span class="prog-fee">$59,886/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$59,886/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">STEM degree, GRE, TOEFL 100</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Mechanical Engineering</h3>
+          <p class="prog-uni">MIT · QS #1</p>
+          <div class="prog-meta"><span class="prog-fee">$60,156/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$60,156/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 4.0, SAT 1530+, TOEFL 100</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Finance</h3>
+          <p class="prog-uni">UPenn Wharton · QS #11</p>
+          <div class="prog-meta"><span class="prog-fee">$86,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$86,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GMAT 730+, finance prereqs, TOEFL 110</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Business Administration</h3>
+          <p class="prog-uni">UC Berkeley (Haas) · QS #12</p>
+          <div class="prog-meta"><span class="prog-fee">$48,465/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$48,465/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 3.9, SAT 1450+, TOEFL 100</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-finance-toronto.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BCom Finance</h3>
+          <p class="prog-uni">University of Toronto (Rotman) · QS #21</p>
+          <div class="prog-meta"><span class="prog-fee">CA$71,500/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$71,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">88%+, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">University of British Columbia · QS #38</p>
+          <div class="prog-meta"><span class="prog-fee">CA$50,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$50,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">90%+ in Math, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-civil-eng-mcgill.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BEng Civil Engineering</h3>
+          <p class="prog-uni">McGill University · QS #30</p>
+          <div class="prog-meta"><span class="prog-fee">CA$63,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$63,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">85%+ Math/Sci, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-nursing.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Nursing</h3>
+          <p class="prog-uni">University of British Columbia · QS #38</p>
+          <div class="prog-meta"><span class="prog-fee">CA$49,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$49,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">83%+, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Science</h3>
+          <p class="prog-uni">University of Waterloo · QS #112</p>
+          <div class="prog-meta"><span class="prog-fee">CA$32,000/yr</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$32,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">78%+ in CS/Stats, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>HBA Honours Business</h3>
+          <p class="prog-uni">Western Ivey · QS #114</p>
+          <div class="prog-meta"><span class="prog-fee">CA$57,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$57,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">90%+, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Full-time MBA</h3>
+          <p class="prog-uni">Rotman Toronto · QS #21</p>
+          <div class="prog-meta"><span class="prog-fee">CA$135,300</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$135,300</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GMAT 660+, 2y work exp, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-commerce-monash.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>Bachelor of Commerce</h3>
+          <p class="prog-uni">Monash University · QS #42</p>
+          <div class="prog-meta"><span class="prog-fee">AU$53,800/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$53,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ATAR 88+, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-public-health-sydney.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MPH Public Health</h3>
+          <p class="prog-uni">University of Sydney · QS #18</p>
+          <div class="prog-meta"><span class="prog-fee">AU$55,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$55,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Health/science degree, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">University of Melbourne · QS #14</p>
+          <div class="prog-meta"><span class="prog-fee">AU$56,832/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$56,832/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ATAR 92+, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Full-time MBA</h3>
+          <p class="prog-uni">UNSW AGSM · QS #19</p>
+          <div class="prog-meta"><span class="prog-fee">AU$98,160</span><span class="prog-dur">16 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">16 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$98,160</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GMAT 600+, 2y work exp, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">January 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BEng Mechanical Engineering</h3>
+          <p class="prog-uni">Australian National University · QS #34</p>
+          <div class="prog-meta"><span class="prog-fee">AU$48,720/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$48,720/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ATAR 90+, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Nursing</h3>
+          <p class="prog-uni">Queensland University of Technology · QS #213</p>
+          <div class="prog-meta"><span class="prog-fee">AU$40,800/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$40,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ATAR 75+, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>LLB Law</h3>
+          <p class="prog-uni">University of Sydney · QS #18</p>
+          <div class="prog-meta"><span class="prog-fee">AU$58,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">AU$58,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">ATAR 95+, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">February 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-mba-esade.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Full-time MBA</h3>
+          <p class="prog-uni">ESADE Business School · QS #15 EU MBA</p>
+          <div class="prog-meta"><span class="prog-fee">€78,900</span><span class="prog-dur">12-18 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">12-18 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€78,900</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GMAT 660+, 2y work exp, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-intl-relations-barcelona.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA International Relations</h3>
+          <p class="prog-uni">University of Barcelona · QS #166</p>
+          <div class="prog-meta"><span class="prog-fee">€5,400/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€5,400/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-data-analytics-ie.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Analytics</h3>
+          <p class="prog-uni">IE University, Madrid · QS #259</p>
+          <div class="prog-meta"><span class="prog-fee">€36,800/yr</span><span class="prog-dur">10 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">10 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€36,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">STEM degree, GMAT/GRE, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Architecture</h3>
+          <p class="prog-uni">IE School of Architecture · Top Spanish</p>
+          <div class="prog-meta"><span class="prog-fee">€31,000/yr</span><span class="prog-dur">15 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">15 months full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€31,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Architecture degree, portfolio, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA International</h3>
+          <p class="prog-uni">IE University · QS #259</p>
+          <div class="prog-meta"><span class="prog-fee">€27,500/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€27,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, SAT optional, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Engineering</h3>
+          <p class="prog-uni">Universidad Politécnica de Madrid · QS #422</p>
+          <div class="prog-meta"><span class="prog-fee">€6,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€6,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Engineering degree, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">Universitat Autònoma de Barcelona · QS #178</p>
+          <div class="prog-meta"><span class="prog-fee">€4,800/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€4,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-cs-tum.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Informatics</h3>
+          <p class="prog-uni">TU Munich · QS #37</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (€155 fees/sem)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (€155 fees/sem)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">CS bachelor 2:1, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-mech-eng-rwth.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Mechanical Engineering</h3>
+          <p class="prog-uni">RWTH Aachen · QS #106</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (€330 fees/sem)</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (€330 fees/sem)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Abitur equiv., IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-bba-lmu.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA International Business</h3>
+          <p class="prog-uni">LMU Munich · QS #55</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (€144 fees/sem)</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (€144 fees/sem)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Abitur equiv., IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Aerospace Engineering</h3>
+          <p class="prog-uni">TU Berlin · QS #154</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (€314 fees/sem)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (€314 fees/sem)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Aero/Mech degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MA International Relations</h3>
+          <p class="prog-uni">Free University of Berlin · QS #98</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (€312 fees/sem)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (€312 fees/sem)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Social science degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Renewable Energy</h3>
+          <p class="prog-uni">KIT Karlsruhe · QS #119</p>
+          <div class="prog-meta"><span class="prog-fee">€1,500/sem (non-EU)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€1,500/sem (non-EU)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Engineering/Science degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Science</h3>
+          <p class="prog-uni">Heidelberg University · QS #87</p>
+          <div class="prog-meta"><span class="prog-fee">€1,500/sem (non-EU)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€1,500/sem (non-EU)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">CS/Stats degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Industrial Engineering</h3>
+          <p class="prog-uni">KIT Karlsruhe · QS #119</p>
+          <div class="prog-meta"><span class="prog-fee">€1,500/sem (non-EU)</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€1,500/sem (non-EU)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Abitur equiv., IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Management</h3>
+          <p class="prog-uni">University of Mannheim · QS #261</p>
+          <div class="prog-meta"><span class="prog-fee">€1,500/sem (non-EU)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€1,500/sem (non-EU)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Biz/Econ degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-medicine-debrecen.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MD General Medicine</h3>
+          <p class="prog-uni">University of Debrecen · QS #563</p>
+          <div class="prog-meta"><span class="prog-fee">€16,800/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€16,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school w/ Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-analytics-corvinus.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Business Analytics</h3>
+          <p class="prog-uni">Corvinus University · QS #597</p>
+          <div class="prog-meta"><span class="prog-fee">€5,800/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€5,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Biz/Econ degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Pharmacy</h3>
+          <p class="prog-uni">Semmelweis University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€8,500/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€8,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>DDS Dentistry</h3>
+          <p class="prog-uni">University of Szeged · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€15,500/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€15,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Computer Science</h3>
+          <p class="prog-uni">ELTE Budapest · QS #584</p>
+          <div class="prog-meta"><span class="prog-fee">€5,200/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€5,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">CS bachelor, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA International Business</h3>
+          <p class="prog-uni">Corvinus University · QS #597</p>
+          <div class="prog-meta"><span class="prog-fee">€4,500/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€4,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>DDS Dentistry</h3>
+          <p class="prog-uni">University of Pécs · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€14,000/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€14,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>DVM Veterinary Medicine</h3>
+          <p class="prog-uni">University of Veterinary Medicine Budapest · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€14,800/yr</span><span class="prog-dur">5.5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5.5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€14,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA International Relations</h3>
+          <p class="prog-uni">Eötvös Loránd Univ. · QS #584</p>
+          <div class="prog-meta"><span class="prog-fee">€4,200/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€4,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-medicine-warsaw.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MD in English</h3>
+          <p class="prog-uni">Medical Univ. of Warsaw · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€13,500/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€14,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-data-science-wut.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Science</h3>
+          <p class="prog-uni">Warsaw Univ. of Technology · QS #550</p>
+          <div class="prog-meta"><span class="prog-fee">€3,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">STEM bachelor, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-ir-jagiellonian.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MA International Relations</h3>
+          <p class="prog-uni">Jagiellonian University · QS #309</p>
+          <div class="prog-meta"><span class="prog-fee">€3,600/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,600/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Social science degree, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">AGH Krakow · QS #801</p>
+          <div class="prog-meta"><span class="prog-fee">€3,200/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school w/ Math, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA in English</h3>
+          <p class="prog-uni">Kozminski University · EQUIS</p>
+          <div class="prog-meta"><span class="prog-fee">€3,800/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Aerospace Engineering</h3>
+          <p class="prog-uni">Warsaw Univ. of Technology · QS #550</p>
+          <div class="prog-meta"><span class="prog-fee">€3,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Engineering degree, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Architecture</h3>
+          <p class="prog-uni">Wroclaw Univ. of Technology · QS #951</p>
+          <div class="prog-meta"><span class="prog-fee">€3,200/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Portfolio, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Dentistry</h3>
+          <p class="prog-uni">Medical Univ. of Lodz · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">€13,000/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€13,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Finance</h3>
+          <p class="prog-uni">SGH Warsaw School of Economics · QS #491</p>
+          <div class="prog-meta"><span class="prog-fee">€4,200/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€4,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Biz/Econ degree, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-architecture-polimi.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Architecture</h3>
+          <p class="prog-uni">Politecnico di Milano · QS #111</p>
+          <div class="prog-meta"><span class="prog-fee">€3,900/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,900/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Portfolio, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-design-eng-polimi.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Design Engineering</h3>
+          <p class="prog-uni">Politecnico di Milano · QS #111</p>
+          <div class="prog-meta"><span class="prog-fee">€3,900/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,900/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Engineering/Design degree, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-economics-bologna.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Economics</h3>
+          <p class="prog-uni">University of Bologna · QS #130</p>
+          <div class="prog-meta"><span class="prog-fee">€3,000/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Econ/quantitative degree, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Fashion Design</h3>
+          <p class="prog-uni">Politecnico di Milano · QS #111</p>
+          <div class="prog-meta"><span class="prog-fee">€3,900/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,900/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Portfolio, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA Italian Studies</h3>
+          <p class="prog-uni">Università Bocconi · QS #92 biz</p>
+          <div class="prog-meta"><span class="prog-fee">€16,000/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€16,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Finance</h3>
+          <p class="prog-uni">Università Bocconi · QS #92 biz</p>
+          <div class="prog-meta"><span class="prog-fee">€18,000/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€18,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Quantitative degree, GMAT, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>LLM International Law</h3>
+          <p class="prog-uni">Sapienza University of Rome · QS #134</p>
+          <div class="prog-meta"><span class="prog-fee">€2,900/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€2,900/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Law degree, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-medicine-tbilisi.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MD General Medicine</h3>
+          <p class="prog-uni">Tbilisi State Medical University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$8,000/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$8,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-dentistry-european.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>DDS Dentistry</h3>
+          <p class="prog-uni">European University Georgia · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$7,000/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$7,000/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="program-bba-caucasus.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA Management</h3>
+          <p class="prog-uni">Caucasus University · Top Georgian biz</p>
+          <div class="prog-meta"><span class="prog-fee">$3,200/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$3,200/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">Free University of Tbilisi · Top Georgian tech</p>
+          <div class="prog-meta"><span class="prog-fee">$3,500/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$3,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Pharmacy</h3>
+          <p class="prog-uni">Tbilisi State University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$3,800/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$3,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Nursing</h3>
+          <p class="prog-uni">Ilia State University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$2,800/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$2,800/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+        <a class="prog-card" href="academic-matcher.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MD General Medicine</h3>
+          <p class="prog-uni">East European University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$6,500/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$6,500/yr</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bio+Chem, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- USA -->
+    <div class="country-section" data-country="usa">
+      <h2>🇺🇸 United States</h2>
+      <p class="subtitle">33 of the world's top 100 universities, unmatched research, and OPT work options.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-computer-science.html">
+          <span class="chip chip-gold prog-level">Bachelor's · STEM</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">Univ. of Illinois Urbana-Champaign · US Top 5</p>
+          <div class="prog-meta"><span class="prog-fee">$36,068/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$36,068/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 3.5+, SAT 1400+</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Fall 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-mba.html">
+          <span class="chip chip-teal prog-level">Master's · STEM</span>
+          <h3>Full-Time MBA</h3>
+          <p class="prog-uni">W. P. Carey · Arizona State University</p>
+          <div class="prog-meta"><span class="prog-fee">$56,200/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$56,200/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's + GMAT, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Fall 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-ee-purdue.html">
+          <span class="chip chip-gold prog-level">Bachelor's · STEM</span>
+          <h3>BSc Electrical Engineering</h3>
+          <p class="prog-uni">Purdue University · QS #89</p>
+          <div class="prog-meta"><span class="prog-fee">$31,104/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$31,104/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">GPA 3.2+, SAT/ACT</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Fall 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Canada -->
+    <div class="country-section" data-country="ca">
+      <h2>🇨🇦 Canada</h2>
+      <p class="subtitle">Affordable world-class education, multicultural society, and a clear path to residency.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-nursing.html">
+          <span class="chip chip-gold prog-level">Bachelor's · In-demand</span>
+          <h3>BSc Nursing</h3>
+          <p class="prog-uni">University of British Columbia · QS #38</p>
+          <div class="prog-meta"><span class="prog-fee">CA$49,000/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$49,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">85%+ avg, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-finance-toronto.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Master of Finance</h3>
+          <p class="prog-uni">University of Toronto · QS #21</p>
+          <div class="prog-meta"><span class="prog-fee">CA$62,310/yr</span><span class="prog-dur">16 months</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">16 months</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$62,310 total</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's + GMAT, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">August 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-civil-eng-mcgill.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BEng Civil Engineering</h3>
+          <p class="prog-uni">McGill University · QS #27</p>
+          <div class="prog-meta"><span class="prog-fee">CA$52,080/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">CA$52,080/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">88%+ avg, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Australia -->
+    <div class="country-section" data-country="au">
+      <h2>🇦🇺 Australia</h2>
+      <p class="subtitle">1,100+ institutions, outstanding quality of life, and generous post-study work rights.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-engineering.html">
+          <span class="chip chip-teal prog-level">Master's · Accredited</span>
+          <h3>Master of Engineering</h3>
+          <p class="prog-uni">University of Melbourne · QS #14</p>
+          <div class="prog-meta"><span class="prog-fee">A$50,500/yr</span><span class="prog-dur">2–3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2–3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">A$50,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in Eng, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Feb & Jul 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-public-health-sydney.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>Master of Public Health</h3>
+          <p class="prog-uni">University of Sydney · QS #18</p>
+          <div class="prog-meta"><span class="prog-fee">A$49,000/yr</span><span class="prog-dur">1.5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1.5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">A$49,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in Health, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Feb & Aug 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-commerce-monash.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>Bachelor of Commerce</h3>
+          <p class="prog-uni">Monash University · QS #37</p>
+          <div class="prog-meta"><span class="prog-fee">A$48,800/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">A$48,800/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">80%+ avg, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Feb & Jul 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Spain -->
+    <div class="country-section" data-country="es">
+      <h2>🇪🇸 Spain</h2>
+      <p class="subtitle">Some of Europe's lowest public tuition, 35 QS-ranked universities, and year-round sunshine.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-intl-relations-barcelona.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA International Relations</h3>
+          <p class="prog-uni">Universitat de Barcelona · QS ~150</p>
+          <div class="prog-meta"><span class="prog-fee">€2,500/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€2,500/year (public)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school + DELE B2</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-data-analytics-ie.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Data Analytics</h3>
+          <p class="prog-uni">IE University · Private</p>
+          <div class="prog-meta"><span class="prog-fee">€41,000 total</span><span class="prog-dur">1 year</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">1 year full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€41,000 total</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's, IELTS 6.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">Sep 2026 / Feb 2027</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-mba-esade.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MBA (English-taught)</h3>
+          <p class="prog-uni">ESADE Business School · Top-10 EU</p>
+          <div class="prog-meta"><span class="prog-fee">€79,300 total</span><span class="prog-dur">1.5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">15–18 months</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€79,300 total</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's + GMAT, IELTS 7.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Germany -->
+    <div class="country-section" data-country="de">
+      <h2>🇩🇪 Germany</h2>
+      <p class="subtitle">Tuition-free public universities, 40+ QS-ranked institutions, and an 18-month job-seeking visa.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-cs-tum.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Computer Science</h3>
+          <p class="prog-uni">Technical Univ. of Munich · QS #28</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (public)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (semester fee ~€150)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in CS, GPA 2.5+</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-mech-eng-rwth.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Mechanical Engineering</h3>
+          <p class="prog-uni">RWTH Aachen University · QS ~90</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (public)</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (semester fee ~€300)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in Eng, B2 German</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-bba-lmu.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Business Administration</h3>
+          <p class="prog-uni">LMU Munich · QS #54</p>
+          <div class="prog-meta"><span class="prog-fee">€0 (public)</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€0 (semester fee ~€150)</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Abitur equivalent, B2 German</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Hungary -->
+    <div class="country-section" data-country="hu">
+      <h2>🇭🇺 Hungary</h2>
+      <p class="subtitle">Affordable EU tuition from €2,500, English-taught medicine, and the Stipendium Hungaricum scholarship.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-medicine-debrecen.html">
+          <span class="chip chip-gold prog-level">Undergraduate · 6 years</span>
+          <h3>General Medicine (MD)</h3>
+          <p class="prog-uni">University of Debrecen · QS ~563</p>
+          <div class="prog-meta"><span class="prog-fee">€16,000/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€16,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school + Biology & Chemistry</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-cs-elte.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Computer Science</h3>
+          <p class="prog-uni">ELTE University · QS ~584</p>
+          <div class="prog-meta"><span class="prog-fee">€3,200/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,200/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school diploma, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-analytics-corvinus.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Business Analytics</h3>
+          <p class="prog-uni">Corvinus University · Accredited</p>
+          <div class="prog-meta"><span class="prog-fee">€4,500/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€4,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Poland -->
+    <div class="country-section" data-country="pl">
+      <h2>🇵🇱 Poland</h2>
+      <p class="subtitle">Top-300 universities at affordable tuition, no extra work permit, and NAWA scholarships.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-medicine-warsaw.html">
+          <span class="chip chip-gold prog-level">Undergraduate · 6 years</span>
+          <h3>General Medicine (MD)</h3>
+          <p class="prog-uni">Medical University of Warsaw</p>
+          <div class="prog-meta"><span class="prog-fee">€13,500/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€13,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school + Biology & Chemistry</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-data-science-wut.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BSc Data Science</h3>
+          <p class="prog-uni">Warsaw University of Technology · QS ~550</p>
+          <div class="prog-meta"><span class="prog-fee">€3,500/yr</span><span class="prog-dur">3.5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3.5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school diploma, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-ir-jagiellonian.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MA International Relations</h3>
+          <p class="prog-uni">Jagiellonian University · QS ~300</p>
+          <div class="prog-meta"><span class="prog-fee">€3,000/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">October 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Italy -->
+    <div class="country-section" data-country="it">
+      <h2>🇮🇹 Italy</h2>
+      <p class="subtitle">Public tuition from €900, 30+ QS-ranked institutions, and a 12-month post-study permit.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-architecture-polimi.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Architecture</h3>
+          <p class="prog-uni">Politecnico di Milano · QS #111</p>
+          <div class="prog-meta"><span class="prog-fee">€3,900/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,900/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in Arch, Portfolio</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-economics-bologna.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BA Economics & Business</h3>
+          <p class="prog-uni">Univ. of Bologna · Oldest university</p>
+          <div class="prog-meta"><span class="prog-fee">€2,800/yr</span><span class="prog-dur">3 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">3 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€2,800/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school diploma, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-design-eng-polimi.html">
+          <span class="chip chip-teal prog-level">Master's</span>
+          <h3>MSc Design & Engineering</h3>
+          <p class="prog-uni">Politecnico di Milano · QS #111</p>
+          <div class="prog-meta"><span class="prog-fee">€3,900/yr</span><span class="prog-dur">2 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">2 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">€3,900/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">Bachelor's in Design/Eng, IELTS 6.0</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Georgia -->
+    <div class="country-section" data-country="ge">
+      <h2>🇬🇪 Georgia</h2>
+      <p class="subtitle">Tuition from $2,000, WHO-recognised medical programs, and visa-free entry for 90+ countries.</p>
+      <div class="prog-grid">
+
+        <a class="prog-card" href="program-medicine-tbilisi.html">
+          <span class="chip chip-gold prog-level">Undergraduate · 6 years</span>
+          <h3>General Medicine (MD)</h3>
+          <p class="prog-uni">Tbilisi State Medical University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$5,000/yr</span><span class="prog-dur">6 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">6 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$5,000/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school + Biology & Chemistry</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-bba-caucasus.html">
+          <span class="chip chip-gold prog-level">Bachelor's</span>
+          <h3>BBA Business Administration</h3>
+          <p class="prog-uni">Caucasus University · English-taught</p>
+          <div class="prog-meta"><span class="prog-fee">$3,500/yr</span><span class="prog-dur">4 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">4 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$3,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school diploma, IELTS 5.5</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+        <a class="prog-card" href="program-dentistry-european.html">
+          <span class="chip chip-gold prog-level">Undergraduate · 5 years</span>
+          <h3>Dentistry (DMD)</h3>
+          <p class="prog-uni">European University · WHO-listed</p>
+          <div class="prog-meta"><span class="prog-fee">$4,500/yr</span><span class="prog-dur">5 years</span></div>
+          <div class="prog-tooltip">
+            <div class="tt-row"><span class="tt-label">Duration</span><span class="tt-val">5 years full-time</span></div>
+            <div class="tt-row"><span class="tt-label">Tuition</span><span class="tt-val">$4,500/year</span></div>
+            <div class="tt-row"><span class="tt-label">Entry</span><span class="tt-val">High school + Biology</span></div>
+            <div class="tt-row"><span class="tt-label">Intake</span><span class="tt-val">September 2026</span></div>
+            <span class="tt-cta">Learn more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section">
+  <div class="wrap">
+    <div style="background:var(--navy); border-radius:var(--r-lg); padding:clamp(36px,5vw,60px); text-align:center; color:#fff;">
+      <h2 class="h2" style="color:#fff; max-width:16em; margin-inline:auto;">Can't find your program?</h2>
+      <p class="lead" style="color:oklch(0.85 0.02 256); max-width:32em; margin:16px auto 28px;">Our counsellors have access to 650+ partner universities across 10+ countries. Tell us what you're looking for — we'll match you for free.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-accent btn-lg">Get a free recommendation</a>
+        <a href="https://wa.me/" class="btn btn-ghost on-dark btn-lg">Ask on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-hungary.html">Hungary</a></li><li><a href="destination-poland.html">Poland</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-italy.html">Italy</a></li><li><a href="destination-georgia.html">Georgia</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div>
+      <div class="foot-col"><h5>Explore</h5><ul><li><a href="program.html">Programs</a></li><li><a href="university.html">Universities</a></li><li><a href="services.html">Free counselling</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li><li><a href="university.html#scholarships">Scholarships</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="index.html#parents">For parents</a></li><li><a href="contact.html">Find an office</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <div class="foot-lang" role="group" aria-label="Language / اللغة">
+        <a href="program.html" aria-current="true">English</a>
+        <a href="ar/program.html" lang="ar">العربية</a>
+      </div>
+      <span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="accessibility.html">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.country-tab');
+  var sections = document.querySelectorAll('.country-section');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var c = tab.dataset.country;
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      sections.forEach(function(s){
+        if(c === 'all') { s.style.display = ''; }
+        else { s.style.display = s.dataset.country === c ? '' : 'none'; }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

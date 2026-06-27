@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Which Country Suits You? — Study Abroad Match Quiz | Study Abroad Gate</title>
+<meta name="description" content="Answer 6 quick questions and discover the 3 best study-abroad destinations for your budget, field, language and goals — from the UK and Canada to Germany, Spain, Georgia and Malaysia.">
+<link rel="canonical" href="https://www.studyabroadgate.com/country-match.html">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<style>
+.q-shell{max-width:720px;margin:0 auto}
+.q-prog{height:8px;border-radius:99px;background:oklch(0.9 0.02 256);overflow:hidden;margin-bottom:8px}
+.q-prog span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-strong));border-radius:99px;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.q-meta{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-bottom:22px;display:flex;justify-content:space-between}
+.q-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,4vw,40px);box-shadow:0 1px 2px oklch(.2 .03 256/.05),0 16px 40px -24px oklch(.2 .03 256/.25)}
+.q-q{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:6px}
+.q-hint{color:var(--muted);font-size:.92rem;margin-bottom:22px}
+.q-opts{display:flex;flex-direction:column;gap:12px}
+.q-opt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:var(--cream);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;font-family:var(--sans);font-size:1rem;color:var(--ink);cursor:pointer;transition:border-color .18s,background .18s,transform .12s}
+.q-opt:hover{border-color:var(--gold);background:#fff}
+.q-opt:active{transform:scale(.99)}
+.q-opt .q-emoji{font-size:1.5rem;line-height:1;flex:0 0 auto}
+.q-opt.sel{border-color:var(--gold-strong);background:var(--gold-soft)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.q-back{background:none;border:0;color:var(--muted);font-family:var(--sans);font-size:.92rem;cursor:pointer;padding:8px}
+.q-back:hover{color:var(--navy)}
+.q-back[disabled]{opacity:.35;cursor:default}
+/* results */
+.res-grid{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.res-card{display:flex;gap:20px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 24px;box-shadow:0 1px 2px oklch(.2 .03 256/.05),0 12px 30px -18px oklch(.2 .03 256/.2);opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.res-card.in{opacity:1;transform:none}
+.res-card.top{border-color:var(--gold);box-shadow:0 2px 4px oklch(.2 .03 256/.06),0 22px 48px -22px oklch(0.6 0.12 70/.4)}
+.res-flag{font-size:2.6rem;line-height:1;flex:0 0 auto}
+.res-body{flex:1;min-width:0}
+.res-rank{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-strong)}
+.res-name{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);margin:2px 0 4px}
+.res-blurb{color:var(--muted);font-size:.92rem;line-height:1.55;margin-bottom:12px}
+.res-bar{height:9px;border-radius:99px;background:oklch(0.92 0.02 256);overflow:hidden;margin-bottom:6px}
+.res-bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--gold-strong));width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.res-pct{font-family:var(--mono);font-size:.82rem;font-weight:700;color:var(--navy)}
+.res-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.res-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.res-tag{font-family:var(--mono);font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--cream);border:1px solid var(--line);color:var(--navy)}
+@media(max-width:560px){.res-card{flex-direction:column;gap:12px}.res-flag{font-size:2.2rem}}
+.hidden{display:none}
+</style>
+</head>
+<body data-screen-label="Country match quiz">
+
+<header class="site-head"><div class="wrap-wide nav"><a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a><nav class="nav-links"><a href="destination.html" class="has-caret">Destinations</a><a href="program.html" class="has-caret">Programs</a><a href="university.html" class="has-caret">Universities</a><a href="english-courses.html">English Courses</a><a href="services.html">Services</a><a href="about.html">About</a><a href="faq.html">FAQ</a></nav><div class="nav-right"><a href="contact.html" class="lang-toggle">EN · <b>العربية</b></a><a href="contact.html" class="btn btn-ghost">Sign in</a><a href="contact.html" class="btn btn-accent">Book free consultation</a></div></div></header>
+
+<!-- HERO -->
+<section style="background:var(--navy-deep); color:#fff; padding:clamp(40px,5vw,64px) 0 clamp(34px,4vw,52px);">
+  <div class="wrap" style="text-align:center;">
+    <span class="kicker on-dark center-line" style="margin-bottom:14px;">Free 60-second tool</span>
+    <h1 class="h1" style="color:#fff; max-width:15em; margin-inline:auto;">Which country is right for you?</h1>
+    <p class="lead" style="color:oklch(0.84 0.02 256); max-width:34em; margin:14px auto 0;">Answer 6 quick questions and we'll match you with the 3 best study destinations for your budget, field and goals.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="q-shell">
+
+      <!-- QUIZ -->
+      <div id="quiz">
+        <div class="q-prog"><span id="progBar" style="width:0%"></span></div>
+        <div class="q-meta"><span id="qCount">Question 1 of 6</span><span>Study Abroad Gate</span></div>
+        <div class="q-card">
+          <div class="q-q" id="qText">…</div>
+          <div class="q-hint" id="qHint"></div>
+          <div class="q-opts" id="qOpts"></div>
+          <div class="q-nav">
+            <button class="q-back" id="backBtn" disabled>← Back</button>
+            <span style="font-family:var(--mono);font-size:.78rem;color:var(--muted)">Pick one to continue</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="results" class="hidden">
+        <div style="text-align:center; margin-bottom:26px;">
+          <span class="kicker center-line" style="margin-bottom:10px;">Your matches</span>
+          <h2 class="h2">Your top 3 destinations</h2>
+          <p class="lead" style="max-width:34em; margin:10px auto 0;">Based on your answers. Book a free consultation and a counsellor will refine this with you.</p>
+        </div>
+        <div class="res-grid" id="resGrid"></div>
+        <div style="text-align:center; margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-accent btn-lg">Book a free consultation</a>
+          <button class="btn btn-ghost btn-lg" id="restartBtn" type="button">↺ Retake the quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot"><div class="wrap-wide"><div class="foot-grid"><div class="foot-col"><div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div><p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling, from application to arrival.</p></div><div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-germany.html">Germany</a></li><li><a href="destination-malaysia.html">Malaysia</a></li></ul></div><div class="foot-col"><h5>Free tools</h5><ul><li><a href="country-match.html">Country match quiz</a></li><li><a href="course-search.html">Course search</a></li><li><a href="cost-calculator.html">Cost calculator</a></li><li><a href="visa-support.html">Visa support</a></li></ul></div><div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div></div><nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar"><span>© 2026 Study Abroad Gate. All rights reserved.</span><span style="display:flex; gap:20px;"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span></div></div></footer>
+
+<a href="https://wa.me/" class="wa-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.6.2-.2.3-.7 1-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9 6.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2z"/></svg></a>
+
+<script>
+(function(){
+  var DEST = {
+    uk:{name:"United Kingdom",flag:"🇬🇧",page:"destination.html",blurb:"World-ranked universities and a 2-year Graduate Route to work after study.",tags:["Top rankings","Graduate Route 2 yrs","English-taught"]},
+    usa:{name:"United States",flag:"🇺🇸",page:"destination-usa.html",blurb:"Elite universities and up to 3 years of OPT work for STEM graduates.",tags:["Top global unis","STEM OPT 3 yrs","On-campus work"]},
+    canada:{name:"Canada",flag:"🇨🇦",page:"destination-canada.html",blurb:"Affordable, welcoming, with a 3-year work permit and a clear path to PR.",tags:["PGWP 3 yrs","Path to PR","24 hrs/wk work"]},
+    australia:{name:"Australia",flag:"🇦🇺",page:"destination-australia.html",blurb:"High quality of life, generous work rights and a 2–4 year graduate visa.",tags:["48 hrs/fortnight","485 graduate visa","Sunny"]},
+    spain:{name:"Spain",flag:"🇪🇸",page:"destination-spain.html",blurb:"Sunny EU lifestyle, public tuition from €1,500, and 30 hrs/week of work.",tags:["From €1,500","30 hrs/wk work","Warm climate"]},
+    germany:{name:"Germany",flag:"🇩🇪",page:"destination-germany.html",blurb:"Tuition-free public universities and an 18-month job-seeker permit.",tags:["€0 public tuition","18-mo job-seeker","Engineering hub"]},
+    hungary:{name:"Hungary",flag:"🇭🇺",page:"destination-hungary.html",blurb:"Low fees, strong medical schools, and the Stipendium Hungaricum scholarship.",tags:["Low fees","Top medicine","EU degree"]},
+    poland:{name:"Poland",flag:"🇵🇱",page:"destination-poland.html",blurb:"Affordable EU degrees, no separate work permit, and a 9-month job search.",tags:["Affordable EU","Work freely","9-mo job search"]},
+    italy:{name:"Italy",flag:"🇮🇹",page:"destination-italy.html",blurb:"Tuition from €900, rich culture, and a 12-month post-study stay-back.",tags:["From €900","12-mo stay-back","Arts & design"]},
+    georgia:{name:"Georgia",flag:"🇬🇪",page:"destination-georgia.html",blurb:"Very low cost, WHO-listed medicine, and visa-free entry for many nationalities.",tags:["Low cost","WHO-listed med","Easy entry"]},
+    malaysia:{name:"Malaysia",flag:"🇲🇾",page:"destination-malaysia.html",blurb:"English-taught, low cost, Muslim-friendly, with a top-100 university (UM).",tags:["English-taught","Muslim-friendly","Low cost"]}
+  };
+  var QUESTIONS = [
+    {q:"What's your yearly budget?", hint:"Tuition plus living costs, per year.", opts:[
+      {e:"🪙", t:"Tight — under $8,000", s:{georgia:3,malaysia:3,poland:2,hungary:2,germany:2}},
+      {e:"⚖️", t:"Moderate — $8,000 to $20,000", s:{germany:3,hungary:3,poland:3,italy:2,spain:2,malaysia:2}},
+      {e:"💳", t:"Flexible — $20,000 or more", s:{uk:3,usa:3,canada:3,australia:3,spain:1,italy:1}}
+    ]},
+    {q:"Which field is closest to your goal?", hint:"Pick the nearest match.", opts:[
+      {e:"🩺", t:"Medicine & health sciences", s:{georgia:3,hungary:3,poland:3,italy:2,malaysia:2}},
+      {e:"⚙️", t:"Engineering & technology", s:{germany:3,usa:2,uk:2,canada:2,poland:2}},
+      {e:"📈", t:"Business & finance", s:{uk:3,usa:3,canada:2,australia:2,spain:2}},
+      {e:"🎨", t:"Arts, design & humanities", s:{uk:3,italy:3,spain:2}}
+    ]},
+    {q:"What language do you want to study in?", hint:"Most countries offer English-taught degrees too.", opts:[
+      {e:"🇬🇧", t:"English only", s:{uk:3,usa:3,canada:3,australia:3,malaysia:3,georgia:2}},
+      {e:"🇪🇺", t:"English programmes in Europe are fine", s:{germany:2,hungary:2,poland:2,italy:2,spain:2}},
+      {e:"🗣️", t:"I'd like to learn the local language too", s:{germany:3,spain:3,italy:3}}
+    ]},
+    {q:"How important is working or staying after graduation?", hint:"Post-study work and residency options.", opts:[
+      {e:"🏆", t:"Very — I want a route to residency", s:{canada:3,australia:3,germany:3,uk:2}},
+      {e:"💼", t:"Somewhat — a year or two of experience", s:{uk:2,spain:2,italy:2,hungary:2,poland:2}},
+      {e:"🏠", t:"Not a priority — I'll return home", s:{georgia:2,malaysia:2}}
+    ]},
+    {q:"Which climate and lifestyle appeals most?", hint:"Where would you feel at home?", opts:[
+      {e:"☀️", t:"Warm & sunny", s:{spain:3,italy:3,malaysia:3,georgia:2,australia:2}},
+      {e:"🍂", t:"Cool, four seasons", s:{uk:2,canada:3,germany:2,poland:2,hungary:2}},
+      {e:"🌍", t:"No strong preference", s:{uk:1,usa:1,canada:1,australia:1,spain:1,germany:1,hungary:1,poland:1,italy:1,georgia:1,malaysia:1}}
+    ]},
+    {q:"How important is a Muslim-friendly, halal-easy environment?", hint:"Relevant for many of our students.", opts:[
+      {e:"🕌", t:"Very important", s:{malaysia:3,georgia:2,uk:2}},
+      {e:"🙂", t:"Nice to have", s:{malaysia:1,uk:1,canada:1,australia:1}},
+      {e:"➖", t:"Not important", s:{}}
+    ]}
+  ];
+
+  var step=0, answers=[];
+  var quiz=document.getElementById('quiz'), results=document.getElementById('results');
+  var qText=document.getElementById('qText'), qHint=document.getElementById('qHint'), qOpts=document.getElementById('qOpts'),
+      qCount=document.getElementById('qCount'), progBar=document.getElementById('progBar'), backBtn=document.getElementById('backBtn');
+
+  function render(){
+    var Q=QUESTIONS[step];
+    qText.textContent=Q.q; qHint.textContent=Q.hint;
+    qCount.textContent='Question '+(step+1)+' of '+QUESTIONS.length;
+    progBar.style.width=Math.round(step/QUESTIONS.length*100)+'%';
+    backBtn.disabled = step===0;
+    qOpts.innerHTML='';
+    Q.opts.forEach(function(o,i){
+      var b=document.createElement('button');
+      b.className='q-opt'+(answers[step]===i?' sel':'');
+      b.type='button';
+      b.innerHTML='<span class="q-emoji">'+o.e+'</span><span>'+o.t+'</span>';
+      b.addEventListener('click',function(){ answers[step]=i; next(); });
+      qOpts.appendChild(b);
+    });
+  }
+  function next(){
+    if(step<QUESTIONS.length-1){ step++; render(); }
+    else { showResults(); }
+  }
+  backBtn.addEventListener('click',function(){ if(step>0){ step--; render(); } });
+
+  function showResults(){
+    progBar.style.width='100%';
+    var score={}; Object.keys(DEST).forEach(function(k){score[k]=0;});
+    answers.forEach(function(ai,qi){
+      var s=QUESTIONS[qi].opts[ai].s;
+      for(var k in s){ score[k]=(score[k]||0)+s[k]; }
+    });
+    var max=QUESTIONS.length*3;
+    var ranked=Object.keys(DEST).map(function(k){return {k:k,pct:Math.min(99,Math.round(score[k]/max*100))};})
+      .sort(function(a,b){return b.pct-a.pct;}).slice(0,3);
+    var grid=document.getElementById('resGrid'); grid.innerHTML='';
+    ranked.forEach(function(r,i){
+      var d=DEST[r.k];
+      var card=document.createElement('div');
+      card.className='res-card'+(i===0?' top':'');
+      card.innerHTML='<div class="res-flag">'+d.flag+'</div>'+
+        '<div class="res-body">'+
+          '<div class="res-rank">'+(i===0?'★ Best match':'Match #'+(i+1))+'</div>'+
+          '<div class="res-name">'+d.name+'</div>'+
+          '<div class="res-blurb">'+d.blurb+'</div>'+
+          '<div class="res-bar"><span data-w="'+r.pct+'"></span></div>'+
+          '<div class="res-pct">'+r.pct+'% match</div>'+
+          '<div class="res-tags">'+d.tags.map(function(t){return '<span class="res-tag">'+t+'</span>';}).join('')+'</div>'+
+          '<div class="res-actions"><a href="'+d.page+'" class="btn btn-accent">Explore '+d.name+' →</a></div>'+
+        '</div>';
+      grid.appendChild(card);
+    });
+    quiz.classList.add('hidden'); results.classList.remove('hidden');
+    if(window.scrollY>240){ window.scrollTo({top:0,behavior:'smooth'}); }
+    setTimeout(function(){
+      [].slice.call(grid.querySelectorAll('.res-card')).forEach(function(c,i){
+        setTimeout(function(){ c.classList.add('in'); var bar=c.querySelector('.res-bar span'); bar.style.width=bar.getAttribute('data-w')+'%'; }, i*180);
+      });
+    },60);
+  }
+  document.getElementById('restartBtn').addEventListener('click',function(){
+    step=0; answers=[]; results.classList.add('hidden'); quiz.classList.remove('hidden'); render();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  render();
+})();
+</script>
+</body>
+</html>

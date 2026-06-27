@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Living Calculator — Study Abroad Budget Planner | Study Abroad Gate</title>
+<meta name="description" content="Interactive cost-of-living calculator for international students. Pick a city, accommodation type, and lifestyle — get an accurate monthly and annual budget with real data from 22+ student cities.">
+<script src="analytics.js" defer></script>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png"/>
+<link rel="apple-touch-icon" href="assets/brand/favicon-180.png"/>
+<style>
+  /* ---- hero ---- */
+  .cc-hero { background: var(--navy-deep); color:#fff; padding: clamp(48px,6vw,72px) 0 clamp(60px,7vw,90px); position: relative; overflow: hidden; }
+  .cc-hero::after { content:""; position:absolute; inset:auto -10% -40% auto; width:480px; height:480px; border-radius:50%; background: radial-gradient(circle, oklch(0.42 0.08 70 / 0.22), transparent 65%); pointer-events:none; }
+  .cc-hero .crumbs { font-family: var(--mono); font-size: 0.82rem; color: oklch(0.78 0.02 256); margin-bottom: 22px; display:flex; gap:8px; }
+  .cc-hero .crumbs a { color: inherit; }
+  .cc-hero .crumbs .here { color: var(--gold); }
+  .cc-hero h1 { color:#fff; font-size: clamp(2rem, 3.6vw, 3rem); max-width: 16em; }
+  .cc-hero p.lead { color: oklch(0.86 0.02 256); max-width: 42em; margin-top: 16px; }
+
+  /* ---- layout ---- */
+  .cc-shell { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1180px; margin-inline: auto; margin-top: -52px; position: relative; z-index: 2; }
+  .cc-panel { background: var(--card); border-radius: var(--r-lg); box-shadow: var(--sh-2); padding: clamp(24px,3vw,36px); border: 1px solid var(--line); }
+  .cc-panel h2 { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .cc-panel .sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 24px; }
+
+  /* ---- form ---- */
+  .cc-field { margin-bottom: 22px; }
+  .cc-label { display:block; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-strong); margin-bottom: 10px; font-weight: 600; }
+  .cc-select { width: 100%; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: var(--r); background: var(--card); font-family: var(--sans); font-size: 1rem; color: var(--ink); appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%238A5E16' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat: no-repeat; background-position: right 14px center; background-size: 18px 18px; padding-right: 44px; }
+  .cc-select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+  .cc-input { width:100%; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: var(--r); background: var(--card); font-family: var(--sans); font-size: 1rem; color: var(--ink); }
+  .cc-input:focus { outline:none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+
+  /* segmented control */
+  .cc-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--sand); border-radius: var(--r); padding: 4px; border: 1px solid var(--line); }
+  .cc-seg button { background: transparent; border: 0; padding: 11px 8px; font-family: var(--sans); font-size: 0.92rem; font-weight: 600; color: var(--muted); cursor: pointer; border-radius: calc(var(--r) - 4px); transition: all .15s; line-height: 1.25; }
+  .cc-seg button.on { background: var(--card); color: var(--ink); box-shadow: var(--sh-1); }
+  .cc-seg button small { display:block; font-family: var(--mono); font-size: 0.66rem; color: var(--muted-2); font-weight: 400; letter-spacing: 0.05em; margin-top: 2px; }
+
+  .cc-seg.acc { grid-template-columns: repeat(3, 1fr); }
+  .cc-seg.life { grid-template-columns: repeat(3, 1fr); }
+  .cc-seg.curr { grid-template-columns: repeat(6, 1fr); }
+  .cc-seg.curr button { padding: 9px 6px; font-size: 0.86rem; }
+
+  /* ---- results panel ---- */
+  .cc-out { background: var(--navy-deep); color:#fff; border-radius: var(--r-lg); padding: clamp(24px,3vw,36px); position: sticky; top: 100px; }
+  .cc-out .kicker { color: var(--gold); }
+  .cc-out .kicker::before { background: var(--gold); }
+  .cc-out h2 { color:#fff; font-family: var(--serif); font-size: 1.35rem; font-weight: 600; margin: 8px 0 4px; }
+  .cc-out .city-line { color: oklch(0.82 0.02 256); font-size: 0.95rem; margin-bottom: 22px; }
+
+  .cc-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 18px; background: oklch(1 0 0 / 0.06); border: 1px solid oklch(1 0 0 / 0.1); border-radius: var(--r); margin-bottom: 22px; }
+  .cc-totals .it { text-align: center; }
+  .cc-totals .it .lbl { font-family: var(--mono); font-size: 0.7rem; color: oklch(0.82 0.02 256); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .cc-totals .it .val { font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 1.95rem); color: var(--gold); font-weight: 600; line-height: 1; }
+  .cc-totals .it .unit { font-family: var(--mono); font-size: 0.7rem; color: oklch(0.74 0.02 256); margin-top: 4px; }
+
+  .cc-bd { list-style: none; margin: 0; padding: 0; }
+  .cc-bd li { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 12px 0; border-bottom: 1px dashed oklch(1 0 0 / 0.1); align-items: center; }
+  .cc-bd li:last-child { border-bottom: 0; }
+  .cc-bd li .lab { display:flex; align-items:center; gap:10px; color: oklch(0.92 0.015 256); font-size: 0.94rem; }
+  .cc-bd li .lab .ic { width: 26px; height: 26px; border-radius: 7px; background: oklch(1 0 0 / 0.08); display: grid; place-items: center; font-size: 0.95rem; }
+  .cc-bd li .val { font-family: var(--mono); font-size: 0.95rem; color: #fff; font-weight: 500; }
+
+  .cc-pof { margin-top: 22px; padding: 16px; background: oklch(1 0 0 / 0.05); border: 1px solid oklch(1 0 0 / 0.1); border-radius: var(--r); }
+  .cc-pof .lbl { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .cc-pof .txt { font-size: 0.88rem; color: oklch(0.88 0.02 256); line-height: 1.5; }
+
+  /* ---- CTA band ---- */
+  .cc-cta { margin-top: 26px; padding-top: 22px; border-top: 1px solid oklch(1 0 0 / 0.12); display: grid; gap: 10px; }
+  .btn-wa { background: #25D366; color: #fff; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+  .btn-wa:hover { background: #1ebe5a; border-color: #1ebe5a; transform: translateY(-1px); }
+  .btn-wa svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .cc-disclaim { font-family: var(--mono); font-size: 0.72rem; color: var(--muted-2); margin-top: 18px; line-height: 1.55; }
+
+  @media (max-width: 980px) {
+    .cc-shell { grid-template-columns: 1fr; }
+    .cc-out { position: static; }
+  }
+  @media (max-width: 580px) {
+    .cc-seg.curr { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body data-screen-label="Free tool · Cost calculator">
+
+<!-- ===== HEADER ===== -->
+<header class="site-head">
+  <div class="wrap-wide nav">
+    <a class="brand sag-logo" href="index.html"><img src="assets/brand/logo-primary.png" alt="Study Abroad Gate — Global Education Experts"/></a>
+    <nav class="nav-links">
+      <a href="index.html#destinations" class="has-caret">Destinations</a>
+      <a href="program.html" class="has-caret">Programs</a>
+      <a href="university.html" class="has-caret">Universities</a>
+      <a href="english-courses.html">English Courses</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a><a href="faq.html">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="ar/index.html" class="lang-toggle">EN · <b>العربية</b></a>
+      <a href="contact.html" class="btn btn-ghost">Sign in</a>
+      <a href="contact.html" class="btn btn-accent">Book free consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="cc-hero">
+  <div class="wrap-wide">
+    <div class="crumbs">
+      <a href="index.html">Home</a> <span>/</span>
+      <a href="index.html#tools">Free tools</a> <span>/</span>
+      <span class="here">Cost calculator</span>
+    </div>
+    <span class="kicker on-dark" style="margin-bottom: 16px;">22 cities · real data</span>
+    <h1>How much will it really cost?</h1>
+    <p class="lead">Pick a city, accommodation type, and lifestyle — and see a transparent monthly budget. Built from data we use every day with our students.</p>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap-wide">
+    <div class="cc-shell">
+
+      <!-- LEFT: FORM -->
+      <div class="cc-panel">
+        <h2>Tell us about you</h2>
+        <p class="sub">All fields update the budget on the right in real time.</p>
+
+        <div class="cc-field">
+          <label class="cc-label" for="ccCity">Where will you study?</label>
+          <select class="cc-select" id="ccCity"></select>
+        </div>
+
+        <div class="cc-field">
+          <span class="cc-label">Accommodation type</span>
+          <div class="cc-seg acc" role="tablist" id="ccAcc">
+            <button type="button" class="on" data-v="shared">Shared apartment<small>2–4 roommates</small></button>
+            <button type="button" data-v="studio">Studio / 1-BR<small>Living alone</small></button>
+            <button type="button" data-v="campus">On-campus<small>Dorm / halls</small></button>
+          </div>
+        </div>
+
+        <div class="cc-field">
+          <span class="cc-label">Lifestyle</span>
+          <div class="cc-seg life" role="tablist" id="ccLife">
+            <button type="button" data-v="budget">Budget-conscious<small>Cook, transit, basics</small></button>
+            <button type="button" class="on" data-v="average">Average student<small>Balanced spend</small></button>
+            <button type="button" data-v="comfort">Comfortable<small>Eat out, travel</small></button>
+          </div>
+        </div>
+
+        <div class="cc-field">
+          <label class="cc-label" for="ccTuition">Annual tuition (optional)</label>
+          <input type="number" class="cc-input" id="ccTuition" placeholder="e.g. 12000 — leave blank to skip" min="0" step="500"/>
+          <small style="display:block; margin-top:8px; font-size:0.82rem; color:var(--muted);">If you know your tuition, add it here for a full annual estimate.</small>
+        </div>
+
+        <div class="cc-field" style="margin-bottom:0;">
+          <span class="cc-label">Show me in</span>
+          <div class="cc-seg curr" role="tablist" id="ccCurr">
+            <button type="button" class="on" data-v="USD">USD</button>
+            <button type="button" data-v="EUR">EUR</button>
+            <button type="button" data-v="GBP">GBP</button>
+            <button type="button" data-v="SAR">SAR</button>
+            <button type="button" data-v="AED">AED</button>
+            <button type="button" data-v="EGP">EGP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: RESULTS -->
+      <div class="cc-out" id="ccOut">
+        <span class="kicker">Your estimated budget</span>
+        <h2 id="ccCityTitle">Living in Munich</h2>
+        <div class="city-line" id="ccCityLine">Studio · Average lifestyle · in USD</div>
+
+        <div class="cc-totals">
+          <div class="it">
+            <div class="lbl">Per month</div>
+            <div class="val" id="ccMo">$1,580</div>
+            <div class="unit">excluding tuition</div>
+          </div>
+          <div class="it">
+            <div class="lbl">Per year</div>
+            <div class="val" id="ccYr">$18,960</div>
+            <div class="unit" id="ccYrUnit">incl. living only</div>
+          </div>
+        </div>
+
+        <ul class="cc-bd" id="ccBd">
+          <!-- breakdown injected -->
+        </ul>
+
+        <div class="cc-pof" id="ccPof">
+          <div class="lbl">Visa proof of funds</div>
+          <div class="txt" id="ccPofTxt">—</div>
+        </div>
+
+        <div class="cc-cta">
+          <a href="#" id="ccWa" target="_blank" rel="noopener" class="btn btn-lg btn-wa">
+            <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Send budget to a counsellor
+          </a>
+          <a href="contact.html" class="btn btn-accent btn-lg" style="text-align:center; justify-content:center;">Book free consultation</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="cc-disclaim" style="text-align:center; max-width: 780px; margin: 36px auto 0;">
+      Figures are midpoint estimates compiled from official sources (university accommodation rates, IPREM, Sperrkonto, DAAD, Stipendium Hungaricum, GIC, Numbeo verified) and may vary ±15% by neighbourhood and individual lifestyle. FX rates are approximate (June 2026). For exact figures specific to your case, talk to a counsellor.
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-foot">
+  <div class="wrap-wide">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <div class="foot-brand"><img class="foot-logo" src="assets/brand/logo-reversed.png" alt="Study Abroad Gate"/></div>
+        <p style="color:oklch(0.74 0.015 256); font-size:0.94rem; max-width:30em;">Your trusted gateway to a world-class education abroad. Free expert counselling — from application to arrival.</p>
+      </div>
+      <div class="foot-col"><h5>Destinations</h5><ul><li><a href="destination.html">United Kingdom</a></li><li><a href="destination-usa.html">United States</a></li><li><a href="destination-canada.html">Canada</a></li><li><a href="destination-australia.html">Australia</a></li><li><a href="destination-spain.html">Spain</a></li><li><a href="destination-germany.html">Germany</a></li></ul></div>
+      <div class="foot-col"><h5>Free tools</h5><ul><li><a href="country-match.html">Country match quiz</a></li><li><a href="academic-matcher.html">Academic matcher</a></li><li><a href="cost-calculator.html">Cost calculator</a></li><li><a href="visa-support.html">Visa support</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="foot-col"><h5>Company</h5><ul><li><a href="about.html">About us</a></li><li><a href="contact.html">Contact</a></li><li><a href="services.html">Services</a></li></ul></div>
+    </div>
+    <nav class="foot-social" aria-label="Follow Study Abroad Gate on social media">
+        <a href="https://www.facebook.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        <a href="https://www.instagram.com/studyabroadgate" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://x.com/studyabroadgate" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.2L22.8 22h-6.6l-5.2-6.8L4.9 22H1.6l7.7-8.8L1.2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 3.9H5.2L17 20Z"/></svg></a>
+        <a href="https://www.linkedin.com/company/studyabroadgate" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9V9Z"/></svg></a>
+        <a href="https://www.youtube.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.3-.4-4.8a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.4A2.5 2.5 0 0 0 1.4 7.2C1 8.7 1 12 1 12s0 3.3.4 4.8a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.4a2.5 2.5 0 0 0 1.8-1.8C23 15.3 23 12 23 12Zm-13 3V9l5.2 3-5.2 3Z"/></svg></a>
+        <a href="https://www.tiktok.com/@studyabroadgate" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.8 3.5 4.2v2.4c-1.3.1-2.6-.3-3.7-1v5.9a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v2.5a3.1 3.1 0 1 0 2.2 3V3h2.7Z"/></svg></a>
+      </nav>
+      <div class="foot-bar">
+      <span>© 2026 Study Abroad Gate. All rights reserved.</span>
+      <div class="foot-lang" role="group" aria-label="Language">
+        <a href="index.html" aria-current="true">English</a>
+        <a href="ar/index.html" lang="ar">العربية</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ------- City database (all monthly numbers in USD, midpoint) ------- */
+const CITIES = {
+  // UK
+  london:      { name:'London',          country:'UK 🇬🇧',     rent:{shared:950,studio:1645,campus:1200}, food:400, transport:250, insurance:55, leisure:280, supplies:65, pof:'£13,348/yr (London) for the Student visa, Home Office 2026.' },
+  manchester:  { name:'Manchester',      country:'UK 🇬🇧',     rent:{shared:570,studio:950,campus:800},   food:280, transport:95,  insurance:55, leisure:200, supplies:55, pof:'£10,224/yr (outside London) for the Student visa.' },
+  edinburgh:   { name:'Edinburgh',       country:'UK 🇬🇧',     rent:{shared:695,studio:1138,campus:900},  food:300, transport:90,  insurance:55, leisure:220, supplies:60, pof:'£10,224/yr (outside London) for the Student visa.' },
+  glasgow:     { name:'Glasgow',         country:'UK 🇬🇧',     rent:{shared:505,studio:820,campus:720},   food:260, transport:80,  insurance:55, leisure:190, supplies:50, pof:'£10,224/yr (outside London) for the Student visa.' },
+  birmingham:  { name:'Birmingham',      country:'UK 🇬🇧',     rent:{shared:530,studio:885,campus:760},   food:270, transport:80,  insurance:55, leisure:200, supplies:55, pof:'£10,224/yr (outside London) for the Student visa.' },
+  // USA
+  champaign:   { name:'Champaign-Urbana',country:'USA 🇺🇸',    rent:{shared:750,studio:1200,campus:1000}, food:325, transport:25,  insurance:225,leisure:225, supplies:75, pof:'~$28,000/yr living + tuition for F-1 visa proof.' },
+  westlafayette:{name:'West Lafayette', country:'USA 🇺🇸',    rent:{shared:700,studio:1100,campus:950},  food:310, transport:30,  insurance:215,leisure:220, supplies:75, pof:'~$28,000/yr living + tuition for F-1 visa proof.' },
+  phoenix:     { name:'Phoenix',         country:'USA 🇺🇸',    rent:{shared:900,studio:1500,campus:1150}, food:340, transport:80,  insurance:220,leisure:250, supplies:75, pof:'~$28,000/yr living + tuition for F-1 visa proof.' },
+  // Canada
+  toronto:     { name:'Toronto',         country:'Canada 🇨🇦', rent:{shared:660,studio:1100,campus:880},  food:300, transport:94,  insurance:65, leisure:230, supplies:60, pof:'CA$20,635/yr Provincial Attestation + GIC for the study permit.' },
+  vancouver:   { name:'Vancouver',       country:'Canada 🇨🇦', rent:{shared:810,studio:1250,campus:980},  food:310, transport:41,  insurance:65, leisure:240, supplies:60, pof:'CA$20,635/yr Provincial Attestation + GIC for the study permit.' },
+  montreal:    { name:'Montreal',        country:'Canada 🇨🇦', rent:{shared:515,studio:810,campus:680},   food:290, transport:41,  insurance:65, leisure:210, supplies:55, pof:'CA$20,635/yr Provincial Attestation + GIC for the study permit.' },
+  // Germany
+  munich:      { name:'Munich',          country:'Germany 🇩🇪',rent:{shared:540,studio:972,campus:480},  food:280, transport:39,  insurance:119,leisure:200, supplies:50, pof:'€11,904/yr Sperrkonto (blocked account) for the visa.' },
+  aachen:      { name:'Aachen (RWTH)',   country:'Germany 🇩🇪',rent:{shared:378,studio:595,campus:330},  food:260, transport:36,  insurance:119,leisure:180, supplies:50, pof:'€11,904/yr Sperrkonto (blocked account) for the visa.' },
+  // Hungary
+  budapest:    { name:'Budapest',        country:'Hungary 🇭🇺',rent:{shared:302,studio:486,campus:240},  food:220, transport:14,  insurance:55, leisure:160, supplies:40, pof:'Min. €50,000 health insurance + financial means evidence.' },
+  debrecen:    { name:'Debrecen',        country:'Hungary 🇭🇺',rent:{shared:216,studio:378,campus:180},  food:200, transport:12,  insurance:55, leisure:140, supplies:40, pof:'Min. €50,000 health insurance + financial means evidence.' },
+  // Poland
+  warsaw:      { name:'Warsaw',          country:'Poland 🇵🇱', rent:{shared:375,studio:600,campus:280},  food:200, transport:25,  insurance:45, leisure:160, supplies:40, pof:'~PLN 776/mo (min wage proof) for the TRP + private insurance.' },
+  krakow:      { name:'Krakow',          country:'Poland 🇵🇱', rent:{shared:325,studio:500,campus:260},  food:190, transport:18,  insurance:45, leisure:150, supplies:40, pof:'~PLN 776/mo (min wage proof) for the TRP + private insurance.' },
+  // Spain
+  barcelona:   { name:'Barcelona',       country:'Spain 🇪🇸',  rent:{shared:432,studio:810,campus:520},  food:260, transport:50,  insurance:65, leisure:200, supplies:45, pof:'€7,200/yr (IPREM × 12) for the student visa.' },
+  madrid:      { name:'Madrid',          country:'Spain 🇪🇸',  rent:{shared:486,studio:864,campus:540},  food:270, transport:50,  insurance:65, leisure:210, supplies:45, pof:'€7,200/yr (IPREM × 12) for the student visa.' },
+  // Italy
+  milan:       { name:'Milan',           country:'Italy 🇮🇹',  rent:{shared:540,studio:972,campus:430},  food:280, transport:42,  insurance:75, leisure:210, supplies:50, pof:'~€6,300/yr financial means proof for the Type D visa.' },
+  bologna:     { name:'Bologna',         country:'Italy 🇮🇹',  rent:{shared:432,studio:756,campus:360},  food:240, transport:36,  insurance:75, leisure:180, supplies:45, pof:'~€6,300/yr financial means proof for the Type D visa.' },
+  // Georgia
+  tbilisi:     { name:'Tbilisi',         country:'Georgia 🇬🇪',rent:{shared:200,studio:400,campus:180},  food:180, transport:15,  insurance:35, leisure:120, supplies:30, pof:'~$3,000/yr financial proof + 90-day visa-free for many.' },
+  // Malaysia
+  kl:          { name:'Kuala Lumpur',    country:'Malaysia 🇲🇾',rent:{shared:250,studio:500,campus:220}, food:200, transport:30,  insurance:25, leisure:140, supplies:30, pof:'EMGS approval + personal bond — typically ~$2,000/yr proof.' },
+  // Australia
+  melbourne:   { name:'Melbourne',       country:'Australia 🇦🇺',rent:{shared:570,studio:1140,campus:700}, food:350, transport:80, insurance:50,leisure:260, supplies:65, pof:'AUD 29,710/yr financial capacity for the student visa.' },
+  sydney:      { name:'Sydney',          country:'Australia 🇦🇺',rent:{shared:800,studio:1430,campus:920}, food:370, transport:90, insurance:50,leisure:280, supplies:65, pof:'AUD 29,710/yr financial capacity for the student visa.' },
+};
+
+const ACC_LABELS = { shared:'Shared apartment', studio:'Studio / 1-BR', campus:'On-campus dorm' };
+const LIFE_LABELS = { budget:'Budget-conscious', average:'Average student', comfort:'Comfortable' };
+const LIFE_MULT  = { budget: 0.82, average: 1.00, comfort: 1.28 };
+
+const CURR = {
+  USD: { sym: '$',    rate: 1,     dec: 0 },
+  EUR: { sym: '€',    rate: 0.92,  dec: 0 },
+  GBP: { sym: '£',    rate: 0.79,  dec: 0 },
+  SAR: { sym: 'SAR ', rate: 3.75,  dec: 0 },
+  AED: { sym: 'AED ', rate: 3.67,  dec: 0 },
+  EGP: { sym: 'E£',   rate: 50,    dec: 0 },
+};
+
+const ICONS = {
+  rent: '🏠', food: '🛒', transport: '🚇', insurance: '🛡️', leisure: '🎬', supplies: '📚'
+};
+const LABELS = {
+  rent: 'Rent + utilities', food: 'Food & groceries', transport: 'Public transport',
+  insurance: 'Health insurance', leisure: 'Leisure & personal', supplies: 'Books & supplies'
+};
+
+const state = {
+  city: 'munich',
+  acc: 'shared',
+  life: 'average',
+  tuition: 0,
+  curr: 'USD',
+};
+
+/* ------- DOM ------- */
+const $city = document.getElementById('ccCity');
+const $tuition = document.getElementById('ccTuition');
+const $accBtns = document.querySelectorAll('#ccAcc button');
+const $lifeBtns = document.querySelectorAll('#ccLife button');
+const $currBtns = document.querySelectorAll('#ccCurr button');
+const $title = document.getElementById('ccCityTitle');
+const $line = document.getElementById('ccCityLine');
+const $mo = document.getElementById('ccMo');
+const $yr = document.getElementById('ccYr');
+const $yrUnit = document.getElementById('ccYrUnit');
+const $bd = document.getElementById('ccBd');
+const $pof = document.getElementById('ccPofTxt');
+const $wa = document.getElementById('ccWa');
+
+// build city dropdown — grouped by country
+function buildCityDropdown() {
+  const groups = {};
+  Object.entries(CITIES).forEach(([key, c]) => {
+    (groups[c.country] = groups[c.country] || []).push({ key, name: c.name });
+  });
+  let html = '';
+  Object.entries(groups).forEach(([country, list]) => {
+    html += `<optgroup label="${country}">` +
+      list.map(x => `<option value="${x.key}">${x.name}</option>`).join('') +
+      `</optgroup>`;
+  });
+  $city.innerHTML = html;
+  $city.value = state.city;
+}
+
+function fmt(usdAmt) {
+  const c = CURR[state.curr];
+  const v = Math.round(usdAmt * c.rate);
+  return c.sym + v.toLocaleString();
+}
+
+function computeBreakdown() {
+  const city = CITIES[state.city];
+  const mult = LIFE_MULT[state.life];
+  // Rent is fixed by accommodation choice (lifestyle barely affects rent for same type)
+  const rent = city.rent[state.acc];
+  const food = city.food * mult;
+  const transport = city.transport * (state.life === 'budget' ? 0.85 : state.life === 'comfort' ? 1.15 : 1);
+  const insurance = city.insurance; // fixed
+  const leisure = city.leisure * mult;
+  const supplies = city.supplies * (state.life === 'budget' ? 0.9 : 1);
+  return { rent, food, transport, insurance, leisure, supplies };
+}
+
+function render() {
+  const city = CITIES[state.city];
+  const bd = computeBreakdown();
+  const monthly = bd.rent + bd.food + bd.transport + bd.insurance + bd.leisure + bd.supplies;
+  const yearly = monthly * 12 + Number(state.tuition || 0);
+
+  $title.textContent = `Living in ${city.name}`;
+  $line.textContent = `${ACC_LABELS[state.acc]} · ${LIFE_LABELS[state.life]} · in ${state.curr}`;
+
+  $mo.textContent = fmt(monthly);
+  $yr.textContent = fmt(yearly);
+  $yrUnit.textContent = state.tuition > 0 ? 'incl. tuition + living' : 'living only';
+
+  $bd.innerHTML = Object.entries(bd).map(([k, v]) => `
+    <li>
+      <span class="lab"><span class="ic">${ICONS[k]}</span>${LABELS[k]}</span>
+      <span class="val">${fmt(v)}/mo</span>
+    </li>
+  `).join('');
+
+  $pof.textContent = city.pof;
+
+  const waText = `Hi! I used the SAG Cost Calculator and these are my numbers:
+• City: ${city.name} (${city.country.replace(/[^\\w\\s]/g,'').trim()})
+• Accommodation: ${ACC_LABELS[state.acc]}
+• Lifestyle: ${LIFE_LABELS[state.life]}
+• Monthly estimate: ${fmt(monthly)} (${state.curr})
+• Yearly estimate: ${fmt(yearly)} ${state.tuition > 0 ? '(incl. tuition)' : ''}
+
+Can a counsellor review this and help me plan?`;
+  $wa.href = 'https://wa.me/?text=' + encodeURIComponent(waText);
+}
+
+/* ------- bind ------- */
+function bindSeg(buttons, key) {
+  buttons.forEach(b => b.addEventListener('click', () => {
+    buttons.forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    state[key] = b.dataset.v;
+    render();
+  }));
+}
+
+bindSeg($accBtns, 'acc');
+bindSeg($lifeBtns, 'life');
+bindSeg($currBtns, 'curr');
+
+$city.addEventListener('change', () => { state.city = $city.value; render(); });
+$tuition.addEventListener('input', () => { state.tuition = Number($tuition.value) || 0; render(); });
+
+buildCityDropdown();
+render();
+</script>
+</body>
+</html>
