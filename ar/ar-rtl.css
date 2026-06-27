@@ -1,0 +1,157 @@
+/* ============================================================
+   Study Abroad Gate — Arabic / RTL layer
+   Load AFTER styles.css on any /ar/ page. Rebinds the brand
+   typeface to IBM Plex Sans Arabic and mirrors every physical
+   layout rule the design system assumes in LTR.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ---- Arabic type: rebind brand font variables for this subtree ---- */
+body {
+  --serif: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  --sans:  'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  --mono:  'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--sans);
+}
+
+/* Arabic must never letter-space (breaks glyph joining) or uppercase */
+.kicker, .nav-links a, .foot-col h5, .cost-table th, .fact .k, .chip,
+.dest-card .flag, .dcard .flag, .lang-toggle, .step h4, .form-note {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Headings: relax tight Latin tracking, give Arabic loops room */
+h1, h2, h3, h4, .h-display, .h1, .h2, .h3 { letter-spacing: 0; line-height: 1.24; }
+.h-display { line-height: 1.14; }
+.lead { line-height: 1.78; }
+p { line-height: 1.8; }
+
+/* Arrows mirror for RTL reading direction */
+.link-arrow svg { transform: scaleX(-1); }
+.link-arrow:hover svg { transform: scaleX(-1) translateX(4px); }
+
+/* Header / nav mirroring (logical replacements for the LTR auto-margins) */
+.nav-right { margin-left: 0; margin-inline-start: auto; }
+.nav-links { margin-left: 0; margin-inline-start: 8px; }
+.nav-links a.has-caret::after { margin-left: 0; margin-inline-start: 5px; }
+
+/* Fact strip: accent border + padding move to the inline-start (right) */
+.fact { border-left: 0; border-inline-start: 2px solid var(--gold); padding-left: 0; padding-inline-start: 16px; }
+
+/* Tables: text aligns to start; numeric last column to end */
+.cost-table th, .cost-table td { text-align: start; }
+.cost-table td:last-child { text-align: end; }
+
+/* Floating WhatsApp + mobile bar mirror to the inline-end (left) */
+.wa-float { inset-inline-end: 20px; right: auto; }
+
+/* ============================================================
+   FORMS & VALIDATION — Arabic RTL form layer
+   Drives the markup enhanced by ar-forms.js. Logical properties
+   throughout; semantic colors isolated to feedback only.
+   ============================================================ */
+
+/* ---- label + required/optional affordances ---- */
+.field label { display: flex; align-items: baseline; gap: 6px; }
+.field .req { color: var(--color-danger); font-weight: 700; }
+.field .opt { color: var(--muted-2); font-weight: 500; font-size: 0.8em; }
+.field-hint { font-size: 0.8rem; color: var(--muted-2); line-height: 1.55; margin-block-start: 2px; }
+
+/* ---- keyboard focus: visible WCAG-AA ring on every interactive control ---- */
+.field input:focus-visible,
+.field select:focus-visible,
+.ccsel:focus-visible,
+.btn:focus-visible,
+.qz-opt:focus-visible,
+a:focus-visible,
+button:focus-visible,
+[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--ring-brand);
+  outline-offset: 2px;
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.ccsel:focus-visible { border-color: var(--navy); background: #fff; }
+
+/* ---- LTR isolation: Latin/numeric data anchors to the inline-start ---- */
+input[type="tel"], input[type="email"], input[type="url"], input[type="number"] {
+  direction: ltr;
+  text-align: start;
+  unicode-bidi: plaintext;
+}
+input[type="email"]::placeholder,
+input[type="url"]::placeholder { text-align: start; }
+
+/* ---- invalid state ---- */
+.field.invalid input,
+.field.invalid select,
+.field.invalid .ccsel,
+.field.invalid .phone-group { border-color: var(--color-danger); background: var(--color-danger-soft); }
+.field-error {
+  display: flex; align-items: flex-start; gap: 7px;
+  color: var(--color-danger); font-size: 0.83rem; font-weight: 600;
+  line-height: 1.5; margin-block-start: 7px;
+}
+.field-error span[aria-hidden] { flex: 0 0 auto; line-height: 1.4; }
+.field:not(.invalid) .field-error { display: none; }
+
+/* ---- soft warning state (non-blocking, e.g. low GPA) ---- */
+.field.warn select,
+.field.warn input { border-color: var(--color-warning); }
+.field-warn {
+  display: flex; align-items: flex-start; gap: 7px;
+  color: var(--color-warning); font-size: 0.83rem; font-weight: 600;
+  line-height: 1.5; margin-block-start: 7px;
+}
+.field:not(.warn) .field-warn { display: none; }
+
+/* ---- GCC phone group (country select + number) ---- */
+.phone-group { display: flex; gap: 8px; align-items: stretch; }
+.phone-group .ccsel {
+  flex: 0 0 auto; width: auto; min-width: 104px;
+  font-family: var(--sans); font-size: 0.98rem; padding: 12px 12px;
+  border-radius: var(--r-sm); border: 1.5px solid var(--line);
+  background: var(--cream); color: var(--ink); cursor: pointer;
+  direction: ltr; text-align: start;
+}
+.phone-group .ccsel:focus { outline: none; border-color: var(--navy); background: #fff; }
+.phone-group input[type="tel"] { flex: 1 1 auto; min-width: 0; }
+
+/* ---- instant qualification feedback ---- */
+.qual-feedback {
+  display: none; gap: 10px; align-items: flex-start;
+  margin-block-start: 4px; padding: 13px 15px;
+  border-radius: var(--r-sm); font-size: 0.92rem; font-weight: 500;
+  line-height: 1.55; border: 1px solid transparent;
+}
+.qual-feedback.show { display: flex; animation: qzin .22s ease; }
+.qual-feedback span[aria-hidden] {
+  flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 700; font-size: 0.82rem;
+}
+.qual-feedback.good { background: var(--color-success-soft); color: var(--emerald-800); }
+.qual-feedback.good span[aria-hidden] { background: var(--color-success); color: #fff; }
+.qual-feedback.warn { background: var(--color-warning-soft); color: #7a4d09; }
+.qual-feedback.warn span[aria-hidden] { background: var(--color-warning); color: #fff; }
+
+/* ---- consent checkbox row ---- */
+.field-check { flex-direction: row; align-items: flex-start; gap: 10px; margin-bottom: 16px; }
+.field-check input[type="checkbox"] {
+  flex: 0 0 auto; width: 20px; height: 20px; margin-block-start: 1px;
+  accent-color: var(--navy); cursor: pointer;
+}
+.field-check label { font-size: 0.86rem; font-weight: 500; color: var(--muted); line-height: 1.55; cursor: pointer; }
+
+/* ---- progressive disclosure: smooth reveal ---- */
+[data-reveal-when] { animation: qzin .24s ease; }
+
+/* ---- success panel ---- */
+[data-success] { display: none; }
+.form-success { text-align: center; padding: 18px 4px 8px; }
+.form-success .tick {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px;
+  background: var(--color-success-soft); color: var(--color-success);
+  display: grid; place-items: center; font-size: 1.9rem; font-weight: 700;
+}
