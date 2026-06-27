@@ -1,0 +1,37 @@
+/* ============================================================
+   Study Abroad Gate — Shadows, Borders, Motion Tokens
+   Soft, layered, premium shadows — never harsh.
+   ============================================================ */
+
+:root {
+  /* ---- Elevation / shadows -------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(18, 21, 23, 0.06);
+  --shadow-sm: 0 1px 3px rgba(18, 21, 23, 0.08), 0 1px 2px rgba(18, 21, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(18, 21, 23, 0.08), 0 2px 4px rgba(18, 21, 23, 0.04);
+  --shadow-lg: 0 12px 28px rgba(18, 21, 23, 0.10), 0 4px 10px rgba(18, 21, 23, 0.05);
+  --shadow-xl: 0 24px 56px rgba(18, 21, 23, 0.14), 0 8px 18px rgba(18, 21, 23, 0.06);
+
+  /* Brand-tinted glow for primary CTAs */
+  --shadow-brand: 0 10px 28px color-mix(in oklch, var(--navy-800) 32%, transparent);
+  --shadow-accent: 0 10px 28px color-mix(in oklch, var(--gold-500) 34%, transparent);
+
+  /* Card ring (hairline border that reads premium) */
+  --ring-card: inset 0 0 0 1px var(--ink-100);
+
+  /* ---- Borders -------------------------------------------- */
+  --border-width: 1px;       /* @kind other */
+  --border-width-thick: 2px; /* @kind other */
+
+  /* ---- Motion --------------------------------------------- */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);   /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --ease-soft:  cubic-bezier(0.33, 1, 0.68, 1);  /* @kind other */
+
+  --dur-fast:   140ms; /* @kind other */
+  --dur-base:   220ms; /* @kind other */
+  --dur-slow:   380ms; /* @kind other */
+
+  /* ---- Backdrop blur -------------------------------------- */
+  --blur-sm: blur(6px);  /* @kind other */
+  --blur-md: blur(14px); /* @kind other */
+}

@@ -1,0 +1,57 @@
+/* ============================================================
+   Study Abroad Gate — Spacing, Radii, Layout Tokens
+   8px base grid
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (8px grid, with half-steps) ---------- */
+  --space-0:  0;
+  --space-1:  0.25rem; /* 4 */
+  --space-2:  0.5rem;  /* 8 */
+  --space-3:  0.75rem; /* 12 */
+  --space-4:  1rem;    /* 16 */
+  --space-5:  1.5rem;  /* 24 */
+  --space-6:  2rem;    /* 32 */
+  --space-7:  2.5rem;  /* 40 */
+  --space-8:  3rem;    /* 48 */
+  --space-9:  4rem;    /* 64 */
+  --space-10: 5rem;    /* 80 */
+  --space-11: 6rem;    /* 96 */
+  --space-12: 8rem;    /* 128 */
+
+  /* ---- Section rhythm ------------------------------------- */
+  --section-y:        var(--space-11);  /* vertical section padding desktop */
+  --section-y-mobile: var(--space-9);
+
+  /* ---- Container widths ----------------------------------- */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-2xl: 1320px;
+  --gutter: var(--space-5);
+
+  /* ---- Radii ---------------------------------------------- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-pill: 999px;
+
+  /* ---- Breakpoints (reference values) --------------------- */
+  --bp-sm: 640px;  /* @kind other */
+  --bp-md: 768px;  /* @kind other */
+  --bp-lg: 1024px; /* @kind other */
+  --bp-xl: 1200px; /* @kind other */
+
+  /* ---- Z-index scale -------------------------------------- */
+  --z-base:    1;    /* @kind other */
+  --z-sticky:  100;  /* @kind other */
+  --z-header:  200;  /* @kind other */
+  --z-overlay: 800;  /* @kind other */
+  --z-modal:   900;  /* @kind other */
+  --z-toast:   1000; /* @kind other */
+  --z-whatsapp: 1100; /* @kind other */
+}
